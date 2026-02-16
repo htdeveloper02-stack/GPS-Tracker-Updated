@@ -1,0 +1,213 @@
+<resources>
+    <string name="app_name" translatable="false">GPS Phone Number Tracker</string>
+
+    <string name="info1"><![CDATA[Zaman ve konum\ngöstergeli fotoğraflar çekin]]></string>
+    <string name="infosub1"><![CDATA[Her fotoğrafa tarih, saat ve GPS konumu ekleyin]]></string>
+    <string name="infosub2"><![CDATA[Etkileşimli haritada konum ve hareketi görün]]></string>
+    <string name="infosub3"><![CDATA[Pusula, yakındaki yerler ve rota planlayıcı dahildir]]></string>
+    <string name="infosub4"><![CDATA[Basit ve hassas yönlendirme]]></string>
+
+    <string name="map_key">AIzaSyBLIGwxAlODMg1i9AJiVKG4tNdTVKbSwSI</string>
+    <string name="mDeletSub">Bu bölgeyi silmek istediğinizden emin misiniz?</string>
+    <string name="waiting_for_gps_signal_d">GPS sinyali bekleniyor</string>
+    <string name="chooselang">Dilinizi seçin</string>
+    <string name="next">İleri</string>
+
+    <string name="info2">Canlı konum ile\ntelefonları takip edin</string>
+    <string name="info3">Daha akıllı takip için\ngüçlü araçlar</string>
+    <string name="start">Başla</string>
+    <string name="info4">Kolayca yolunuzu bulun</string>
+
+    <string name="livelocation">Canlı Konum</string>
+    <string name="phonelocator">Telefon Bulucu</string>
+    <string name="phonelocator1">Güvenli alanlar ayarlayın</string>
+
+    <string name="nearby">Yakın</string>
+    <string name="nearby1"><![CDATA[Kişileri ve yerleri bulun]]></string>
+
+    <string name="trackinguser">Takip Edilen Kullanıcı</string>
+    <string name="trackinguser1">Takip Edilen Kullanıcı Listesi</string>
+
+    <string name="realtime">Gerçek Zamanlı Takip</string>
+    <string name="realtime1">Canlı Rota Takibi</string>
+
+    <string name="gpstool">GPS Araçları</string>
+    <string name="gpstool1"><![CDATA[Takip edin, gezin ve keşfedin]]></string>
+
+    <string name="adduser">Kullanıcı Ekle</string>
+    <string name="adduser1">Yeni Kullanıcı Oluştur</string>
+
+    <string name="traffic">Trafik Uyarısı</string>
+    <string name="traffic1">Anlık Trafik Güncellemeleri</string>
+
+    <string name="zonealert">Bölge Uyarısı</string>
+    <string name="zonealert1">Güvenli alanlar ayarlayın</string>
+
+    <string name="nointernet">İnternet bağlantısı yok</string>
+    <string name="txt_nointernet">Şu anda çevrimdışısınız. Lütfen Wi-Fi veya mobil verinizi kontrol edip tekrar deneyin.</string>
+    <string name="open_wifi_setting">Wi-Fi Ayarlarını Aç</string>
+
+    <string name="txt_uninstall">Kaldır</string>
+
+    <string name="compass">Pusula</string>
+    <string name="compass1"><![CDATA[Yön ve başlık]]></string>
+
+    <string name="stopwatch">Kronometre</string>
+    <string name="stopwatch1">Hassas zaman ölçümü</string>
+
+    <string name="speedmeter">Hız Göstergesi</string>
+    <string name="speedmeter1">Doğru hız takibi</string>
+
+    <string name="areacode">Alan Kodları</string>
+    <string name="areacode1">Tüm alan kodları</string>
+
+    <string name="levelmeter">Seviye Ölçer</string>
+    <string name="levelmeter1">Dengeyi kolaylaştırır</string>
+
+    <string name="art_gallery">Sanat Galerisi</string>
+    <string name="bar">Barlar</string>
+    <string name="bank">Banka</string>
+    <string name="atm">ATM\'ler</string>
+    <string name="saloon">Güzellik Salonları</string>
+    <string name="book">Kitapçılar</string>
+    <string name="coffee">Kafeler</string>
+    <string name="cardealer">Oto Bayileri</string>
+    <string name="bygas">Benzin İstasyonları</string>
+    <string name="bygym">Spor Salonları</string>
+    <string name="hospital">Hastaneler</string>
+    <string name="byhotel">Oteller</string>
+    <string name="parking">Otopark</string>
+    <string name="retuarant">Restoranlar</string>
+
+    <string name="settext1">Dosya kurtarmada %90\'ın üzerinde kanıtlanmış başarı oranı</string>
+    <string name="settext2">Dosyaları kurtarmakta neden zorlanasınız? İstediğiniz zaman kolayca yapın\nDosyalarınızı sadece birkaç dokunuşla geri alın</string>
+
+    <string name="tryagin">Tekrar Dene</string>
+    <string name="still">Hâlâ kaldırmak istiyor musunuz?</string>
+    <string name="surtxt">Uygulamayı kullanırken sorunlar</string>
+
+    <string name="survey_1">Uygulama yavaş veya düzgün çalışmıyor</string>
+    <string name="survey_2">Çok fazla reklam</string>
+    <string name="survey_3">Çok fazla depolama alanı kaplıyor</string>
+    <string name="survey_4">Premium özellikler çok pahalı</string>
+
+    <string name="facebook_client_token" translatable="false">95c71e4402046c3690f3f4c3e76166a4</string>
+    <string name="tiktok_token" translatable="false">q32ux0</string>
+    <string name="adjust_token" translatable="false">uurp9o91gpvk</string>
+
+    <string name="nocityfound">Şehir bulunamadı</string>
+    <string name="waiting_gps">GPS sinyali bekleniyor</string>
+
+    <string name="total">Toplam</string>
+    <string name="avg">Ortalama</string>
+    <string name="top">En Yüksek</string>
+    <string name="detail">Detaylar</string>
+    <string name="known">Bilinmeyen</string>
+
+    <string name="request">İstek</string>
+    <string name="no_requeest">Yeni istek bulunamadı</string>
+    <string name="trackinguselist">Takip Edilen Kullanıcı Listesi</string>
+    <string name="nouser">Henüz hiç arkadaşınız yok</string>
+
+    <string name="shareqr">QR Paylaş</string>
+    <string name="addac">Hesap Ekle</string>
+    <string name="orscan">Veya Tara</string>
+    <string name="sharedirect">Doğrudan Paylaş</string>
+    <string name="share">Paylaş</string>
+    <string name="myqr">QR Kodum</string>
+
+    <string name="entercode">Kodu Girin</string>
+    <string name="finsc">Hesap Bul</string>
+    <string name="add">Ekle</string>
+
+    <string name="standard">Standart</string>
+    <string name="normal">Normal</string>
+    <string name="satelite">Uydu</string>
+
+    <string name="timealert">Zaman Uyarısı</string>
+    <string name="modrat">Orta</string>
+    <string name="slower">Daha Yavaş</string>
+    <string name="extrem">Aşırı</string>
+
+    <string name="createzon">Bölge Oluştur</string>
+    <string name="status">Durum</string>
+    <string name="alerts">Uyarılar</string>
+    <string name="noenter">Girişte</string>
+    <string name="onexit">Çıkışta</string>
+    <string name="enterzon">Bölge adını girin</string>
+
+    <string name="searchlocation">Konumunuzu arayın</string>
+    <string name="lap">Tur</string>
+    <string name="searchbycity">Şehre göre ara</string>
+
+    <string name="call">Ara</string>
+    <string name="sms">SMS</string>
+    <string name="search_phone_no">Telefon numarası ara</string>
+
+    <string name="setting">Ayarlar</string>
+    <string name="general">Genel</string>
+    <string name="other">Diğer</string>
+
+    <string name="changelan">Dili Değiştir</string>
+    <string name="rateus">Bizi Değerlendirin</string>
+    <string name="rateus1">Bu uygulamayı değerlendirin</string>
+
+    <string name="shareapp">Uygulamayı Paylaş</string>
+    <string name="shareapp1">Arkadaşlarla paylaş</string>
+
+    <string name="tt_privacy">Telefonunuzu koruyun</string>
+    <string name="safe">Güvenli</string>
+    <string name="danger">Tehlike</string>
+
+    <string name="shareaddre">Konum adresini paylaş</string>
+
+    <string name="aboutus">Hakkımızda</string>
+    <string name="aboutus1">İhtiyaçlarınız, önceliğimiz</string>
+
+    <string name="contactus">Bize Ulaşın</string>
+    <string name="contactus1">Güvenebileceğiniz destek</string>
+    <string name="thankyou">Teşekkürler!</string>
+    <string name="thankyou1">GPS takibiniz artık aktif ve kullanıma hazır.</string>
+    <string name="exit1">Çıkış</string>
+    <string name="cancel1">İptal</string>
+    <string name="done">Bitti</string>
+    <string name="permission">İzin gerekli</string>
+    <string name="permission1">Bu özelliği kullanmak için izin gereklidir. Lütfen erişime izin verin.</string>
+    <string name="notification">Bildirim</string>
+    <string name="notification1">Yararlı uyarılar ve güncellemeler için bildirimlere izin ver</string>
+    <string name="location">Konum</string>
+    <string name="location1">Yakındaki yerleri göstermek için konum erişimine izin ver</string>
+    <string name="camera">Kamera</string>
+    <string name="camera1">Devam etmek için kamera iznini açın</string>
+    <string name="grantper">İzin ver</string>
+    <string name="needpermission">İzin gerekiyor</string>
+    <string name="needpermission1">Bu özellik için uygulamanın izne ihtiyacı var. Ayarlardan izin verebilirsiniz.</string>
+    <string name="gotosetting">Ayarlar’a git</string>
+    <string name="enter_code">Lütfen kodu girin</string>
+    <string name="user_not_found">Kullanıcı bulunamadı</string>
+    <string name="already_add">Kullanıcı zaten arkadaş listenizde</string>
+    <string name="already_request">Arkadaşlık isteği zaten gönderildi</string>
+    <string name="frd_request">Arkadaşlık isteği gönderildi</string>
+    <string name="unable_map">Harita açılamadı</string>
+    <string name="error">Bir hata oluştu</string>
+    <string name="enter_phone">Lütfen telefon numarası girin</string>
+    <string name="invalid_phone">Geçersiz telefon numarası formatı</string>
+    <string name="error_request">Bir şeyler ters gitti</string>
+    <string name="faile_qr">QR görseli paylaşılamadı</string>
+    <string name="copy_clip">Panoya kopyalandı</string>
+    <string name="enter_city">Şehir adı girin</string>
+    <string name="fail_call">Arama başlatılamadı</string>
+    <string name="already_contact">Numara zaten kişilerde mevcut</string>
+    <string name="fail_add_contact">Kişi eklenemedi</string>
+    <string name="fail_add_sms">SMS gönderilemedi</string>
+    <string name="enter_location">Lütfen konum girin</string>
+    <string name="not_geo">Bu cihazda coğrafi kodlayıcı yok</string>
+    <string name="not_location">Konum bulunamadı</string>
+    <string name="error_location">Konum aranırken hata oluştu</string>
+    <string name="yes">Evet</string>
+    <string name="no">Hayır</string>
+    <string name="delete_zone">Bölgeyi sil</string>
+    <string name="not_number">Bir cep telefonu numarası değil</string>
+
+</resources>
+

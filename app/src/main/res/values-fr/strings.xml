@@ -1,0 +1,213 @@
+<resources>
+    <string name="app_name" translatable="false">GPS Phone Number Tracker</string>
+
+    <string name="info1"><![CDATA[Capturez des photos avec preuve\nde l’heure et de la localisation]]></string>
+    <string name="infosub1"><![CDATA[Ajoutez la date, l’heure et la position GPS à chaque photo]]></string>
+    <string name="infosub2"><![CDATA[Visualisez la position et les déplacements sur une carte interactive]]></string>
+    <string name="infosub3"><![CDATA[Boussole, lieux à proximité et planificateur d’itinéraires inclus]]></string>
+    <string name="infosub4"><![CDATA[Guidage simple et précis]]></string>
+
+    <string name="map_key">AIzaSyBLIGwxAlODMg1i9AJiVKG4tNdTVKbSwSI</string>
+    <string name="mDeletSub">Êtes-vous sûr de vouloir supprimer cette zone ?</string>
+    <string name="waiting_for_gps_signal_d">En attente du signal GPS</string>
+    <string name="chooselang">Choisissez votre langue</string>
+    <string name="next">Suivant</string>
+
+    <string name="info2">Suivez les téléphones avec\nlocalisation en direct</string>
+    <string name="info3">Des outils puissants pour un\nsuivi plus intelligent</string>
+    <string name="start">Démarrer</string>
+    <string name="info4">Naviguez facilement</string>
+
+    <string name="livelocation">Localisation en direct</string>
+    <string name="phonelocator">Localisateur de téléphone</string>
+    <string name="phonelocator1">Définir des zones sûres</string>
+
+    <string name="nearby">À proximité</string>
+    <string name="nearby1"><![CDATA[Trouvez des personnes et des lieux]]></string>
+
+    <string name="trackinguser">Utilisateur suivi</string>
+    <string name="trackinguser1">Liste des utilisateurs suivis</string>
+
+    <string name="realtime">Suivi en temps réel</string>
+    <string name="realtime1">Suivi d’itinéraire en direct</string>
+
+    <string name="gpstool">Outils GPS</string>
+    <string name="gpstool1"><![CDATA[Suivre, naviguer et explorer]]></string>
+
+    <string name="adduser">Ajouter un utilisateur</string>
+    <string name="adduser1">Créer un nouvel utilisateur</string>
+
+    <string name="traffic">Alerte trafic</string>
+    <string name="traffic1">Mises à jour du trafic instantanées</string>
+
+    <string name="zonealert">Alerte de zone</string>
+    <string name="zonealert1">Définir des zones sûres</string>
+
+    <string name="nointernet">Aucune connexion Internet</string>
+    <string name="txt_nointernet">Vous êtes actuellement hors ligne. Veuillez vérifier votre Wi-Fi ou vos données mobiles et réessayer.</string>
+    <string name="open_wifi_setting">Ouvrir les paramètres Wi-Fi</string>
+
+    <string name="txt_uninstall">Désinstaller</string>
+
+    <string name="compass">Boussole</string>
+    <string name="compass1"><![CDATA[Direction et orientation]]></string>
+
+    <string name="stopwatch">Chronomètre</string>
+    <string name="stopwatch1">Mesure du temps précise</string>
+
+    <string name="speedmeter">Compteur de vitesse</string>
+    <string name="speedmeter1">Suivi précis de la vitesse</string>
+
+    <string name="areacode">Indicatifs régionaux</string>
+    <string name="areacode1">Tous les indicatifs</string>
+
+    <string name="levelmeter">Niveau</string>
+    <string name="levelmeter1">Mise à niveau simplifiée</string>
+
+    <string name="art_gallery">Galerie d’art</string>
+    <string name="bar">Bars</string>
+    <string name="bank">Banque</string>
+    <string name="atm">Distributeurs automatiques</string>
+    <string name="saloon">Salons de beauté</string>
+    <string name="book">Librairies</string>
+    <string name="coffee">Cafés</string>
+    <string name="cardealer">Concessionnaires automobiles</string>
+    <string name="bygas">Stations-service</string>
+    <string name="bygym">Salles de sport</string>
+    <string name="hospital">Hôpitaux</string>
+    <string name="byhotel">Hôtels</string>
+    <string name="parking">Parkings</string>
+    <string name="retuarant">Restaurants</string>
+
+    <string name="settext1">Taux de réussite prouvé avec plus de 90 % de récupération de fichiers</string>
+    <string name="settext2">Pourquoi lutter pour récupérer des fichiers ? Faites-le facilement à tout moment\nRécupérez vos fichiers en quelques clics</string>
+
+    <string name="tryagin">Réessayer</string>
+    <string name="still">Souhaitez-vous toujours désinstaller l’application ?</string>
+    <string name="surtxt">Problèmes lors de l’utilisation de l’application</string>
+
+    <string name="survey_1">L’application est lente ou ne fonctionne pas correctement</string>
+    <string name="survey_2">Trop de publicités</string>
+    <string name="survey_3">Prend trop d’espace de stockage</string>
+    <string name="survey_4">Les fonctionnalités premium sont trop chères</string>
+
+    <string name="facebook_client_token" translatable="false">95c71e4402046c3690f3f4c3e76166a4</string>
+    <string name="tiktok_token" translatable="false">q32ux0</string>
+    <string name="adjust_token" translatable="false">uurp9o91gpvk</string>
+
+    <string name="nocityfound">Aucune ville trouvée</string>
+    <string name="waiting_gps">En attente du signal GPS</string>
+
+    <string name="total">Total</string>
+    <string name="avg">Moyenne</string>
+    <string name="top">Maximum</string>
+    <string name="detail">Détails</string>
+    <string name="known">Inconnu</string>
+
+    <string name="request">Demande</string>
+    <string name="no_requeest">Aucune nouvelle demande trouvée</string>
+    <string name="trackinguselist">Liste des utilisateurs suivis</string>
+    <string name="nouser">Vous n’avez pas encore d’amis</string>
+
+    <string name="shareqr">Partager le QR</string>
+    <string name="addac">Ajouter un compte</string>
+    <string name="orscan">Ou scanner</string>
+    <string name="sharedirect">Partager directement</string>
+    <string name="share">Partager</string>
+    <string name="myqr">Mon QR</string>
+
+    <string name="entercode">Entrer le code</string>
+    <string name="finsc">Trouver un compte</string>
+    <string name="add">Ajouter</string>
+
+    <string name="standard">Standard</string>
+    <string name="normal">Normal</string>
+    <string name="satelite">Satellite</string>
+
+    <string name="timealert">Alerte de temps</string>
+    <string name="modrat">Modéré</string>
+    <string name="slower">Plus lent</string>
+    <string name="extrem">Extrême</string>
+
+    <string name="createzon">Créer une zone</string>
+    <string name="status">Statut</string>
+    <string name="alerts">Alertes</string>
+    <string name="noenter">À l’entrée</string>
+    <string name="onexit">À la sortie</string>
+    <string name="enterzon">Entrer le nom de la zone</string>
+
+    <string name="searchlocation">Rechercher votre position</string>
+    <string name="lap">Tour</string>
+    <string name="searchbycity">Rechercher par ville</string>
+
+    <string name="call">Appeler</string>
+    <string name="sms">SMS</string>
+    <string name="search_phone_no">Rechercher un numéro de téléphone</string>
+
+    <string name="setting">Paramètres</string>
+    <string name="general">Général</string>
+    <string name="other">Autre</string>
+
+    <string name="changelan">Changer de langue</string>
+    <string name="rateus">Évaluez-nous</string>
+    <string name="rateus1">Évaluer cette application</string>
+
+    <string name="shareapp">Partager l’application</string>
+    <string name="shareapp1">Partager avec des amis</string>
+
+    <string name="tt_privacy">Protégez votre téléphone</string>
+    <string name="safe">Sûr</string>
+    <string name="danger">Danger</string>
+
+    <string name="shareaddre">Partager l’adresse de localisation</string>
+
+    <string name="aboutus">À propos de nous</string>
+    <string name="aboutus1">Vos besoins, notre priorité</string>
+
+    <string name="contactus">Contactez-nous</string>
+    <string name="contactus1">Un support sur lequel vous pouvez compter</string>
+    <string name="thankyou">Merci !</string>
+    <string name="thankyou1">Votre suivi GPS est maintenant actif et prêt à être utilisé.</string>
+    <string name="exit1">Quitter</string>
+    <string name="cancel1">Annuler</string>
+    <string name="done">Terminé</string>
+    <string name="permission">Autorisation requise</string>
+    <string name="permission1">Cette autorisation est nécessaire pour utiliser cette fonctionnalité.</string>
+    <string name="notification">Notification</string>
+    <string name="notification1">Autoriser les notifications pour des alertes utiles</string>
+    <string name="location">Localisation</string>
+    <string name="location1">Autoriser l’accès à la localisation</string>
+    <string name="camera">Caméra</string>
+    <string name="camera1">Activez l’autorisation caméra pour continuer</string>
+    <string name="grantper">Accorder l’autorisation</string>
+    <string name="needpermission">Autorisations nécessaires</string>
+    <string name="needpermission1">Cette application nécessite une autorisation pour fonctionner.</string>
+    <string name="gotosetting">Aller aux paramètres</string>
+    <string name="enter_code">Veuillez entrer le code</string>
+    <string name="user_not_found">Utilisateur introuvable</string>
+    <string name="already_add">Utilisateur déjà dans votre liste d’amis</string>
+    <string name="already_request">Demande déjà envoyée</string>
+    <string name="frd_request">Demande envoyée</string>
+    <string name="unable_map">Impossible d’ouvrir la carte</string>
+    <string name="error">Une erreur est survenue</string>
+    <string name="enter_phone">Veuillez entrer un numéro</string>
+    <string name="invalid_phone">Format de numéro invalide</string>
+    <string name="error_request">Une erreur est survenue</string>
+    <string name="faile_qr">Échec du partage du QR</string>
+    <string name="copy_clip">Copié dans le presse-papiers</string>
+    <string name="enter_city">Entrez le nom de la ville</string>
+    <string name="fail_call">Échec de l’appel</string>
+    <string name="already_contact">Numéro déjà existant</string>
+    <string name="fail_add_contact">Échec de l’ajout du contact</string>
+    <string name="fail_add_sms">Échec de l’envoi du SMS</string>
+    <string name="enter_location">Entrez la localisation</string>
+    <string name="not_geo">Géocodeur non disponible</string>
+    <string name="not_location">Localisation introuvable</string>
+    <string name="error_location">Erreur de recherche</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+    <string name="delete_zone">Supprimer la zone</string>
+    <string name="not_number">Ce n’est pas un numéro de mobile</string>
+
+</resources>
+

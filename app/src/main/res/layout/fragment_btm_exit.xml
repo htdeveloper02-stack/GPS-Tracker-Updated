@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="6dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginEnd="6dp"
+    android:background="@drawable/bg_user"
+    android:orientation="vertical"
+    android:paddingVertical="20dp"
+    android:paddingStart="10dp"
+    android:paddingEnd="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingHorizontal="16dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_exit_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="20dp"
+            android:fontFamily="@font/sfprotextext_bold"
+            android:gravity="center_vertical"
+            android:text="@string/thankyou"
+            android:textColor="@color/black"
+            android:textSize="18sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="30dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/sfprotext_medium"
+            android:gravity="center"
+            android:maxLines="2"
+            android:text="@string/thankyou1"
+            android:textColor="#838383"
+            android:textSize="13sp" />
+
+        <TextView
+            android:id="@+id/mIvExit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/ic_exit"
+            android:backgroundTint="#4D79FF"
+            android:fontFamily="@font/sfprotext_semibold"
+            android:gravity="center"
+            android:text="@string/exit1"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/mIvCancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="10dp"
+            android:background="@drawable/ic_exit"
+            android:backgroundTint="@color/white"
+            android:fontFamily="@font/sfprotext_semibold"
+            android:gravity="center"
+            android:text="@string/cancel1"
+            android:textColor="#555555"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+</LinearLayout>

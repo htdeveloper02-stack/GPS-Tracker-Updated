@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SpeedyView">
+
+        <!-- index 0 -->
+        <attr name="sv_borderColor" format="color"/>
+
+        <!-- index 1 -->
+        <attr name="sv_borderSize" format="dimension"/>
+
+        <!-- index 2 -->
+        <attr name="sv_fillColor" format="color"/>
+
+        <!-- index 3 -->
+        <attr name="sv_maxSpeed" format="integer"/>
+
+        <!-- index 4 -->
+        <attr name="sv_metricText" format="string"/>
+
+        <!-- index 5 -->
+        <attr name="sv_textColor" format="color"/>
+
+        <!-- index 6 -->
+        <attr name="sv_textGap" format="dimension"/>
+
+    </declare-styleable>
+</resources>

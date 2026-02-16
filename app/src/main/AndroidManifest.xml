@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:resizeable="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true" />
+
+    <uses-permission
+        android:name="android.permission.LOCATION"
+        android:required="false" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission
+        android:name="android.permission.location.GPS"
+        android:required="false" />
+    <uses-permission
+        android:name="android.permission.location.NETWORK"
+        android:required="false" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+    <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.front"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.flash"
+        android:required="false" />
+
+    <application
+        android:name=".MyApp"
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:preserveLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.GPSTracker"
+        android:usesCleartextTraffic="true"
+        tools:targetApi="31">
+        <activity
+            android:name=".ui.SurveyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.phonetracker.LevelMeterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.UninstallActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.phonetracker.StopwatchAct"
+            android:exported="false" />
+        <activity
+            android:name=".ui.phonetracker.AreaCodes"
+            android:exported="false" />
+        <activity
+            android:name=".ui.phonetracker.Speedometer"
+            android:exported="false" />
+        <activity
+            android:name=".ui.phonetracker.PhoneDetails"
+            android:exported="false" />
+        <activity
+            android:name=".ui.PhoneLocator"
+            android:exported="false" />
+        <activity
+            android:name=".ui.phonetracker.GPStoolActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.SettingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.RealTimeTrackActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.RequestActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.ListUserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.ShareMyQrActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.AddUserActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.CompassActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.TrafficAlertActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.zoneui.CreateZoneActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.zoneui.ZoneAlertActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.NearByActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.CurrentLocationAct"
+            android:exported="false" />
+        <activity
+            android:name=".ui.PermissionActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.TimestampActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.LangActivity"
+            android:exported="false"
+            android:theme="@style/Theme.GPSTrackerLang" />
+        <activity
+            android:name=".ui.onboard.OnBoardActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.SplashActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <receiver
+            android:name=".service.BootReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+        </receiver>
+
+        <service
+            android:name=".service.LocationUpdateService"
+            android:exported="false"
+            android:foregroundServiceType="location" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/map_key" />
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="1536553580968786" />
+        <meta-data
+            android:name="com.facebook.sdk.AutoInitEnabled"
+            android:value="true" />
+        <meta-data
+            android:name="com.facebook.sdk.AutoLogAppEventsEnabled"
+            android:value="true" />
+        <meta-data
+            android:name="com.facebook.sdk.AdvertiserIDCollectionEnabled"
+            android:value="true" />
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-2864154863223892~9366593122" />
+    </application>
+
+</manifest>

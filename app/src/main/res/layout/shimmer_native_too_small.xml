@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.facebook.shimmer.ShimmerFrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/shimmer_native"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:shimmer_auto_start="true"
+    app:shimmer_base_color="#DDDDDD"
+    app:shimmer_highlight_color="#F5F5F5">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="6dp"
+        app:cardBackgroundColor="@android:color/white"
+        app:strokeColor="#F0F0F0"
+        app:strokeWidth="0.8dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="8dp">
+
+            <!-- AD BADGE PLACEHOLDER -->
+            <View
+                android:layout_width="24dp"
+                android:layout_height="12dp"
+                android:layout_marginTop="4dp"
+                android:background="@drawable/bg_shimmer_item" />
+
+            <!-- ICON PLACEHOLDER -->
+            <View
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_marginStart="8dp"
+                android:background="@drawable/bg_shimmer_item" />
+
+            <!-- TEXT PLACEHOLDERS -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginHorizontal="8dp"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="12dp"
+                    android:background="@drawable/bg_shimmer_item" />
+
+                <View
+                    android:layout_width="70dp"
+                    android:layout_height="12dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_shimmer_item" />
+            </LinearLayout>
+
+            <!-- CTA BUTTON PLACEHOLDER -->
+            <View
+                android:layout_width="0dp"
+                android:layout_height="56dp"
+                android:layout_weight="1"
+                android:layout_marginStart="6dp"
+                android:background="@drawable/bg_shimmer_item" />
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+</com.facebook.shimmer.ShimmerFrameLayout>

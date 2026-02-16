@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="?actionBarSize"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingEnd="16dp">
+
+                <ImageView
+                    android:id="@+id/mIvBack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:padding="16dp"
+                    android:src="@drawable/ic_back" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/sfprotextext_bold"
+                    android:gravity="center"
+                    android:text="@string/adduser"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/mIvMyQR"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_myqr"
+                    android:backgroundTint="#4D79FF"
+                    android:fontFamily="@font/sfprotext_semibold"
+                    android:gravity="center"
+                    android:text="@string/myqr"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/edtEnteredCode"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/ic_edt_bg"
+                android:fontFamily="@font/sfprotext_medium"
+                android:hint="@string/entercode"
+                android:padding="15dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
+                android:textCursorDrawable="@drawable/custom_cursor"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/mIvFind"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/ic_find_act"
+                android:backgroundTint="#4D79FF"
+                android:fontFamily="@font/sfprotext_semibold"
+                android:gravity="center"
+                android:text="@string/finsc"
+                android:textColor="@color/white"
+                android:textSize="14sp" />
+
+            <ProgressBar
+                android:id="@+id/progressFindUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="25dp"
+                android:indeterminateTint="@color/clrAccent"
+                android:visibility="gone" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/layoutDetectedUser"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginVertical="30dp"
+                    android:elevation="0dp"
+                    android:visibility="gone"
+                    app:cardBackgroundColor="#F7F9FC"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="0dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="14dp"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/ivIcon"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_map" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="20dp"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:id="@+id/tvDetectedUserName"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/sfprotext_medium"
+                                android:text="Title"
+                                android:textColor="@color/black"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/tvDetectedUserCode"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/sfprotext_medium"
+                                android:text="Subtitle"
+                                android:textColor="#8F8F8F"
+                                android:textSize="12sp" />
+                        </LinearLayout>
+
+                        <TextView
+                            android:id="@+id/tvSendRequest"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@drawable/ic_add_user"
+                            android:backgroundTint="#4D79FF"
+                            android:fontFamily="@font/sfprotext_semibold"
+                            android:gravity="center"
+                            android:text="@string/add"
+                            android:textColor="@color/white"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <ImageView
+                    android:id="@+id/mIvQR"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_margin="30dp"
+                    android:src="@drawable/ic_qr" />
+            </RelativeLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <RelativeLayout
+        android:id="@+id/mRlBanner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <include
+            layout="@layout/layout_banner_control"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+</LinearLayout>
