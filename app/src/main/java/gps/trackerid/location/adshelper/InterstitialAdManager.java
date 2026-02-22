@@ -1,5 +1,6 @@
 package gps.trackerid.location.adshelper;
 
+<<<<<<< HEAD
 import android.app.Activity;
 import android.util.Log;
 
@@ -16,6 +17,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+=======
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 public class InterstitialAdManager {
 
     private static long lastAdShownTime = 0;
@@ -31,6 +34,7 @@ public class InterstitialAdManager {
     public static void onAdShown() {
         lastAdShownTime = System.currentTimeMillis();
     }
+<<<<<<< HEAD
 
     private static final Map<String, ApInterstitialAd> adMap = new HashMap<>();
     private static final Set<String> loadingAds = new HashSet<>();
@@ -151,4 +155,6 @@ public class InterstitialAdManager {
     }
 
 
+=======
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 }

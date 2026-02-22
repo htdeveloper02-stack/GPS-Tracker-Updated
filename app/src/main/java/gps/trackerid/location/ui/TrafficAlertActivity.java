@@ -2,6 +2,10 @@ package gps.trackerid.location.ui;
 
 import static android.view.View.VISIBLE;
 import static gps.trackerid.location.adshelper.AdsConfig.getBannerAll;
+<<<<<<< HEAD
+=======
+import static gps.trackerid.location.adshelper.AdsConfig.loadBAckInterstitialAds;
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 
 import android.Manifest;
 import android.content.Context;
@@ -36,7 +40,11 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.List;
 
 import gps.trackerid.location.R;
+<<<<<<< HEAD
 import gps.trackerid.location.adshelper.InterstitialAdManager;
+=======
+import gps.trackerid.location.adshelper.AdsConfig;
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 import gps.trackerid.location.databinding.ActivityTrafficalertBinding;
 import gps.trackerid.location.ui.baseui.BaseActivity;
 import gps.trackerid.location.utils.Global;
@@ -84,6 +92,7 @@ public class TrafficAlertActivity extends BaseActivity implements OnMapReadyCall
     }
 
     private void onBackCall() {
+<<<<<<< HEAD
         InterstitialAdManager.showIfReady(
                 TrafficAlertActivity.this,
                 "inter_back",
@@ -96,6 +105,19 @@ public class TrafficAlertActivity extends BaseActivity implements OnMapReadyCall
                     }
                 }
         );
+=======
+        loadBAckInterstitialAds(TrafficAlertActivity.this, new AdsConfig.MyCallback() {
+            @Override
+            public void callbackCall() {
+                if (isShortcut) {
+                    startActivity(new Intent(TrafficAlertActivity.this, TimestampActivity.class));
+                    finish();
+                } else {
+                    finish();
+                }
+            }
+        });
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
     }
 
     @Override

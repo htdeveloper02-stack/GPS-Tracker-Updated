@@ -3,6 +3,10 @@ package gps.trackerid.location.ui;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static gps.trackerid.location.adshelper.AdsConfig.getBannerAll;
+<<<<<<< HEAD
+=======
+import static gps.trackerid.location.adshelper.AdsConfig.loadBAckInterstitialAds;
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -19,6 +23,10 @@ import java.util.List;
 
 import gps.trackerid.location.R;
 import gps.trackerid.location.adapter.RequestAdapter;
+<<<<<<< HEAD
+=======
+import gps.trackerid.location.adshelper.AdsConfig;
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 import gps.trackerid.location.database.FirebaseRequestHelper;
 import gps.trackerid.location.databinding.ActivityRequestBinding;
 import gps.trackerid.location.models.users.CurrentUserUtil;

@@ -2,6 +2,10 @@ package gps.trackerid.location.ui.phonetracker;
 
 import static android.view.View.VISIBLE;
 import static gps.trackerid.location.adshelper.AdsConfig.getBannerAll;
+<<<<<<< HEAD
+=======
+import static gps.trackerid.location.adshelper.AdsConfig.loadBAckInterstitialAds;
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -18,6 +22,10 @@ import androidx.core.app.ActivityCompat;
 import com.ads.module.ads.ERainAd;
 
 import gps.trackerid.location.R;
+<<<<<<< HEAD
+=======
+import gps.trackerid.location.adshelper.AdsConfig;
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 import gps.trackerid.location.databinding.ActivityPhonedetailsBinding;
 import gps.trackerid.location.ui.baseui.BaseActivity;
 import gps.trackerid.location.utils.Global;
@@ -113,7 +121,11 @@ public class PhoneDetails extends BaseActivity {
     }
 
     private void onBackCall() {
+<<<<<<< HEAD
         finish();
+=======
+       finish();
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
     }
 
     private void mMethodCall(int i) {
@@ -136,7 +148,11 @@ public class PhoneDetails extends BaseActivity {
             intent.setData(Uri.parse("tel:" + phoneNumber));
             startActivity(intent);
         } catch (Exception e) {
+<<<<<<< HEAD
             Toast.makeText(phoneDetails, getResources().getString(R.string.fail_call) + " " + e.getMessage(), Toast.LENGTH_SHORT).show();
+=======
+            Toast.makeText(phoneDetails, getResources().getString(R.string.fail_call)+" " + e.getMessage(), Toast.LENGTH_SHORT).show();
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
         }
     }
 
@@ -174,7 +190,11 @@ public class PhoneDetails extends BaseActivity {
             startActivity(intent);
 
         } catch (Exception e) {
+<<<<<<< HEAD
             Toast.makeText(phoneDetails, getResources().getString(R.string.fail_add_contact) + " " + e.getMessage(), Toast.LENGTH_SHORT).show();
+=======
+            Toast.makeText(phoneDetails, getResources().getString(R.string.fail_add_contact)+" " + e.getMessage(), Toast.LENGTH_SHORT).show();
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
         } finally {
             if (cursor != null) cursor.close();
         }
@@ -186,7 +206,11 @@ public class PhoneDetails extends BaseActivity {
             intent.setData(Uri.parse("smsto:" + phoneNumber));
             startActivity(intent);
         } catch (Exception e) {
+<<<<<<< HEAD
             Toast.makeText(phoneDetails, getResources().getString(R.string.fail_add_sms) + " " + e.getMessage(), Toast.LENGTH_SHORT).show();
+=======
+            Toast.makeText(phoneDetails, getResources().getString(R.string.fail_add_sms)+" " + e.getMessage(), Toast.LENGTH_SHORT).show();
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
         }
     }
 

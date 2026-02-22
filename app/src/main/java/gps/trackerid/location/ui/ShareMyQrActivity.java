@@ -3,6 +3,10 @@ package gps.trackerid.location.ui;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static gps.trackerid.location.adshelper.AdsConfig.getBannerAll;
+<<<<<<< HEAD
+=======
+import static gps.trackerid.location.adshelper.AdsConfig.loadBAckInterstitialAds;
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 
 import android.app.Activity;
 import android.content.ClipData;
@@ -28,6 +32,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import gps.trackerid.location.R;
+<<<<<<< HEAD
+=======
+import gps.trackerid.location.adshelper.AdsConfig;
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 import gps.trackerid.location.databinding.ActivitySharemyqrBinding;
 import gps.trackerid.location.models.users.CurrentUserUtil;
 import gps.trackerid.location.models.users.DataUser;
@@ -95,7 +103,11 @@ public class ShareMyQrActivity extends BaseActivity {
     }
 
     private void onBackCall() {
+<<<<<<< HEAD
         finish();
+=======
+       finish();
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
     }
 
     private void setupMyCode() {

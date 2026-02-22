@@ -2,6 +2,11 @@ package gps.trackerid.location.ui;
 
 import static android.view.View.VISIBLE;
 import static gps.trackerid.location.adshelper.AdsConfig.getBannerAll;
+<<<<<<< HEAD
+=======
+import static gps.trackerid.location.adshelper.AdsConfig.loadBAckInterstitialAds;
+import static gps.trackerid.location.adshelper.AdsConfig.loadHomeInterstitialAds;
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 
 import android.Manifest;
 import android.content.Context;
@@ -46,7 +51,11 @@ import java.util.List;
 import java.util.Map;
 
 import gps.trackerid.location.R;
+<<<<<<< HEAD
 import gps.trackerid.location.adshelper.InterstitialAdManager;
+=======
+import gps.trackerid.location.adshelper.AdsConfig;
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 import gps.trackerid.location.database.DataUserDao;
 import gps.trackerid.location.database.FirebaseUserHelper;
 import gps.trackerid.location.databinding.ActivityRealtimetrackBinding;
@@ -111,6 +120,7 @@ public class RealTimeTrackActivity extends BaseActivity implements OnMapReadyCal
                 }, new BSDUserDialog.OnAddUserListener() {
                     @Override
                     public void onAddUser() {
+<<<<<<< HEAD
                         InterstitialAdManager.showIfReady(
                                 RealTimeTrackActivity.this,
                                 "inter_home",
@@ -120,6 +130,16 @@ public class RealTimeTrackActivity extends BaseActivity implements OnMapReadyCal
                                     startActivity(intent);
                                 }
                         );
+=======
+                        loadHomeInterstitialAds(realTimeTrackActivity, new AdsConfig.MyCallback() {
+                            @Override
+                            public void callbackCall() {
+                                Intent intent = new Intent(realTimeTrackActivity, AddUserActivity.class);
+                                intent.putExtra("type", "type");
+                                startActivity(intent);
+                            }
+                        });
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 
                     }
                 });
@@ -146,6 +166,7 @@ public class RealTimeTrackActivity extends BaseActivity implements OnMapReadyCal
     }
 
     private void onBackCall() {
+<<<<<<< HEAD
         InterstitialAdManager.showIfReady(
                 RealTimeTrackActivity.this,
                 "inter_back",
@@ -154,6 +175,14 @@ public class RealTimeTrackActivity extends BaseActivity implements OnMapReadyCal
                 }
         );
 
+=======
+        loadBAckInterstitialAds(realTimeTrackActivity, new AdsConfig.MyCallback() {
+            @Override
+            public void callbackCall() {
+                finish();
+            }
+        });
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
     }
 
     private void ShowUserOnmap(DataUser dataUser) {

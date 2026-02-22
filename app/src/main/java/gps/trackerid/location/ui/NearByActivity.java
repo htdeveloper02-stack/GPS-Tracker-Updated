@@ -2,6 +2,10 @@ package gps.trackerid.location.ui;
 
 import static android.view.View.VISIBLE;
 import static gps.trackerid.location.adshelper.AdsConfig.getBannerAll;
+<<<<<<< HEAD
+=======
+import static gps.trackerid.location.adshelper.AdsConfig.loadBAckInterstitialAds;
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -20,7 +24,11 @@ import java.util.List;
 
 import gps.trackerid.location.R;
 import gps.trackerid.location.adapter.NearByAdapter;
+<<<<<<< HEAD
 import gps.trackerid.location.adshelper.InterstitialAdManager;
+=======
+import gps.trackerid.location.adshelper.AdsConfig;
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 import gps.trackerid.location.databinding.ActivityNearbyBinding;
 import gps.trackerid.location.models.NearbyItem;
 import gps.trackerid.location.ui.baseui.BaseActivity;
@@ -76,6 +84,7 @@ public class NearByActivity extends BaseActivity {
     }
 
     private void onBackCall() {
+<<<<<<< HEAD
         InterstitialAdManager.showIfReady(
                 NearByActivity.this,
                 "inter_back",
@@ -88,6 +97,19 @@ public class NearByActivity extends BaseActivity {
                     }
                 }
         );
+=======
+        loadBAckInterstitialAds(NearByActivity.this, new AdsConfig.MyCallback() {
+            @Override
+            public void callbackCall() {
+                if (isShortcut) {
+                    startActivity(new Intent(NearByActivity.this, TimestampActivity.class));
+                    finish();
+                } else {
+                    finish();
+                }
+            }
+        });
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
     }
 
     private void mSetData() {

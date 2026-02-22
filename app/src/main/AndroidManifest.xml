@@ -33,7 +33,10 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+<<<<<<< HEAD
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+=======
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
     <uses-permission android:name="com.google.android.gms.permission.AD_ID" />
 
     <uses-feature

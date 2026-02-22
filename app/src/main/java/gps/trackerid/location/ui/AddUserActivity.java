@@ -3,6 +3,11 @@ package gps.trackerid.location.ui;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static gps.trackerid.location.adshelper.AdsConfig.getBannerAll;
+<<<<<<< HEAD
+=======
+import static gps.trackerid.location.adshelper.AdsConfig.loadBAckInterstitialAds;
+import static gps.trackerid.location.adshelper.AdsConfig.loadHomeInterstitialAds;
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -27,7 +32,11 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import java.util.List;
 
 import gps.trackerid.location.R;
+<<<<<<< HEAD
 import gps.trackerid.location.adshelper.InterstitialAdManager;
+=======
+import gps.trackerid.location.adshelper.AdsConfig;
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 import gps.trackerid.location.database.FirebaseRequestHelper;
 import gps.trackerid.location.database.FirebaseUserHelper;
 import gps.trackerid.location.databinding.ActivityAdduserBinding;
@@ -71,6 +80,7 @@ public class AddUserActivity extends BaseActivity {
         adduserBinding.mIvMyQR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+<<<<<<< HEAD
                 InterstitialAdManager.showIfReady(
                         AddUserActivity.this,
                         "inter_home",
@@ -79,6 +89,15 @@ public class AddUserActivity extends BaseActivity {
                         }
                 );
 
+=======
+                loadHomeInterstitialAds(addUserActivity, new AdsConfig.MyCallback() {
+                    @Override
+                    public void callbackCall() {
+                        startActivity(new Intent(addUserActivity, ShareMyQrActivity.class));
+
+                    }
+                });
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
             }
         });
         adduserBinding.mIvQR.setOnClickListener(new View.OnClickListener() {
@@ -120,6 +139,7 @@ public class AddUserActivity extends BaseActivity {
     private void onBackCall() {
         if (getIntent() != null) {
             String string = getIntent().getStringExtra("type");
+<<<<<<< HEAD
             if (string == null) {
                 InterstitialAdManager.showIfReady(
                         AddUserActivity.this,
@@ -129,10 +149,20 @@ public class AddUserActivity extends BaseActivity {
                         }
                 );
 
+=======
+            if (string==null) {
+                loadBAckInterstitialAds(addUserActivity, new AdsConfig.MyCallback() {
+                    @Override
+                    public void callbackCall() {
+                        finish();
+                    }
+                });
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
             } else {
                 finish();
             }
         } else {
+<<<<<<< HEAD
             InterstitialAdManager.showIfReady(
                     AddUserActivity.this,
                     "inter_back",
@@ -141,6 +171,14 @@ public class AddUserActivity extends BaseActivity {
                     }
             );
 
+=======
+            loadBAckInterstitialAds(addUserActivity, new AdsConfig.MyCallback() {
+                @Override
+                public void callbackCall() {
+                    finish();
+                }
+            });
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
         }
     }
 

@@ -2,6 +2,10 @@ package gps.trackerid.location.ui;
 
 import static android.view.View.VISIBLE;
 import static gps.trackerid.location.adshelper.AdsConfig.getBannerAll;
+<<<<<<< HEAD
+=======
+import static gps.trackerid.location.adshelper.AdsConfig.loadBAckInterstitialAds;
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 import static gps.trackerid.location.utils.Global.isFastClick;
 
 import android.Manifest;
@@ -44,7 +48,11 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import gps.trackerid.location.R;
+<<<<<<< HEAD
 import gps.trackerid.location.adshelper.InterstitialAdManager;
+=======
+import gps.trackerid.location.adshelper.AdsConfig;
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 import gps.trackerid.location.databinding.ActivityCurrentlocationBinding;
 import gps.trackerid.location.ui.baseui.BaseActivity;
 import gps.trackerid.location.utils.Global;
@@ -90,6 +98,7 @@ public class CurrentLocationAct extends BaseActivity implements OnMapReadyCallba
     }
 
     private void onBackCall() {
+<<<<<<< HEAD
         InterstitialAdManager.showIfReady(
                 CurrentLocationAct.this,
                 "inter_back",
@@ -98,6 +107,14 @@ public class CurrentLocationAct extends BaseActivity implements OnMapReadyCallba
                 }
         );
 
+=======
+        loadBAckInterstitialAds(currentLocationAct, new AdsConfig.MyCallback() {
+            @Override
+            public void callbackCall() {
+                finish();
+            }
+        });
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
     }
 
     private void clickListeners() {

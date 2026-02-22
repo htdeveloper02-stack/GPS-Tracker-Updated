@@ -3,11 +3,14 @@ package gps.trackerid.location.ui;
 import static android.view.View.VISIBLE;
 import static gps.trackerid.location.adshelper.AdsConfig.getBannerSplash;
 import static gps.trackerid.location.adshelper.AdsConfig.getBannerSplashUninstall;
+<<<<<<< HEAD
 import static gps.trackerid.location.adshelper.AdsConfig.getNativeLanguage1;
 import static gps.trackerid.location.adshelper.AdsConfig.getNativeLanguage1Click;
 import static gps.trackerid.location.adshelper.AdsConfig.getNativeLanguage2;
 import static gps.trackerid.location.adshelper.AdsConfig.getNativeLanguage2Click;
 import static gps.trackerid.location.adshelper.AdsConfig.getNativeUninstall;
+=======
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 import static gps.trackerid.location.adshelper.AdsConfig.loadSplashInterstitialAds;
 import static gps.trackerid.location.adshelper.AdsConfig.loadUnsintallInterstitialAds;
 import static gps.trackerid.location.utils.Global.showInternetDialog;
@@ -22,7 +25,10 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+<<<<<<< HEAD
 import com.ads.module.admob.Admob;
+=======
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 import com.ads.module.admob.AppOpenManager;
 import com.ads.module.ads.ERainAd;
 import com.ads.module.ump.IAdConsentCallBack;
@@ -36,7 +42,10 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import gps.trackerid.location.BuildConfig;
 import gps.trackerid.location.R;
 import gps.trackerid.location.adshelper.AdsConfig;
+<<<<<<< HEAD
 import gps.trackerid.location.adshelper.NativeAdManager;
+=======
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 import gps.trackerid.location.databinding.ActivitySplashBinding;
 import gps.trackerid.location.utils.Global;
 import gps.trackerid.location.utils.SystmeUtils;
@@ -73,6 +82,7 @@ public class SplashActivity extends AppCompatActivity {
                             try {
                                 Global.iSGetAds = true;
                                 AdsConfig.mSetRemoteData(mFirebaseRemoteConfig);
+<<<<<<< HEAD
                                 if (Global.native_language_1 || Global.native_language_2) {
                                     String nativeId = preference.getBoolean("First") ? getNativeLanguage1() : getNativeLanguage2();
                                     String TagName = preference.getBoolean("First") ? "native_language_1" : "native_language_2";
@@ -83,6 +93,8 @@ public class SplashActivity extends AppCompatActivity {
                                     String TagName = preference.getBoolean("First") ? "native_language_1_click" : "native_language_2_click";
                                     NativeAdManager.getInstance().preloadNativeAd(SplashActivity.this, nativeId, R.layout.layout_native_ad_medium, TagName);
                                 }
+=======
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
                                 if (Global.open_resume) {
                                     AppOpenManager.getInstance().enableAppResume();
                                 } else {
@@ -112,9 +124,12 @@ public class SplashActivity extends AppCompatActivity {
                 splashBinding.mRlBanner.setVisibility(VISIBLE);
                 ERainAd.getInstance().loadBanner(SplashActivity.this, getBannerSplashUninstall());
             }
+<<<<<<< HEAD
             if (Global.native_uninstall) {
                 NativeAdManager.getInstance().preloadNativeAd(SplashActivity.this, getNativeUninstall(), R.layout.layout_native_ad_medium, "native_uninstall");
             }
+=======
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
         } else {
             if (Global.banner_splash && Global.isInternetConnected(SplashActivity.this)) {
                 splashBinding.mRlBanner.setVisibility(VISIBLE);
@@ -239,10 +254,13 @@ public class SplashActivity extends AppCompatActivity {
                 intent.getStringExtra(Global.FROM_SHORTCUT)
         );
     }
+<<<<<<< HEAD
 
     @Override
     protected void onDestroy() {
         Admob.getInstance().dismissDialog();
         super.onDestroy();
     }
+=======
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 }

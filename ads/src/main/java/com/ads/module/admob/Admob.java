@@ -510,7 +510,11 @@ public class Admob {
                         adListener.onNextAction();
                         new Handler().postDelayed(() -> {
                             dismissDialog();
+<<<<<<< HEAD
                         }, 3000);
+=======
+                        }, 2500);
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
                     }
                     if (mInterstitialSplash != null) {
                         mInterstitialSplash.show(activity);
@@ -1113,11 +1117,17 @@ public class Admob {
             adView.setAdListener(new AdListener() {
                 @Override
                 public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
+<<<<<<< HEAD
                     if (containerShimmer != null) {
                         containerShimmer.stopShimmer();
                         containerShimmer.setVisibility(View.GONE);
                     }
                     adContainer.setVisibility(View.GONE);
+=======
+                    containerShimmer.stopShimmer();
+                    adContainer.setVisibility(View.GONE);
+                    containerShimmer.setVisibility(View.GONE);
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 
                     if (callback != null) {
                         callback.onAdFailedToLoad(loadAdError);
@@ -1128,11 +1138,16 @@ public class Admob {
                 @Override
                 public void onAdLoaded() {
                     Log.d(TAG, "Banner adapter class name: " + adView.getResponseInfo().getMediationAdapterClassName());
+<<<<<<< HEAD
                     if (containerShimmer != null) {
                         containerShimmer.stopShimmer();
                         containerShimmer.setVisibility(View.GONE);
                     }
 
+=======
+                    containerShimmer.stopShimmer();
+                    containerShimmer.setVisibility(View.GONE);
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
                     adContainer.setVisibility(View.VISIBLE);
                     if (adView != null) {
                         adView.setOnPaidEventListener(adValue -> {
@@ -1204,12 +1219,18 @@ public class Admob {
                 @Override
                 public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                     super.onAdFailedToLoad(loadAdError);
+<<<<<<< HEAD
                     if (containerShimmer != null) {
                         containerShimmer.stopShimmer();
                         containerShimmer.setVisibility(View.GONE);
                     }
 
                     adContainer.setVisibility(View.GONE);
+=======
+                    containerShimmer.stopShimmer();
+                    adContainer.setVisibility(View.GONE);
+                    containerShimmer.setVisibility(View.GONE);
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
                     if (callback != null) {
                         callback.onAdFailedToLoad(loadAdError);
                     }
@@ -1218,11 +1239,16 @@ public class Admob {
                 @Override
                 public void onAdLoaded() {
                     Log.d(TAG, "Banner adapter class name: " + adView.getResponseInfo().getMediationAdapterClassName());
+<<<<<<< HEAD
                     if (containerShimmer != null) {
                         containerShimmer.stopShimmer();
                         containerShimmer.setVisibility(View.GONE);
                     }
 
+=======
+                    containerShimmer.stopShimmer();
+                    containerShimmer.setVisibility(View.GONE);
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
                     adContainer.setVisibility(View.VISIBLE);
                     adView.setOnPaidEventListener(adValue -> {
                         Log.d(TAG, "OnPaidEvent banner:" + adValue.getValueMicros());
@@ -1280,11 +1306,17 @@ public class Admob {
                 @Override
                 public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
                     super.onAdFailedToLoad(loadAdError);
+<<<<<<< HEAD
                     if (containerShimmer != null) {
                         containerShimmer.stopShimmer();
                         containerShimmer.setVisibility(View.GONE);
                     }
                     adContainer.setVisibility(View.GONE);
+=======
+                    containerShimmer.stopShimmer();
+                    adContainer.setVisibility(View.GONE);
+                    containerShimmer.setVisibility(View.GONE);
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
                     if (callback != null) {
                         callback.onAdFailedToLoad(loadAdError);
                     }
@@ -1293,10 +1325,15 @@ public class Admob {
                 @Override
                 public void onAdLoaded() {
                     Log.d(TAG, "Banner adapter class name: " + adView.getResponseInfo().getMediationAdapterClassName());
+<<<<<<< HEAD
                     if (containerShimmer != null) {
                         containerShimmer.stopShimmer();
                         containerShimmer.setVisibility(View.GONE);
                     }
+=======
+                    containerShimmer.stopShimmer();
+                    containerShimmer.setVisibility(View.GONE);
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
                     adContainer.setVisibility(View.VISIBLE);
                     adView.setOnPaidEventListener(adValue -> {
                         Log.d(TAG, "OnPaidEvent banner:" + adValue.getValueMicros());
@@ -1545,10 +1582,15 @@ public class Admob {
 
                     @Override
                     public void onNativeAdLoaded(@NonNull NativeAd nativeAd) {
+<<<<<<< HEAD
                         if (containerShimmer != null) {
                             containerShimmer.stopShimmer();
                             containerShimmer.setVisibility(View.GONE);
                         }
+=======
+                        containerShimmer.stopShimmer();
+                        containerShimmer.setVisibility(View.GONE);
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
                         frameLayout.setVisibility(View.VISIBLE);
                         @SuppressLint("InflateParams") NativeAdView adView = (NativeAdView) LayoutInflater.from(context)
                                 .inflate(layout, null);
@@ -1577,10 +1619,15 @@ public class Admob {
                 .withAdListener(new AdListener() {
                     @Override
                     public void onAdFailedToLoad(LoadAdError error) {
+<<<<<<< HEAD
                         if (containerShimmer != null) {
                             containerShimmer.stopShimmer();
                             containerShimmer.setVisibility(View.GONE);
                         }
+=======
+                        containerShimmer.stopShimmer();
+                        containerShimmer.setVisibility(View.GONE);
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
                         frameLayout.setVisibility(View.GONE);
                     }
 
@@ -1635,10 +1682,15 @@ public class Admob {
 
                     @Override
                     public void onNativeAdLoaded(@NonNull NativeAd nativeAd) {
+<<<<<<< HEAD
                         if (containerShimmer != null) {
                             containerShimmer.stopShimmer();
                             containerShimmer.setVisibility(View.GONE);
                         }
+=======
+                        containerShimmer.stopShimmer();
+                        containerShimmer.setVisibility(View.GONE);
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
                         frameLayout.setVisibility(View.VISIBLE);
                         @SuppressLint("InflateParams") NativeAdView adView = (NativeAdView) LayoutInflater.from(context)
                                 .inflate(layout, null);
@@ -1666,10 +1718,15 @@ public class Admob {
                 .withAdListener(new AdListener() {
                     @Override
                     public void onAdFailedToLoad(LoadAdError error) {
+<<<<<<< HEAD
                         if (containerShimmer != null) {
                             containerShimmer.stopShimmer();
                             containerShimmer.setVisibility(View.GONE);
                         }
+=======
+                        containerShimmer.stopShimmer();
+                        containerShimmer.setVisibility(View.GONE);
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
                         frameLayout.setVisibility(View.GONE);
                     }
 
@@ -1767,10 +1824,15 @@ public class Admob {
 
         AdLoader adLoader = new AdLoader.Builder(context, id)
                 .forNativeAd(nativeAd -> {
+<<<<<<< HEAD
                     if (containerShimmer != null) {
                         containerShimmer.stopShimmer();
                         containerShimmer.setVisibility(View.GONE);
                     }
+=======
+                    containerShimmer.stopShimmer();
+                    containerShimmer.setVisibility(View.GONE);
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
                     frameLayout.setVisibility(View.VISIBLE);
                     @SuppressLint("InflateParams") NativeAdView adView = (NativeAdView) LayoutInflater.from(context)
                             .inflate(layout, null);
@@ -1797,10 +1859,15 @@ public class Admob {
                 .withAdListener(new AdListener() {
                     @Override
                     public void onAdFailedToLoad(LoadAdError error) {
+<<<<<<< HEAD
                         if (containerShimmer != null) {
                             containerShimmer.stopShimmer();
                             containerShimmer.setVisibility(View.GONE);
                         }
+=======
+                        containerShimmer.stopShimmer();
+                        containerShimmer.setVisibility(View.GONE);
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
                         frameLayout.setVisibility(View.GONE);
                     }
 
@@ -1879,6 +1946,7 @@ public class Admob {
         }
 
         try {
+<<<<<<< HEAD
             if (nativeAd.getPrice() == null && adView.getPriceView() != null) {
                 Objects.requireNonNull(adView.getPriceView()).setVisibility(View.INVISIBLE);
             } else {
@@ -1888,6 +1956,13 @@ public class Admob {
                         ((TextView) adView.getPriceView()).setText(nativeAd.getPrice());
                     }
                 }
+=======
+            if (nativeAd.getPrice() == null) {
+                Objects.requireNonNull(adView.getPriceView()).setVisibility(View.INVISIBLE);
+            } else {
+                Objects.requireNonNull(adView.getPriceView()).setVisibility(View.VISIBLE);
+                ((TextView) adView.getPriceView()).setText(nativeAd.getPrice());
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -1895,6 +1970,7 @@ public class Admob {
 
         try {
             if (nativeAd.getStarRating() == null) {
+<<<<<<< HEAD
                 if (adView.getStarRatingView() != null) {
                     Objects.requireNonNull(adView.getStarRatingView()).setVisibility(View.INVISIBLE);
                 }
@@ -1903,6 +1979,12 @@ public class Admob {
                     ((RatingBar) Objects.requireNonNull(adView.getStarRatingView())).setRating(nativeAd.getStarRating().floatValue());
                     adView.getStarRatingView().setVisibility(View.VISIBLE);
                 }
+=======
+                Objects.requireNonNull(adView.getStarRatingView()).setVisibility(View.INVISIBLE);
+            } else {
+                ((RatingBar) Objects.requireNonNull(adView.getStarRatingView())).setRating(nativeAd.getStarRating().floatValue());
+                adView.getStarRatingView().setVisibility(View.VISIBLE);
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
             }
         } catch (Exception e) {
             e.printStackTrace();

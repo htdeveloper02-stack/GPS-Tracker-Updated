@@ -150,7 +150,10 @@ public class Global {
         lastClickTime = currentTimeMillis;
         return false;
     }
+<<<<<<< HEAD
 
+=======
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
     public static void openChromeCustomTabUrl(Context activity, String url) {
         String str = url;
         if (!str.equalsIgnoreCase("")) {

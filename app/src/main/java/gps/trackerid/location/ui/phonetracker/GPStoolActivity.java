@@ -2,6 +2,12 @@ package gps.trackerid.location.ui.phonetracker;
 
 import static android.view.View.VISIBLE;
 import static gps.trackerid.location.adshelper.AdsConfig.getBannerAll;
+<<<<<<< HEAD
+=======
+import static gps.trackerid.location.adshelper.AdsConfig.getNativePhoneLocator;
+import static gps.trackerid.location.adshelper.AdsConfig.loadBAckInterstitialAds;
+import static gps.trackerid.location.adshelper.AdsConfig.loadHomeInterstitialAds;
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -9,10 +15,22 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.activity.OnBackPressedCallback;
+<<<<<<< HEAD
 
 import com.ads.module.ads.ERainAd;
 
 import gps.trackerid.location.adshelper.InterstitialAdManager;
+=======
+import androidx.annotation.Nullable;
+
+import com.ads.module.ads.ERainAd;
+import com.ads.module.funtion.AdCallback;
+import com.google.android.gms.ads.AdError;
+import com.google.android.gms.ads.LoadAdError;
+
+import gps.trackerid.location.R;
+import gps.trackerid.location.adshelper.AdsConfig;
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 import gps.trackerid.location.databinding.ActivityGpstoolBinding;
 import gps.trackerid.location.ui.CompassActivity;
 import gps.trackerid.location.ui.baseui.BaseActivity;
@@ -77,6 +95,7 @@ public class GPStoolActivity extends BaseActivity {
             }
         });
     }
+<<<<<<< HEAD
 
     private void mNextCallActivity(Class<?> activityClass) {
         startActivity(new Intent(gpStoolActivity, activityClass));
@@ -90,6 +109,18 @@ public class GPStoolActivity extends BaseActivity {
                     finish();
                 }
         );
+=======
+    private void mNextCallActivity(Class<?> activityClass) {
+        startActivity(new Intent(gpStoolActivity, activityClass));
+    }
+    private void onBackCall() {
+        loadBAckInterstitialAds(gpStoolActivity, new AdsConfig.MyCallback() {
+            @Override
+            public void callbackCall() {
+                finish();
+            }
+        });
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
     }
 
     @Override

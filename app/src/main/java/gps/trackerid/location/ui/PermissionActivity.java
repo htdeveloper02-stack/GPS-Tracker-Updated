@@ -1,12 +1,21 @@
 package gps.trackerid.location.ui;
 
+<<<<<<< HEAD
+=======
+import static gps.trackerid.location.adshelper.AdsConfig.getInterOnboarding;
+import static gps.trackerid.location.adshelper.AdsConfig.loadInterstitialAds;
+
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+<<<<<<< HEAD
 import android.os.Handler;
+=======
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 import android.provider.Settings;
 import android.view.View;
 import android.widget.Toast;
@@ -25,7 +34,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gps.trackerid.location.R;
+<<<<<<< HEAD
 import gps.trackerid.location.adshelper.InterstitialAdManager;
+=======
+import gps.trackerid.location.adshelper.AdsConfig;
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 import gps.trackerid.location.databinding.ActivityPermissionBinding;
 import gps.trackerid.location.ui.baseui.BaseActivity;
 
@@ -82,12 +95,16 @@ public class PermissionActivity extends BaseActivity {
                         @Override
                         public void onPermissionsChecked(MultiplePermissionsReport report) {
                             if (report.areAllPermissionsGranted()) {
+<<<<<<< HEAD
                                 new Handler().postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
                                         mCallNext();
                                     }
                                 },1000);
+=======
+                                mCallNext();
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
                             }
                             if (report.isAnyPermissionPermanentlyDenied()) {
                                 showSettingsDialog();
@@ -132,6 +149,7 @@ public class PermissionActivity extends BaseActivity {
     }
 
     private void mCallNext() {
+<<<<<<< HEAD
         InterstitialAdManager.showIfReady(
                 PermissionActivity.this,
                 "inter_onboarding",
@@ -146,6 +164,15 @@ public class PermissionActivity extends BaseActivity {
                 }
         );
 
+=======
+        loadInterstitialAds(PermissionActivity.this, getInterOnboarding(), new AdsConfig.MyCallback() {
+            @Override
+            public void callbackCall() {
+                startActivity(new Intent(PermissionActivity.this, TimestampActivity.class));
+                finish();
+            }
+        });
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
     }
 
     private void showSettingsDialog() {

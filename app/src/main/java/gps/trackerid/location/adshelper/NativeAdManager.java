@@ -80,7 +80,7 @@ public class NativeAdManager {
             Log.e("AdManager====", "Ad Shown: " + adTag);
 
             // Optional: remove after showing (if one-time use)
-//            nativeAdMap.remove(adTag);
+//            nativeAdMap.remove(adTag);git push origin main:master
 
             return true;
         }

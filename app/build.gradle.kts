@@ -15,8 +15,13 @@ android {
         applicationId = "gps.trackerid.location"
         minSdk = 24
         targetSdk = 36
+<<<<<<< HEAD
         versionCode = 8
         versionName = "1.0.8"
+=======
+        versionCode = 7
+        versionName = "1.0.7"
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

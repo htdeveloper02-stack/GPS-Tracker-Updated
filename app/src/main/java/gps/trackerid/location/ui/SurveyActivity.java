@@ -1,10 +1,16 @@
 package gps.trackerid.location.ui;
 
+<<<<<<< HEAD
+=======
+import static gps.trackerid.location.adshelper.AdsConfig.getNativeSurveyUninstall;
+
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
+<<<<<<< HEAD
 import android.util.Log;
 import android.view.View;
 
@@ -15,6 +21,23 @@ import com.facebook.shimmer.ShimmerFrameLayout;
 import gps.trackerid.location.R;
 import gps.trackerid.location.adshelper.AdsConfig;
 import gps.trackerid.location.adshelper.NativeAdManager;
+=======
+import android.view.View;
+
+import androidx.activity.OnBackPressedCallback;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.ads.module.ads.ERainAd;
+import com.ads.module.ads.wrapper.ApNativeAd;
+import com.ads.module.funtion.AdCallback;
+import com.facebook.shimmer.ShimmerFrameLayout;
+import com.google.android.gms.ads.AdError;
+import com.google.android.gms.ads.LoadAdError;
+
+import gps.trackerid.location.R;
+import gps.trackerid.location.adshelper.AdsConfig;
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 import gps.trackerid.location.databinding.ActivitySurveyBinding;
 import gps.trackerid.location.ui.baseui.BaseActivity;
 import gps.trackerid.location.utils.Global;
@@ -72,6 +95,7 @@ public class SurveyActivity extends BaseActivity {
     private void extracted() {
         shimmerAds = findViewById(R.id.shimmer_native);
 
+<<<<<<< HEAD
         boolean isShown = NativeAdManager.getInstance()
                 .showNativeAdIfAvailable(
                         this,
@@ -86,6 +110,31 @@ public class SurveyActivity extends BaseActivity {
             surveyBinding.frAds.setVisibility(View.VISIBLE);
         }
 
+=======
+        final ApNativeAd[] mApNativeAd = new ApNativeAd[1];
+        ERainAd.getInstance().loadNativeAdResultCallback(this, getNativeSurveyUninstall(), R.layout.layout_native_ad_medium, new AdCallback() {
+            @Override
+            public void onNativeAdLoaded(@NonNull ApNativeAd nativeAd) {
+                super.onNativeAdLoaded(nativeAd);
+                mApNativeAd[0] = nativeAd;
+                ERainAd.getInstance().populateNativeAdView(SurveyActivity.this, mApNativeAd[0], surveyBinding.frAds, shimmerAds);
+            }
+
+            @Override
+            public void onAdFailedToLoad(@Nullable LoadAdError i) {
+                super.onAdFailedToLoad(i);
+                mApNativeAd[0] = null;
+                surveyBinding.frAds.removeAllViews();
+            }
+
+            @Override
+            public void onAdFailedToShow(@Nullable AdError adError) {
+                super.onAdFailedToShow(adError);
+                mApNativeAd[0] = null;
+                surveyBinding.frAds.removeAllViews();
+            }
+        });
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
     }
 
     private void mOpenScreen() {

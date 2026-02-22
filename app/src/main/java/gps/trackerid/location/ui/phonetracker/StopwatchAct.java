@@ -2,6 +2,10 @@ package gps.trackerid.location.ui.phonetracker;
 
 import static android.view.View.VISIBLE;
 import static gps.trackerid.location.adshelper.AdsConfig.getBannerAll;
+<<<<<<< HEAD
+=======
+import static gps.trackerid.location.adshelper.AdsConfig.loadBAckInterstitialAds;
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -17,6 +21,10 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 
 import gps.trackerid.location.R;
 import gps.trackerid.location.adapter.StopwatchAdapter;
+<<<<<<< HEAD
+=======
+import gps.trackerid.location.adshelper.AdsConfig;
+>>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 import gps.trackerid.location.databinding.ActivityStopwatchBinding;
 import gps.trackerid.location.ui.baseui.BaseActivity;
 import gps.trackerid.location.utils.Global;
