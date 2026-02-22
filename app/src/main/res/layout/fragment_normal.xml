@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/real_mapView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/ic_map_border"
+        android:padding="0.7dp" />
+
+    <ImageView
+        android:id="@+id/imageViewCompass"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_centerInParent="true"
+        android:src="@drawable/compass1" />
+
+    <ImageView
+        android:id="@+id/ivCurrentLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_margin="30dp"
+        android:src="@drawable/ic_current_location" />
+
+</RelativeLayout>

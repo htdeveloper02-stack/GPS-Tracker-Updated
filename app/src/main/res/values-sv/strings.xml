@@ -1,0 +1,213 @@
+<resources>
+    <string name="app_name" translatable="false">GPS Phone Number Tracker</string>
+
+    <string name="info1"><![CDATA[Ta foton med bevis på\ntid och plats]]></string>
+    <string name="infosub1"><![CDATA[Lägg till datum, tid och GPS-plats på varje foto]]></string>
+    <string name="infosub2"><![CDATA[Se plats och rörelse på en interaktiv karta]]></string>
+    <string name="infosub3"><![CDATA[Kompass, närliggande platser och ruttplanerare ingår]]></string>
+    <string name="infosub4"><![CDATA[Enkel och exakt vägledning]]></string>
+
+    <string name="map_key">AIzaSyBLIGwxAlODMg1i9AJiVKG4tNdTVKbSwSI</string>
+    <string name="mDeletSub">Är du säker på att du vill ta bort denna zon?</string>
+    <string name="waiting_for_gps_signal_d">Väntar på GPS-signal</string>
+    <string name="chooselang">Välj ditt språk</string>
+    <string name="next">Nästa</string>
+
+    <string name="info2">Spåra telefoner med\nliveposition</string>
+    <string name="info3">Kraftfulla verktyg för\nsmartare spårning</string>
+    <string name="start">Starta</string>
+    <string name="info4">Navigera enkelt</string>
+
+    <string name="livelocation">Liveposition</string>
+    <string name="phonelocator">Telefonlokalisering</string>
+    <string name="phonelocator1">Ställ in säkra områden</string>
+
+    <string name="nearby">I närheten</string>
+    <string name="nearby1"><![CDATA[Hitta personer och platser]]></string>
+
+    <string name="trackinguser">Spårad användare</string>
+    <string name="trackinguser1">Lista över spårade användare</string>
+
+    <string name="realtime">Spårning i realtid</string>
+    <string name="realtime1">Live ruttspårning</string>
+
+    <string name="gpstool">GPS-verktyg</string>
+    <string name="gpstool1"><![CDATA[Spåra, navigera och utforska]]></string>
+
+    <string name="adduser">Lägg till användare</string>
+    <string name="adduser1">Skapa ny användare</string>
+
+    <string name="traffic">Trafikvarning</string>
+    <string name="traffic1">Omedelbara trafikuuppdateringar</string>
+
+    <string name="zonealert">Zonvarning</string>
+    <string name="zonealert1">Ställ in säkra områden</string>
+
+    <string name="nointernet">Ingen internetanslutning</string>
+    <string name="txt_nointernet">Du är för närvarande offline. Kontrollera ditt Wi-Fi eller mobildata och försök igen.</string>
+    <string name="open_wifi_setting">Öppna Wi-Fi-inställningar</string>
+
+    <string name="txt_uninstall">Avinstallera</string>
+
+    <string name="compass">Kompass</string>
+    <string name="compass1"><![CDATA[Riktning och orientering]]></string>
+
+    <string name="stopwatch">Stoppur</string>
+    <string name="stopwatch1">Noggrann tidmätning</string>
+
+    <string name="speedmeter">Hastighetsmätare</string>
+    <string name="speedmeter1">Noggrann hastighetsspårning</string>
+
+    <string name="areacode">Riktnummer</string>
+    <string name="areacode1">Alla riktnummer</string>
+
+    <string name="levelmeter">Vattenpass</string>
+    <string name="levelmeter1">Enkel nivellering</string>
+
+    <string name="art_gallery">Konstgalleri</string>
+    <string name="bar">Barer</string>
+    <string name="bank">Bank</string>
+    <string name="atm">Bankomater</string>
+    <string name="saloon">Skönhetssalonger</string>
+    <string name="book">Bokhandlar</string>
+    <string name="coffee">Kaféer</string>
+    <string name="cardealer">Bilhandlare</string>
+    <string name="bygas">Bensinstationer</string>
+    <string name="bygym">Gym</string>
+    <string name="hospital">Sjukhus</string>
+    <string name="byhotel">Hotell</string>
+    <string name="parking">Parkering</string>
+    <string name="retuarant">Restauranger</string>
+
+    <string name="settext1">Bevisad framgångsgrad med över 90 % filåterställning</string>
+    <string name="settext2">Varför kämpa med att återställa filer? Gör det enkelt när som helst\nFå tillbaka dina filer med bara några tryck</string>
+
+    <string name="tryagin">Försök igen</string>
+    <string name="still">Vill du fortfarande avinstallera appen?</string>
+    <string name="surtxt">Problem vid användning av appen</string>
+
+    <string name="survey_1">Appen är långsam eller fungerar inte korrekt</string>
+    <string name="survey_2">För många annonser</string>
+    <string name="survey_3">Tar upp för mycket lagringsutrymme</string>
+    <string name="survey_4">Premiumfunktioner är för dyra</string>
+
+    <string name="facebook_client_token" translatable="false">95c71e4402046c3690f3f4c3e76166a4</string>
+    <string name="tiktok_token" translatable="false">q32ux0</string>
+    <string name="adjust_token" translatable="false">uurp9o91gpvk</string>
+
+    <string name="nocityfound">Ingen stad hittades</string>
+    <string name="waiting_gps">Väntar på GPS-signal</string>
+
+    <string name="total">Totalt</string>
+    <string name="avg">Genomsnitt</string>
+    <string name="top">Topp</string>
+    <string name="detail">Detaljer</string>
+    <string name="known">Okänd</string>
+
+    <string name="request">Förfrågan</string>
+    <string name="no_requeest">Inga nya förfrågningar hittades</string>
+    <string name="trackinguselist">Lista över spårade användare</string>
+    <string name="nouser">Du har inga vänner ännu</string>
+
+    <string name="shareqr">Dela QR</string>
+    <string name="addac">Lägg till konto</string>
+    <string name="orscan">Eller skanna</string>
+    <string name="sharedirect">Dela direkt</string>
+    <string name="share">Dela</string>
+    <string name="myqr">Min QR</string>
+
+    <string name="entercode">Ange kod</string>
+    <string name="finsc">Hitta konto</string>
+    <string name="add">Lägg till</string>
+
+    <string name="standard">Standard</string>
+    <string name="normal">Normal</string>
+    <string name="satelite">Satellit</string>
+
+    <string name="timealert">Tidsvarning</string>
+    <string name="modrat">Måttlig</string>
+    <string name="slower">Långsammare</string>
+    <string name="extrem">Extrem</string>
+
+    <string name="createzon">Skapa zon</string>
+    <string name="status">Status</string>
+    <string name="alerts">Aviseringar</string>
+    <string name="noenter">Vid inträde</string>
+    <string name="onexit">Vid utträde</string>
+    <string name="enterzon">Ange zonnamn</string>
+
+    <string name="searchlocation">Sök din plats</string>
+    <string name="lap">Varv</string>
+    <string name="searchbycity">Sök efter stad</string>
+
+    <string name="call">Ring</string>
+    <string name="sms">SMS</string>
+    <string name="search_phone_no">Sök telefonnummer</string>
+
+    <string name="setting">Inställningar</string>
+    <string name="general">Allmänt</string>
+    <string name="other">Övrigt</string>
+
+    <string name="changelan">Byt språk</string>
+    <string name="rateus">Betygsätt oss</string>
+    <string name="rateus1">Betygsätt appen</string>
+
+    <string name="shareapp">Dela appen</string>
+    <string name="shareapp1">Dela med vänner</string>
+
+    <string name="tt_privacy">Skydda din telefon</string>
+    <string name="safe">Säker</string>
+    <string name="danger">Fara</string>
+
+    <string name="shareaddre">Dela platsadress</string>
+
+    <string name="aboutus">Om oss</string>
+    <string name="aboutus1">Dina behov, vår prioritet</string>
+
+    <string name="contactus">Kontakta oss</string>
+    <string name="contactus1">Support du kan lita på</string>
+    <string name="thankyou">Tack!</string>
+    <string name="thankyou1">Din GPS-spårning är nu aktiv och redo att användas.</string>
+    <string name="exit1">Avsluta</string>
+    <string name="cancel1">Avbryt</string>
+    <string name="done">Klar</string>
+    <string name="permission">Behörighet krävs</string>
+    <string name="permission1">Denna behörighet krävs för att använda funktionen.</string>
+    <string name="notification">Avisering</string>
+    <string name="notification1">Tillåt aviseringar för användbara uppdateringar</string>
+    <string name="location">Plats</string>
+    <string name="location1">Tillåt platsåtkomst för att visa närliggande platser</string>
+    <string name="camera">Kamera</string>
+    <string name="camera1">Aktivera kamerabehörighet för att fortsätta</string>
+    <string name="grantper">Ge behörighet</string>
+    <string name="needpermission">Behörigheter krävs</string>
+    <string name="needpermission1">Appen behöver behörighet för att använda funktionen.</string>
+    <string name="gotosetting">Gå till inställningar</string>
+    <string name="enter_code">Ange kod</string>
+    <string name="user_not_found">Användare hittades inte</string>
+    <string name="already_add">Användaren finns redan i din vänlista</string>
+    <string name="already_request">Vänförfrågan redan skickad</string>
+    <string name="frd_request">Vänförfrågan skickad</string>
+    <string name="unable_map">Kunde inte öppna kartan</string>
+    <string name="error">Ett fel inträffade</string>
+    <string name="enter_phone">Ange telefonnummer</string>
+    <string name="invalid_phone">Ogiltigt telefonnummerformat</string>
+    <string name="error_request">Något gick fel</string>
+    <string name="faile_qr">Misslyckades att dela QR-bild</string>
+    <string name="copy_clip">Kopierad till urklipp</string>
+    <string name="enter_city">Ange stadens namn</string>
+    <string name="fail_call">Misslyckades att starta samtal</string>
+    <string name="already_contact">Numret finns redan i kontakter</string>
+    <string name="fail_add_contact">Misslyckades att lägga till kontakt</string>
+    <string name="fail_add_sms">Misslyckades att skicka SMS</string>
+    <string name="enter_location">Ange plats</string>
+    <string name="not_geo">Geokodare är inte tillgänglig</string>
+    <string name="not_location">Plats hittades inte</string>
+    <string name="error_location">Fel vid sökning av plats</string>
+    <string name="yes">Ja</string>
+    <string name="no">Nej</string>
+    <string name="delete_zone">Ta bort zon</string>
+    <string name="not_number">Inte ett mobilnummer</string>
+
+</resources>
+

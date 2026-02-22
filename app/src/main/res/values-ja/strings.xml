@@ -1,0 +1,213 @@
+<resources>
+    <string name="app_name" translatable="false">GPS Phone Number Tracker</string>
+
+    <string name="info1"><![CDATA[時間と位置情報の証明付きで\n写真を撮影]]></string>
+    <string name="infosub1"><![CDATA[すべての写真に日付、時刻、GPS位置を追加]]></string>
+    <string name="infosub2"><![CDATA[インタラクティブマップで位置と移動を確認]]></string>
+    <string name="infosub3"><![CDATA[コンパス、周辺スポット、ルートプランナーを搭載]]></string>
+    <string name="infosub4"><![CDATA[シンプルで正確なナビゲーション]]></string>
+
+    <string name="map_key">AIzaSyBLIGwxAlODMg1i9AJiVKG4tNdTVKbSwSI</string>
+    <string name="mDeletSub">このゾーンを削除してもよろしいですか？</string>
+    <string name="waiting_for_gps_signal_d">GPS信号を待機中</string>
+    <string name="chooselang">言語を選択</string>
+    <string name="next">次へ</string>
+
+    <string name="info2">ライブ位置情報で\n電話を追跡</string>
+    <string name="info3">よりスマートな追跡のための\n強力なツール</string>
+    <string name="start">開始</string>
+    <string name="info4">簡単にナビゲート</string>
+
+    <string name="livelocation">ライブ位置情報</string>
+    <string name="phonelocator">電話ロケーター</string>
+    <string name="phonelocator1">安全エリアを設定</string>
+
+    <string name="nearby">周辺</string>
+    <string name="nearby1"><![CDATA[人や場所を検索]]></string>
+
+    <string name="trackinguser">追跡中のユーザー</string>
+    <string name="trackinguser1">追跡ユーザー一覧</string>
+
+    <string name="realtime">リアルタイム追跡</string>
+    <string name="realtime1">ライブルート追跡</string>
+
+    <string name="gpstool">GPSツール</string>
+    <string name="gpstool1"><![CDATA[追跡、ナビ、探索]]></string>
+
+    <string name="adduser">ユーザーを追加</string>
+    <string name="adduser1">新しいユーザーを作成</string>
+
+    <string name="traffic">交通アラート</string>
+    <string name="traffic1">即時交通情報</string>
+
+    <string name="zonealert">ゾーンアラート</string>
+    <string name="zonealert1">安全エリアを設定</string>
+
+    <string name="nointernet">インターネットに接続されていません</string>
+    <string name="txt_nointernet">現在オフラインです。Wi-Fiまたはモバイルデータを確認して再試行してください。</string>
+    <string name="open_wifi_setting">Wi-Fi設定を開く</string>
+
+    <string name="txt_uninstall">アンインストール</string>
+
+    <string name="compass">コンパス</string>
+    <string name="compass1"><![CDATA[方向と方位]]></string>
+
+    <string name="stopwatch">ストップウォッチ</string>
+    <string name="stopwatch1">正確な時間計測</string>
+
+    <string name="speedmeter">スピードメーター</string>
+    <string name="speedmeter1">正確な速度追跡</string>
+
+    <string name="areacode">市外局番</string>
+    <string name="areacode1">すべての市外局番</string>
+
+    <string name="levelmeter">水平器</string>
+    <string name="levelmeter1">簡単にバランス調整</string>
+
+    <string name="art_gallery">美術館</string>
+    <string name="bar">バー</string>
+    <string name="bank">銀行</string>
+    <string name="atm">ATM</string>
+    <string name="saloon">美容サロン</string>
+    <string name="book">書店</string>
+    <string name="coffee">カフェ</string>
+    <string name="cardealer">自動車販売店</string>
+    <string name="bygas">ガソリンスタンド</string>
+    <string name="bygym">ジム</string>
+    <string name="hospital">病院</string>
+    <string name="byhotel">ホテル</string>
+    <string name="parking">駐車場</string>
+    <string name="retuarant">レストラン</string>
+
+    <string name="settext1">90％以上のファイル復元実績</string>
+    <string name="settext2">ファイル復元に苦労する必要はありません\n数回のタップで簡単に復元</string>
+
+    <string name="tryagin">再試行</string>
+    <string name="still">それでもアプリをアンインストールしますか？</string>
+    <string name="surtxt">アプリ使用中の問題</string>
+
+    <string name="survey_1">アプリが遅い、または正常に動作しない</string>
+    <string name="survey_2">広告が多すぎる</string>
+    <string name="survey_3">ストレージを使いすぎる</string>
+    <string name="survey_4">プレミアム機能が高すぎる</string>
+
+    <string name="facebook_client_token" translatable="false">95c71e4402046c3690f3f4c3e76166a4</string>
+    <string name="tiktok_token" translatable="false">q32ux0</string>
+    <string name="adjust_token" translatable="false">uurp9o91gpvk</string>
+
+    <string name="nocityfound">都市が見つかりません</string>
+    <string name="waiting_gps">GPS信号を待機中</string>
+
+    <string name="total">合計</string>
+    <string name="avg">平均</string>
+    <string name="top">最高</string>
+    <string name="detail">詳細</string>
+    <string name="known">不明</string>
+
+    <string name="request">リクエスト</string>
+    <string name="no_requeest">新しいリクエストはありません</string>
+    <string name="trackinguselist">追跡ユーザー一覧</string>
+    <string name="nouser">まだ友だちがいません</string>
+
+    <string name="shareqr">QRを共有</string>
+    <string name="addac">アカウントを追加</string>
+    <string name="orscan">またはスキャン</string>
+    <string name="sharedirect">直接共有</string>
+    <string name="share">共有</string>
+    <string name="myqr">自分のQR</string>
+
+    <string name="entercode">コードを入力</string>
+    <string name="finsc">アカウントを検索</string>
+    <string name="add">追加</string>
+
+    <string name="standard">標準</string>
+    <string name="normal">通常</string>
+    <string name="satelite">サテライト</string>
+
+    <string name="timealert">時間アラート</string>
+    <string name="modrat">中</string>
+    <string name="slower">遅い</string>
+    <string name="extrem">極端</string>
+
+    <string name="createzon">ゾーンを作成</string>
+    <string name="status">ステータス</string>
+    <string name="alerts">アラート</string>
+    <string name="noenter">入場時</string>
+    <string name="onexit">退出時</string>
+    <string name="enterzon">ゾーン名を入力</string>
+
+    <string name="searchlocation">現在地を検索</string>
+    <string name="lap">ラップ</string>
+    <string name="searchbycity">都市で検索</string>
+
+    <string name="call">通話</string>
+    <string name="sms">SMS</string>
+    <string name="search_phone_no">電話番号を検索</string>
+
+    <string name="setting">設定</string>
+    <string name="general">一般</string>
+    <string name="other">その他</string>
+
+    <string name="changelan">言語を変更</string>
+    <string name="rateus">評価する</string>
+    <string name="rateus1">このアプリを評価</string>
+
+    <string name="shareapp">アプリを共有</string>
+    <string name="shareapp1">友だちと共有</string>
+
+    <string name="tt_privacy">スマートフォンを保護</string>
+    <string name="safe">安全</string>
+    <string name="danger">危険</string>
+
+    <string name="shareaddre">位置情報の住所を共有</string>
+
+    <string name="aboutus">私たちについて</string>
+    <string name="aboutus1">あなたのニーズが最優先</string>
+
+    <string name="contactus">お問い合わせ</string>
+    <string name="contactus1">信頼できるサポート</string>
+    <string name="thankyou">ありがとうございます！</string>
+    <string name="thankyou1">あなたのGPSトラッキングは現在有効で、使用可能です。</string>
+    <string name="exit1">終了</string>
+    <string name="cancel1">キャンセル</string>
+    <string name="done">完了</string>
+    <string name="permission">権限が必要です</string>
+    <string name="permission1">この機能を使用するには権限が必要です。アクセスを許可してください。</string>
+    <string name="notification">通知</string>
+    <string name="notification1">便利な通知と更新を許可する</string>
+    <string name="location">位置情報</string>
+    <string name="location1">近くの場所を表示するために位置情報を許可する</string>
+    <string name="camera">カメラ</string>
+    <string name="camera1">続行するにはカメラの権限を有効にしてください</string>
+    <string name="grantper">権限を許可</string>
+    <string name="needpermission">権限が必要です</string>
+    <string name="needpermission1">この機能を使用するには権限が必要です。設定で許可できます。</string>
+    <string name="gotosetting">設定へ移動</string>
+    <string name="enter_code">コードを入力してください</string>
+    <string name="user_not_found">ユーザーが見つかりません</string>
+    <string name="already_add">ユーザーはすでに友達リストにいます</string>
+    <string name="already_request">友達リクエストはすでに送信されています</string>
+    <string name="frd_request">友達リクエストを送信しました</string>
+    <string name="unable_map">地図を開けません</string>
+    <string name="error">エラーが発生しました</string>
+    <string name="enter_phone">電話番号を入力してください</string>
+    <string name="invalid_phone">無効な電話番号形式です</string>
+    <string name="error_request">問題が発生しました</string>
+    <string name="faile_qr">QR画像の共有に失敗しました</string>
+    <string name="copy_clip">クリップボードにコピーしました</string>
+    <string name="enter_city">都市名を入力してください</string>
+    <string name="fail_call">通話を開始できませんでした</string>
+    <string name="already_contact">番号はすでに連絡先に存在します</string>
+    <string name="fail_add_contact">連絡先の追加に失敗しました</string>
+    <string name="fail_add_sms">SMSの送信に失敗しました</string>
+    <string name="enter_location">場所を入力してください</string>
+    <string name="not_geo">このデバイスではジオコーダーを使用できません</string>
+    <string name="not_location">場所が見つかりません</string>
+    <string name="error_location">場所の検索中にエラーが発生しました</string>
+    <string name="yes">はい</string>
+    <string name="no">いいえ</string>
+    <string name="delete_zone">ゾーンを削除</string>
+    <string name="not_number">携帯番号ではありません</string>
+
+</resources>
+

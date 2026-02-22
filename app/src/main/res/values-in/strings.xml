@@ -1,0 +1,213 @@
+<resources>
+    <string name="app_name" translatable="false">GPS Phone Number Tracker</string>
+
+    <string name="info1"><![CDATA[Ambil foto dengan bukti\nwaktu & lokasi]]></string>
+    <string name="infosub1"><![CDATA[Tambahkan tanggal, waktu & lokasi GPS ke setiap foto]]></string>
+    <string name="infosub2"><![CDATA[Lihat lokasi & pergerakan di peta interaktif]]></string>
+    <string name="infosub3"><![CDATA[Kompas, tempat terdekat & perencana rute tersedia]]></string>
+    <string name="infosub4"><![CDATA[Panduan arah yang sederhana dan akurat]]></string>
+
+    <string name="map_key">AIzaSyBLIGwxAlODMg1i9AJiVKG4tNdTVKbSwSI</string>
+    <string name="mDeletSub">Apakah Anda yakin ingin menghapus zona ini?</string>
+    <string name="waiting_for_gps_signal_d">Menunggu Sinyal GPS</string>
+    <string name="chooselang">Pilih Bahasa Anda</string>
+    <string name="next">Berikutnya</string>
+
+    <string name="info2">Lacak ponsel dengan\nlokasi langsung</string>
+    <string name="info3">Alat canggih untuk\npelacakan yang lebih pintar</string>
+    <string name="start">Mulai</string>
+    <string name="info4">Navigasi dengan Mudah</string>
+
+    <string name="livelocation">Lokasi Langsung</string>
+    <string name="phonelocator">Pelacak Ponsel</string>
+    <string name="phonelocator1">Atur area aman</string>
+
+    <string name="nearby">Terdekat</string>
+    <string name="nearby1"><![CDATA[Temukan orang & tempat]]></string>
+
+    <string name="trackinguser">Pengguna yang Dilacak</string>
+    <string name="trackinguser1">Daftar Pengguna yang Dilacak</string>
+
+    <string name="realtime">Pelacakan Waktu Nyata</string>
+    <string name="realtime1">Pelacakan Rute Langsung</string>
+
+    <string name="gpstool">Alat GPS</string>
+    <string name="gpstool1"><![CDATA[Lacak, navigasi & jelajahi]]></string>
+
+    <string name="adduser">Tambah Pengguna</string>
+    <string name="adduser1">Buat Pengguna Baru</string>
+
+    <string name="traffic">Peringatan Lalu Lintas</string>
+    <string name="traffic1">Pembaruan Lalu Lintas Instan</string>
+
+    <string name="zonealert">Peringatan Zona</string>
+    <string name="zonealert1">Atur area aman</string>
+
+    <string name="nointernet">Tidak Ada Koneksi Internet</string>
+    <string name="txt_nointernet">Anda sedang offline. Silakan periksa Wi-Fi atau data seluler dan coba lagi.</string>
+    <string name="open_wifi_setting">Buka Pengaturan Wi-Fi</string>
+
+    <string name="txt_uninstall">Copot Aplikasi</string>
+
+    <string name="compass">Kompas</string>
+    <string name="compass1"><![CDATA[Arah & orientasi]]></string>
+
+    <string name="stopwatch">Stopwatch</string>
+    <string name="stopwatch1">Pengukuran waktu akurat</string>
+
+    <string name="speedmeter">Speedometer</string>
+    <string name="speedmeter1">Pelacakan kecepatan akurat</string>
+
+    <string name="areacode">Kode Area</string>
+    <string name="areacode1">Semua kode area</string>
+
+    <string name="levelmeter">Meter Level</string>
+    <string name="levelmeter1">Keseimbangan jadi mudah</string>
+
+    <string name="art_gallery">Galeri Seni</string>
+    <string name="bar">Bar</string>
+    <string name="bank">Bank</string>
+    <string name="atm">ATM</string>
+    <string name="saloon">Salon Kecantikan</string>
+    <string name="book">Toko Buku</string>
+    <string name="coffee">Kedai Kopi</string>
+    <string name="cardealer">Dealer Mobil</string>
+    <string name="bygas">SPBU</string>
+    <string name="bygym">Gym</string>
+    <string name="hospital">Rumah Sakit</string>
+    <string name="byhotel">Hotel</string>
+    <string name="parking">Parkir</string>
+    <string name="retuarant">Restoran</string>
+
+    <string name="settext1">Tingkat keberhasilan terbukti dengan lebih dari 90% pemulihan file</string>
+    <string name="settext2">Mengapa repot memulihkan file? Lakukan dengan mudah kapan saja\nDapatkan kembali file Anda hanya dengan beberapa ketukan</string>
+
+    <string name="tryagin">Coba Lagi</string>
+    <string name="still">Masih ingin menghapus aplikasi?</string>
+    <string name="surtxt">Masalah saat menggunakan aplikasi</string>
+
+    <string name="survey_1">Aplikasi lambat atau tidak berfungsi dengan baik</string>
+    <string name="survey_2">Terlalu banyak iklan</string>
+    <string name="survey_3">Memakan terlalu banyak penyimpanan</string>
+    <string name="survey_4">Fitur premium terlalu mahal</string>
+
+    <string name="facebook_client_token" translatable="false">95c71e4402046c3690f3f4c3e76166a4</string>
+    <string name="tiktok_token" translatable="false">q32ux0</string>
+    <string name="adjust_token" translatable="false">uurp9o91gpvk</string>
+
+    <string name="nocityfound">Kota Tidak Ditemukan</string>
+    <string name="waiting_gps">Menunggu Sinyal GPS</string>
+
+    <string name="total">Total</string>
+    <string name="avg">Rata-rata</string>
+    <string name="top">Tertinggi</string>
+    <string name="detail">Detail</string>
+    <string name="known">Tidak Diketahui</string>
+
+    <string name="request">Permintaan</string>
+    <string name="no_requeest">Tidak ada permintaan baru</string>
+    <string name="trackinguselist">Daftar Pengguna yang Dilacak</string>
+    <string name="nouser">Anda belum memiliki teman</string>
+
+    <string name="shareqr">Bagikan QR</string>
+    <string name="addac">Tambah Akun</string>
+    <string name="orscan">Atau Pindai</string>
+    <string name="sharedirect">Bagikan Langsung</string>
+    <string name="share">Bagikan</string>
+    <string name="myqr">QR Saya</string>
+
+    <string name="entercode">Masukkan Kode</string>
+    <string name="finsc">Cari Akun</string>
+    <string name="add">Tambah</string>
+
+    <string name="standard">Standar</string>
+    <string name="normal">Normal</string>
+    <string name="satelite">Satelit</string>
+
+    <string name="timealert">Peringatan Waktu</string>
+    <string name="modrat">Sedang</string>
+    <string name="slower">Lebih Lambat</string>
+    <string name="extrem">Ekstrem</string>
+
+    <string name="createzon">Buat Zona</string>
+    <string name="status">Status</string>
+    <string name="alerts">Peringatan</string>
+    <string name="noenter">Saat Masuk</string>
+    <string name="onexit">Saat Keluar</string>
+    <string name="enterzon">Masukkan nama zona</string>
+
+    <string name="searchlocation">Cari Lokasi Anda</string>
+    <string name="lap">Putaran</string>
+    <string name="searchbycity">Cari berdasarkan kota</string>
+
+    <string name="call">Panggil</string>
+    <string name="sms">SMS</string>
+    <string name="search_phone_no">Cari nomor telepon</string>
+
+    <string name="setting">Pengaturan</string>
+    <string name="general">Umum</string>
+    <string name="other">Lainnya</string>
+
+    <string name="changelan">Ganti Bahasa</string>
+    <string name="rateus">Beri Nilai</string>
+    <string name="rateus1">Nilai aplikasi ini</string>
+
+    <string name="shareapp">Bagikan Aplikasi</string>
+    <string name="shareapp1">Bagikan dengan teman</string>
+
+    <string name="tt_privacy">Lindungi ponsel Anda</string>
+    <string name="safe">Aman</string>
+    <string name="danger">Bahaya</string>
+
+    <string name="shareaddre">Bagikan Alamat Lokasi</string>
+
+    <string name="aboutus">Tentang Kami</string>
+    <string name="aboutus1">Kebutuhan Anda, prioritas kami</string>
+
+    <string name="contactus">Hubungi Kami</string>
+    <string name="contactus1">Dukungan yang dapat Anda andalkan</string>
+    <string name="thankyou">Terima Kasih!</string>
+    <string name="thankyou1">Pelacakan GPS Anda sekarang aktif dan siap digunakan.</string>
+    <string name="exit1">Keluar</string>
+    <string name="cancel1">Batal</string>
+    <string name="done">Selesai</string>
+    <string name="permission">Izin diperlukan</string>
+    <string name="permission1">Izin ini diperlukan untuk menggunakan fitur ini. Silakan izinkan akses.</string>
+    <string name="notification">Notifikasi</string>
+    <string name="notification1">Izinkan notifikasi untuk pemberitahuan dan pembaruan bermanfaat</string>
+    <string name="location">Lokasi</string>
+    <string name="location1">Izinkan akses lokasi untuk menampilkan tempat terdekat</string>
+    <string name="camera">Kamera</string>
+    <string name="camera1">Aktifkan izin kamera untuk melanjutkan</string>
+    <string name="grantper">Berikan izin</string>
+    <string name="needpermission">Perlu izin</string>
+    <string name="needpermission1">Aplikasi ini memerlukan izin untuk menggunakan fitur ini. Anda dapat memberikannya di pengaturan aplikasi.</string>
+    <string name="gotosetting">Buka Pengaturan</string>
+    <string name="enter_code">Silakan masukkan kode</string>
+    <string name="user_not_found">Pengguna tidak ditemukan</string>
+    <string name="already_add">Pengguna sudah ada di daftar teman Anda</string>
+    <string name="already_request">Permintaan pertemanan sudah dikirim</string>
+    <string name="frd_request">Permintaan pertemanan dikirim</string>
+    <string name="unable_map">Tidak dapat membuka peta</string>
+    <string name="error">Terjadi kesalahan</string>
+    <string name="enter_phone">Masukkan nomor telepon</string>
+    <string name="invalid_phone">Format nomor telepon tidak valid</string>
+    <string name="error_request">Terjadi kesalahan</string>
+    <string name="faile_qr">Gagal membagikan gambar QR</string>
+    <string name="copy_clip">Disalin ke papan klip</string>
+    <string name="enter_city">Masukkan nama kota</string>
+    <string name="fail_call">Gagal memulai panggilan</string>
+    <string name="already_contact">Nomor sudah ada di kontak</string>
+    <string name="fail_add_contact">Gagal menambahkan kontak</string>
+    <string name="fail_add_sms">Gagal mengirim SMS</string>
+    <string name="enter_location">Masukkan lokasi</string>
+    <string name="not_geo">Geocoder tidak tersedia di perangkat ini</string>
+    <string name="not_location">Lokasi tidak ditemukan</string>
+    <string name="error_location">Kesalahan saat mencari lokasi</string>
+    <string name="yes">Ya</string>
+    <string name="no">Tidak</string>
+    <string name="delete_zone">Hapus zona</string>
+    <string name="not_number">Bukan nomor ponsel</string>
+
+</resources>
+

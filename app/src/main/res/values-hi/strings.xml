@@ -1,0 +1,213 @@
+<resources>
+    <string name="app_name" translatable="false">GPS Phone Number Tracker</string>
+
+    <string name="info1"><![CDATA[समय और स्थान प्रमाण के साथ\nफ़ोटो कैप्चर करें]]></string>
+    <string name="infosub1"><![CDATA[हर फ़ोटो में तारीख, समय और GPS स्थान जोड़ें]]></string>
+    <string name="infosub2"><![CDATA[इंटरएक्टिव मैप पर स्थान और गतिविधि देखें]]></string>
+    <string name="infosub3"><![CDATA[कम्पास, नज़दीकी स्थान और रूट प्लानर शामिल]]></string>
+    <string name="infosub4"><![CDATA[सरल और सटीक दिशा मार्गदर्शन]]></string>
+
+    <string name="map_key">AIzaSyBLIGwxAlODMg1i9AJiVKG4tNdTVKbSwSI</string>
+    <string name="mDeletSub">क्या आप वाकई इस ज़ोन को हटाना चाहते हैं?</string>
+    <string name="waiting_for_gps_signal_d">GPS सिग्नल की प्रतीक्षा</string>
+    <string name="chooselang">भाषा चुनें</string>
+    <string name="next">आगे</string>
+
+    <string name="info2">लाइव स्थान के साथ\nफ़ोन ट्रैक करें</string>
+    <string name="info3">स्मार्ट ट्रैकिंग के लिए\nशक्तिशाली टूल</string>
+    <string name="start">शुरू करें</string>
+    <string name="info4">आसानी से नेविगेट करें</string>
+
+    <string name="livelocation">लाइव स्थान</string>
+    <string name="phonelocator">फ़ोन लोकेटर</string>
+    <string name="phonelocator1">सुरक्षित क्षेत्र सेट करें</string>
+
+    <string name="nearby">आस-पास</string>
+    <string name="nearby1"><![CDATA[लोगों और स्थानों को खोजें]]></string>
+
+    <string name="trackinguser">ट्रैक किया जा रहा उपयोगकर्ता</string>
+    <string name="trackinguser1">ट्रैक उपयोगकर्ता सूची</string>
+
+    <string name="realtime">रीयल-टाइम ट्रैकिंग</string>
+    <string name="realtime1">लाइव रूट ट्रैकिंग</string>
+
+    <string name="gpstool">GPS टूल्स</string>
+    <string name="gpstool1"><![CDATA[ट्रैक करें, नेविगेट करें और खोजें]]></string>
+
+    <string name="adduser">उपयोगकर्ता जोड़ें</string>
+    <string name="adduser1">नया उपयोगकर्ता बनाएं</string>
+
+    <string name="traffic">ट्रैफ़िक अलर्ट</string>
+    <string name="traffic1">तुरंत ट्रैफ़िक अपडेट</string>
+
+    <string name="zonealert">ज़ोन अलर्ट</string>
+    <string name="zonealert1">सुरक्षित क्षेत्र सेट करें</string>
+
+    <string name="nointernet">इंटरनेट कनेक्शन नहीं है</string>
+    <string name="txt_nointernet">आप फिलहाल ऑफ़लाइन हैं। कृपया Wi-Fi या मोबाइल डेटा जांचें और फिर से प्रयास करें।</string>
+    <string name="open_wifi_setting">Wi-Fi सेटिंग खोलें</string>
+
+    <string name="txt_uninstall">अनइंस्टॉल</string>
+
+    <string name="compass">कम्पास</string>
+    <string name="compass1"><![CDATA[दिशा और अभिविन्यास]]></string>
+
+    <string name="stopwatch">स्टॉपवॉच</string>
+    <string name="stopwatch1">सटीक समय मापन</string>
+
+    <string name="speedmeter">स्पीडोमीटर</string>
+    <string name="speedmeter1">सटीक गति ट्रैकिंग</string>
+
+    <string name="areacode">एरिया कोड</string>
+    <string name="areacode1">सभी एरिया कोड</string>
+
+    <string name="levelmeter">लेवल मीटर</string>
+    <string name="levelmeter1">आसान संतुलन</string>
+
+    <string name="art_gallery">आर्ट गैलरी</string>
+    <string name="bar">बार</string>
+    <string name="bank">बैंक</string>
+    <string name="atm">ATM</string>
+    <string name="saloon">ब्यूटी सैलून</string>
+    <string name="book">बुक स्टोर</string>
+    <string name="coffee">कॉफी शॉप</string>
+    <string name="cardealer">कार डीलर</string>
+    <string name="bygas">पेट्रोल पंप</string>
+    <string name="bygym">जिम</string>
+    <string name="hospital">अस्पताल</string>
+    <string name="byhotel">होटल</string>
+    <string name="parking">पार्किंग</string>
+    <string name="retuarant">रेस्टोरेंट</string>
+
+    <string name="settext1">90% से अधिक फ़ाइल रिकवरी के साथ सिद्ध सफलता दर</string>
+    <string name="settext2">फ़ाइलें रिकवर करने में परेशानी क्यों?\nकुछ ही टैप में अपनी फ़ाइलें वापस पाएं</string>
+
+    <string name="tryagin">फिर से प्रयास करें</string>
+    <string name="still">क्या आप अभी भी ऐप अनइंस्टॉल करना चाहते हैं?</string>
+    <string name="surtxt">ऐप उपयोग करते समय समस्याएँ</string>
+
+    <string name="survey_1">ऐप धीमी है या सही से काम नहीं कर रही</string>
+    <string name="survey_2">बहुत ज़्यादा विज्ञापन</string>
+    <string name="survey_3">बहुत अधिक स्टोरेज लेती है</string>
+    <string name="survey_4">प्रीमियम फीचर बहुत महंगे हैं</string>
+
+    <string name="facebook_client_token" translatable="false">95c71e4402046c3690f3f4c3e76166a4</string>
+    <string name="tiktok_token" translatable="false">q32ux0</string>
+    <string name="adjust_token" translatable="false">uurp9o91gpvk</string>
+
+    <string name="nocityfound">कोई शहर नहीं मिला</string>
+    <string name="waiting_gps">GPS सिग्नल की प्रतीक्षा</string>
+
+    <string name="total">कुल</string>
+    <string name="avg">औसत</string>
+    <string name="top">शीर्ष</string>
+    <string name="detail">विवरण</string>
+    <string name="known">अज्ञात</string>
+
+    <string name="request">अनुरोध</string>
+    <string name="no_requeest">कोई नया अनुरोध नहीं मिला</string>
+    <string name="trackinguselist">ट्रैक उपयोगकर्ता सूची</string>
+    <string name="nouser">आपके अभी कोई दोस्त नहीं हैं</string>
+
+    <string name="shareqr">QR साझा करें</string>
+    <string name="addac">खाता जोड़ें</string>
+    <string name="orscan">या स्कैन करें</string>
+    <string name="sharedirect">सीधे साझा करें</string>
+    <string name="share">साझा करें</string>
+    <string name="myqr">मेरा QR</string>
+
+    <string name="entercode">कोड दर्ज करें</string>
+    <string name="finsc">खाता खोजें</string>
+    <string name="add">जोड़ें</string>
+
+    <string name="standard">स्टैंडर्ड</string>
+    <string name="normal">सामान्य</string>
+    <string name="satelite">सैटेलाइट</string>
+
+    <string name="timealert">समय अलर्ट</string>
+    <string name="modrat">मध्यम</string>
+    <string name="slower">धीमा</string>
+    <string name="extrem">अत्यधिक</string>
+
+    <string name="createzon">ज़ोन बनाएं</string>
+    <string name="status">स्थिति</string>
+    <string name="alerts">अलर्ट</string>
+    <string name="noenter">प्रवेश पर</string>
+    <string name="onexit">निकास पर</string>
+    <string name="enterzon">ज़ोन नाम दर्ज करें</string>
+
+    <string name="searchlocation">अपना स्थान खोजें</string>
+    <string name="lap">लैप</string>
+    <string name="searchbycity">शहर से खोजें</string>
+
+    <string name="call">कॉल</string>
+    <string name="sms">SMS</string>
+    <string name="search_phone_no">फ़ोन नंबर खोजें</string>
+
+    <string name="setting">सेटिंग्स</string>
+    <string name="general">सामान्य</string>
+    <string name="other">अन्य</string>
+
+    <string name="changelan">भाषा बदलें</string>
+    <string name="rateus">हमें रेट करें</string>
+    <string name="rateus1">इस ऐप को रेट करें</string>
+
+    <string name="shareapp">ऐप साझा करें</string>
+    <string name="shareapp1">दोस्तों के साथ साझा करें</string>
+
+    <string name="tt_privacy">अपने फ़ोन को सुरक्षित रखें</string>
+    <string name="safe">सुरक्षित</string>
+    <string name="danger">खतरा</string>
+
+    <string name="shareaddre">स्थान पता साझा करें</string>
+
+    <string name="aboutus">हमारे बारे में</string>
+    <string name="aboutus1">आपकी ज़रूरतें, हमारी प्राथमिकता</string>
+
+    <string name="contactus">संपर्क करें</string>
+    <string name="contactus1">विश्वसनीय सहायता</string>
+    <string name="thankyou">धन्यवाद!</string>
+    <string name="thankyou1">आपका GPS ट्रैकिंग अब सक्रिय है और उपयोग के लिए तैयार है।</string>
+    <string name="exit1">बाहर निकलें</string>
+    <string name="cancel1">रद्द करें</string>
+    <string name="done">हो गया</string>
+    <string name="permission">अनुमति आवश्यक</string>
+    <string name="permission1">इस सुविधा का उपयोग करने के लिए अनुमति आवश्यक है। कृपया आगे बढ़ने के लिए अनुमति दें।</string>
+    <string name="notification">सूचना</string>
+    <string name="notification1">उपयोगी अलर्ट और अपडेट के लिए सूचनाएं अनुमति दें</string>
+    <string name="location">स्थान</string>
+    <string name="location1">आस-पास दिखाने के लिए स्थान की अनुमति दें</string>
+    <string name="camera">कैमरा</string>
+    <string name="camera1">जारी रखने के लिए कैमरा अनुमति चालू करें</string>
+    <string name="grantper">अनुमति दें</string>
+    <string name="needpermission">अनुमति आवश्यक</string>
+    <string name="needpermission1">इस सुविधा के लिए ऐप को अनुमति चाहिए। आप इसे सेटिंग्स में दे सकते हैं।</string>
+    <string name="gotosetting">सेटिंग्स पर जाएं</string>
+    <string name="enter_code">कृपया कोड दर्ज करें</string>
+    <string name="user_not_found">उपयोगकर्ता नहीं मिला</string>
+    <string name="already_add">उपयोगकर्ता पहले से आपकी मित्र सूची में है</string>
+    <string name="already_request">मित्र अनुरोध पहले ही भेजा जा चुका है</string>
+    <string name="frd_request">मित्र अनुरोध भेजा गया</string>
+    <string name="unable_map">मानचित्र खोलने में असमर्थ</string>
+    <string name="error">त्रुटि हुई</string>
+    <string name="enter_phone">कृपया फ़ोन नंबर दर्ज करें</string>
+    <string name="invalid_phone">अमान्य फ़ोन नंबर प्रारूप</string>
+    <string name="error_request">कुछ गलत हो गया</string>
+    <string name="faile_qr">QR छवि साझा करने में विफल</string>
+    <string name="copy_clip">क्लिपबोर्ड पर कॉपी किया गया</string>
+    <string name="enter_city">शहर का नाम दर्ज करें</string>
+    <string name="fail_call">कॉल शुरू करने में विफल</string>
+    <string name="already_contact">नंबर पहले से संपर्कों में मौजूद है</string>
+    <string name="fail_add_contact">संपर्क जोड़ने में विफल</string>
+    <string name="fail_add_sms">SMS भेजने में विफल</string>
+    <string name="enter_location">कृपया स्थान दर्ज करें</string>
+    <string name="not_geo">इस डिवाइस पर जियोकोडर उपलब्ध नहीं है</string>
+    <string name="not_location">स्थान नहीं मिला</string>
+    <string name="error_location">स्थान खोजने में त्रुटि</string>
+    <string name="yes">हाँ</string>
+    <string name="no">नहीं</string>
+    <string name="delete_zone">ज़ोन हटाएं</string>
+    <string name="not_number">यह मोबाइल नंबर नहीं है</string>
+
+</resources>
+

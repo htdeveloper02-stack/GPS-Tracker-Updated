@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "262971704279",
+    "project_id": "pa-sel-3-phone-tracker",
+    "storage_bucket": "pa-sel-3-phone-tracker.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:262971704279:android:05e256124fe1f55bb44192",
+        "android_client_info": {
+          "package_name": "gps.trackerid.location"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJTTVIWHZbDEdmp-Dh2nnzw0-GvwUs5Rs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
