@@ -2,17 +2,13 @@ package gps.trackerid.location.ui;
 
 import static android.view.View.GONE;
 import static gps.trackerid.location.adshelper.AdsConfig.getBannerHomeCollapse;
-<<<<<<< HEAD
 import static gps.trackerid.location.adshelper.AdsConfig.getInterBack;
 import static gps.trackerid.location.adshelper.AdsConfig.getInterHome;
 import static gps.trackerid.location.adshelper.AdsConfig.getNativeHome;
 import static gps.trackerid.location.adshelper.AdsConfig.getNativePhoneLocator;
 import static gps.trackerid.location.adshelper.AdsConfig.getNativeSetting;
-=======
-import static gps.trackerid.location.adshelper.AdsConfig.getNativeHome;
-import static gps.trackerid.location.adshelper.AdsConfig.loadHomeInterstitialAds;
->>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 import static gps.trackerid.location.utils.Global.IsTaken;
+import static gps.trackerid.location.utils.Global.mLog;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -32,11 +28,8 @@ import android.widget.Toast;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
-<<<<<<< HEAD
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.ProcessLifecycleOwner;
-=======
->>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 
 import com.ads.module.ads.ERainAd;
 import com.ads.module.funtion.AdCallback;
@@ -57,11 +50,8 @@ import java.util.List;
 
 import gps.trackerid.location.R;
 import gps.trackerid.location.adshelper.AdsConfig;
-<<<<<<< HEAD
 import gps.trackerid.location.adshelper.InterstitialAdManager;
 import gps.trackerid.location.adshelper.NativeAdManager;
-=======
->>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 import gps.trackerid.location.database.FirebaseUserHelper;
 import gps.trackerid.location.databinding.ActivityTimestampBinding;
 import gps.trackerid.location.models.users.CurrentUserUtil;
@@ -182,7 +172,7 @@ public class TimestampActivity extends BaseActivity {
         });
         mCheckPermission(false);
         mLoadNative();
-<<<<<<< HEAD
+
         mPreloadNative();
         mPreloadInter();
     }
@@ -215,18 +205,6 @@ public class TimestampActivity extends BaseActivity {
                 }
         );
 
-=======
-
-    }
-
-    private void mNextCallActivity(Class<?> activityClass) {
-        loadHomeInterstitialAds(timestampActivity, new AdsConfig.MyCallback() {
-            @Override
-            public void callbackCall() {
-                startActivity(new Intent(timestampActivity, activityClass));
-            }
-        });
->>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
     }
 
     private void mCheckPermission() {
@@ -416,90 +394,7 @@ public class TimestampActivity extends BaseActivity {
 //        } else {
 //            startService(intent);
 //        }
-        try {
-<<<<<<< HEAD
-            if (ProcessLifecycleOwner.get()
-                    .getLifecycle()
-                    .getCurrentState()
-                    .isAtLeast(Lifecycle.State.STARTED)) {
 
-                if (isLocationEnabled()) {
-                    // Location is ON
-//            startService(new Intent(this, LocationUpdateService.class));
-                    if (!isFinishing() && !isDestroyed()) {
-=======
-            if (isLocationEnabled()) {
-                // Location is ON
-//            startService(new Intent(this, LocationUpdateService.class));
-                Intent intent = new Intent(TimestampActivity.this, LocationUpdateService.class);
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    ContextCompat.startForegroundService(TimestampActivity.this, intent);
-                } else {
-                    startService(intent);
-                }
-            } else {
-                checkAndPromptGps(new Runnable() {
-                    @Override
-                    public void run() {
->>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
-                        Intent intent = new Intent(TimestampActivity.this, LocationUpdateService.class);
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                            ContextCompat.startForegroundService(TimestampActivity.this, intent);
-                        } else {
-                            startService(intent);
-                        }
-<<<<<<< HEAD
-                    }
-                } else {
-                    checkAndPromptGps(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (!isFinishing() && !isDestroyed()) {
-                                Intent intent = new Intent(TimestampActivity.this, LocationUpdateService.class);
-                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                                    ContextCompat.startForegroundService(TimestampActivity.this, intent);
-                                } else {
-                                    startService(intent);
-                                }
-                            }
-//                    startService(new Intent(TimestampActivity.this, LocationUpdateService.class));
-                        }
-                    });
-                }
-            }
-
-=======
-//                    startService(new Intent(TimestampActivity.this, LocationUpdateService.class));
-                    }
-                });
-            }
->>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
-//            // Location is OFF
-//            LocationRequest locationRequest = LocationRequest.create()
-//                    .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-//
-//            LocationSettingsRequest.Builder builder =
-//                    new LocationSettingsRequest.Builder()
-//                            .addLocationRequest(locationRequest);
-//
-//            SettingsClient client = LocationServices.getSettingsClient(this);
-//            Task<LocationSettingsResponse> task = client.checkLocationSettings(builder.build());
-//
-//            task.addOnSuccessListener(locationSettingsResponse -> {
-//                // Location is ON
-//                startService(new Intent(this, LocationUpdateService.class));
-//            });
-//
-//            task.addOnFailureListener(e -> {
-//                if (e instanceof ResolvableApiException) {
-//                    try {
-//                        ((ResolvableApiException) e).startResolutionForResult(this, 1001);
-//                    } catch (IntentSender.SendIntentException ignored) {}
-//                }
-//            });
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
 
     }
 
@@ -597,7 +492,7 @@ public class TimestampActivity extends BaseActivity {
         // Get LocationManager
         LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
         if (locationManager == null) {
-            Log.e("ActivityUtil", "LocationManager is null");
+            mLog("ActivityUtil", "LocationManager is null");
             return false;
         }
 
@@ -658,5 +553,79 @@ public class TimestampActivity extends BaseActivity {
             timestampBinding.mRlBanner.setVisibility(GONE);
         }
     }
+    @Override
+    protected void onStart() {
+        super.onStart();
 
+        try {
+
+            if (ProcessLifecycleOwner.get()
+                    .getLifecycle()
+                    .getCurrentState()
+                    .isAtLeast(Lifecycle.State.STARTED)) {
+
+                if (isLocationEnabled()) {
+                    // Location is ON
+//            startService(new Intent(this, LocationUpdateService.class));
+                    if (!isFinishing() && !isDestroyed()) {
+
+                        Intent intent = new Intent(TimestampActivity.this, LocationUpdateService.class);
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                            ContextCompat.startForegroundService(TimestampActivity.this, intent);
+                        } else {
+                            startService(intent);
+                        }
+
+                    }
+                } else {
+                    checkAndPromptGps(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (!isFinishing() && !isDestroyed()) {
+                                Intent intent = new Intent(TimestampActivity.this, LocationUpdateService.class);
+                                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                                    ContextCompat.startForegroundService(TimestampActivity.this, intent);
+                                } else {
+                                    startService(intent);
+                                }
+                            }
+//                    startService(new Intent(TimestampActivity.this, LocationUpdateService.class));
+                        }
+                    });
+                }
+            }
+
+
+//            // Location is OFF
+//            LocationRequest locationRequest = LocationRequest.create()
+//                    .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
+//
+//            LocationSettingsRequest.Builder builder =
+//                    new LocationSettingsRequest.Builder()
+//                            .addLocationRequest(locationRequest);
+//
+//            SettingsClient client = LocationServices.getSettingsClient(this);
+//            Task<LocationSettingsResponse> task = client.checkLocationSettings(builder.build());
+//
+//            task.addOnSuccessListener(locationSettingsResponse -> {
+//                // Location is ON
+//                startService(new Intent(this, LocationUpdateService.class));
+//            });
+//
+//            task.addOnFailureListener(e -> {
+//                if (e instanceof ResolvableApiException) {
+//                    try {
+//                        ((ResolvableApiException) e).startResolutionForResult(this, 1001);
+//                    } catch (IntentSender.SendIntentException ignored) {}
+//                }
+//            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        stopService(new Intent(TimestampActivity.this, LocationUpdateService.class));
+    }
 }

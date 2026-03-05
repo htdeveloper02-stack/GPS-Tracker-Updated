@@ -2,10 +2,7 @@ package gps.trackerid.location.ui.zoneui;
 
 import static android.view.View.VISIBLE;
 import static gps.trackerid.location.adshelper.AdsConfig.getBannerAll;
-<<<<<<< HEAD
-=======
-import static gps.trackerid.location.adshelper.AdsConfig.loadBAckInterstitialAds;
->>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
+import static gps.trackerid.location.utils.Global.mLog;
 
 import android.Manifest;
 import android.content.Context;
@@ -51,10 +48,6 @@ import java.util.List;
 import java.util.Locale;
 
 import gps.trackerid.location.R;
-<<<<<<< HEAD
-=======
-import gps.trackerid.location.adshelper.AdsConfig;
->>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 import gps.trackerid.location.databinding.ActivityCreatezoneBinding;
 import gps.trackerid.location.models.zonedata.DataZone;
 import gps.trackerid.location.ui.baseui.BaseActivity;
@@ -255,7 +248,7 @@ public class CreateZoneActivity extends BaseActivity implements OnMapReadyCallba
                 googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15.0f));
 
             } else {
-                Log.e("searchLocation", "GoogleMap is not initialized");
+                mLog("searchLocation", "GoogleMap is not initialized");
             }
             String detailedAddress = address.getAddressLine(0);
             createzoneBinding.mTxtAddress.setText(detailedAddress);
@@ -263,15 +256,11 @@ public class CreateZoneActivity extends BaseActivity implements OnMapReadyCallba
             selectedZone.setLatitude(Double.valueOf(latitude));
             selectedZone.setLongitude(Double.valueOf(longitude));
             // Log the full address for debugging
-            Log.e("searchLocation", "Address found: " + address.getAddressLine(0));
+            mLog("searchLocation", "Address found: " + address.getAddressLine(0));
 
         } catch (IOException e) {
             e.printStackTrace();
-<<<<<<< HEAD
             Toast.makeText(this, getResources().getString(R.string.error_location) + " " + e.getMessage(), Toast.LENGTH_SHORT).show();
-=======
-            Toast.makeText(this, getResources().getString(R.string.error_location)+" " + e.getMessage(), Toast.LENGTH_SHORT).show();
->>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
         }
     }
 

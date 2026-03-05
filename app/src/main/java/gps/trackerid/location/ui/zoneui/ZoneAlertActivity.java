@@ -3,10 +3,6 @@ package gps.trackerid.location.ui.zoneui;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static gps.trackerid.location.adshelper.AdsConfig.getBannerAll;
-<<<<<<< HEAD
-=======
-import static gps.trackerid.location.adshelper.AdsConfig.loadBAckInterstitialAds;
->>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -24,11 +20,7 @@ import com.ads.module.ads.ERainAd;
 
 import gps.trackerid.location.R;
 import gps.trackerid.location.adapter.ZoneAdapter;
-<<<<<<< HEAD
 import gps.trackerid.location.adshelper.InterstitialAdManager;
-=======
-import gps.trackerid.location.adshelper.AdsConfig;
->>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 import gps.trackerid.location.databinding.ActivityZonealertBinding;
 import gps.trackerid.location.models.zonedata.AppDatabase;
 import gps.trackerid.location.models.zonedata.DataZone;
@@ -139,7 +131,7 @@ public class ZoneAlertActivity extends BaseActivity {
     }
 
     private void onBackCall() {
-<<<<<<< HEAD
+
         InterstitialAdManager.showIfReady(
                 ZoneAlertActivity.this,
                 "inter_back",
@@ -148,14 +140,6 @@ public class ZoneAlertActivity extends BaseActivity {
                 }
         );
 
-=======
-        loadBAckInterstitialAds(ZoneAlertActivity.this, new AdsConfig.MyCallback() {
-            @Override
-            public void callbackCall() {
-                finish();
-            }
-        });
->>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
     }
 
     private void mshowDailog(DataZone dataZone) {

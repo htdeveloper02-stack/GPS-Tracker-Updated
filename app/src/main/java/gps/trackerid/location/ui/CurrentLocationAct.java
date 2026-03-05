@@ -2,10 +2,6 @@ package gps.trackerid.location.ui;
 
 import static android.view.View.VISIBLE;
 import static gps.trackerid.location.adshelper.AdsConfig.getBannerAll;
-<<<<<<< HEAD
-=======
-import static gps.trackerid.location.adshelper.AdsConfig.loadBAckInterstitialAds;
->>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 import static gps.trackerid.location.utils.Global.isFastClick;
 
 import android.Manifest;
@@ -43,20 +39,16 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import gps.trackerid.location.R;
-<<<<<<< HEAD
 import gps.trackerid.location.adshelper.InterstitialAdManager;
-=======
-import gps.trackerid.location.adshelper.AdsConfig;
->>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 import gps.trackerid.location.databinding.ActivityCurrentlocationBinding;
 import gps.trackerid.location.ui.baseui.BaseActivity;
 import gps.trackerid.location.utils.Global;
-import kotlin.collections.CollectionsKt;
 import kotlin.jvm.internal.Intrinsics;
 import kotlin.text.StringsKt;
 
@@ -98,7 +90,7 @@ public class CurrentLocationAct extends BaseActivity implements OnMapReadyCallba
     }
 
     private void onBackCall() {
-<<<<<<< HEAD
+
         InterstitialAdManager.showIfReady(
                 CurrentLocationAct.this,
                 "inter_back",
@@ -106,15 +98,6 @@ public class CurrentLocationAct extends BaseActivity implements OnMapReadyCallba
                     finish();
                 }
         );
-
-=======
-        loadBAckInterstitialAds(currentLocationAct, new AdsConfig.MyCallback() {
-            @Override
-            public void callbackCall() {
-                finish();
-            }
-        });
->>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
     }
 
     private void clickListeners() {
@@ -271,31 +254,47 @@ public class CurrentLocationAct extends BaseActivity implements OnMapReadyCallba
 
     private void addMarkerOnCurrentLocation(Location location) {
 
-        Address address;
         if (googleMap == null) return;
 
         LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
 
-        if (Geocoder.isPresent()) {
-            try {
-                List<Address> fromLocation = new Geocoder(this).getFromLocation(location.getLatitude(), location.getLongitude(), 1);
-                String addressLine = (fromLocation == null || (address = (Address) CollectionsKt.firstOrNull((List) fromLocation)) == null) ? null : address.getAddressLine(0);
-                String str = addressLine;
-                if (str != null && !StringsKt.isBlank(str)) {
-                    currentlocationBinding.mTxtShareAddress.setText(addressLine);
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        if (googleMap != null) {
-            googleMap.clear();
-            googleMap.addMarker(new MarkerOptions()
-                    .position(latLng)
-                    .title("Current Location").icon(getMarkerBitmap(R.drawable.ic_marker_add)));
+        // Update UI safely after background geocoding
+        ExecutorService executor = Executors.newSingleThreadExecutor();
+        Handler mainHandler = new Handler(Looper.getMainLooper());
 
-            googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
-        }
+        executor.execute(() -> {
+            String addressLine = null;
+
+            if (Geocoder.isPresent()) {
+                try {
+                    List<Address> addresses = new Geocoder(this)
+                            .getFromLocation(location.getLatitude(), location.getLongitude(), 1);
+                    if (addresses != null && !addresses.isEmpty()) {
+                        Address address = addresses.get(0);
+                        addressLine = address.getAddressLine(0);
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            final String finalAddressLine = addressLine;
+            mainHandler.post(() -> {
+                // UI updates on main thread
+                if (!StringsKt.isBlank(finalAddressLine)) {
+                    currentlocationBinding.mTxtShareAddress.setText(finalAddressLine);
+                }
+
+                // Map marker
+                googleMap.clear();
+                googleMap.addMarker(new MarkerOptions()
+                        .position(latLng)
+                        .title("Current Location")
+                        .icon(getMarkerBitmap(R.drawable.ic_marker_add)));
+
+                googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 16));
+            });
+        });
     }
 
     private final BitmapDescriptor getMarkerBitmap(int vectorResId) {

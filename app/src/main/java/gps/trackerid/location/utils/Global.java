@@ -11,6 +11,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -21,6 +22,7 @@ import androidx.core.content.ContextCompat;
 
 import java.util.List;
 
+import gps.trackerid.location.BuildConfig;
 import gps.trackerid.location.R;
 
 public class Global {
@@ -39,40 +41,40 @@ public class Global {
     public static String PRO_SERVERS = "";
     public static String ip = "";
     public static String API_KEY = "wbnMYs9bha0Geg.2yeegiZBJ3cUfjUPWrokcHDRqnjOhwEK2tH";
-    public static boolean inter_splash;
-    public static boolean banner_splash;
+    public static boolean inter_splash=true;
+    public static boolean banner_splash=true;
 
-    public static boolean native_language_1;
-    public static boolean native_language_1_click;
-    public static boolean native_language_2;
-    public static boolean native_language_2_click;
+    public static boolean native_language_1=true;
+    public static boolean native_language_1_click=true;
+    public static boolean native_language_2=true;
+    public static boolean native_language_2_click=true;
 
-    public static boolean native_onboarding_1_1;
-    public static boolean native_onboarding_2_1;
-    public static boolean native_onboarding_1_4;
-    public static boolean native_onboarding_2_4;
+    public static boolean native_onboarding_1_1=true;
+    public static boolean native_onboarding_2_1=true;
+    public static boolean native_onboarding_1_4=true;
+    public static boolean native_onboarding_2_4=true;
 
-    public static boolean native_onboarding_fullscreen_1_2;
-    public static boolean native_onboarding_fullscreen_2_2;
+    public static boolean native_onboarding_fullscreen_1_2=true;
+    public static boolean native_onboarding_fullscreen_2_2=true;
 
 
-    public static boolean open_resume;
-    public static boolean inter_onboarding;
+    public static boolean open_resume=true;
+    public static boolean inter_onboarding=true;
 
-    public static boolean inter_home;
-    public static boolean native_home;
-    public static boolean banner_collap_home;
+    public static boolean inter_home=true;
+    public static boolean native_home=true;
+    public static boolean banner_collap_home=true;
 
-    public static boolean inter_back;
-    public static boolean banner_all;
+    public static boolean inter_back=true;
+    public static boolean banner_all=true;
 
-    public static boolean native_phone_locator;
-    public static boolean inter_splash_uninstall;
-    public static boolean banner_splash_uninstall;
-    public static boolean native_uninstall;
-    public static boolean native_survey_uninstall;
-    public static boolean native_setting;
-    public static boolean delay_button_done_language;
+    public static boolean native_phone_locator=true;
+    public static boolean inter_splash_uninstall=true;
+    public static boolean banner_splash_uninstall=true;
+    public static boolean native_uninstall=true;
+    public static boolean native_survey_uninstall=true;
+    public static boolean native_setting=true;
+    public static boolean delay_button_done_language=true;
     public static long height_button_cta = 40;
 
     public static boolean IsTaken(Activity activity, List<String> list, String str) {
@@ -150,10 +152,7 @@ public class Global {
         lastClickTime = currentTimeMillis;
         return false;
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
     public static void openChromeCustomTabUrl(Context activity, String url) {
         String str = url;
         if (!str.equalsIgnoreCase("")) {
@@ -170,6 +169,12 @@ public class Global {
                 intent.setData(Uri.parse(str));
                 activity.startActivity(intent);
             }
+        }
+    }
+
+    public static void mLog(String tag, String log) {
+        if (BuildConfig.DEBUG) {
+            Log.e(tag, log);
         }
     }
 }

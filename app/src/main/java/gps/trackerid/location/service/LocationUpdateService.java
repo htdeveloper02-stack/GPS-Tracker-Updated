@@ -1,5 +1,6 @@
 package gps.trackerid.location.service;
 
+import android.Manifest;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.Service;
@@ -9,7 +10,6 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
-import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
@@ -103,7 +103,7 @@ public class LocationUpdateService extends Service {
                         .setSmallIcon(R.drawable.ic_marker_add)
                         .setOngoing(true);
 
-        manager.notify(NOTIFICATION_ID, notification.build());
+//        manager.notify(NOTIFICATION_ID, notification.build());
         startForeground(NOTIFICATION_ID, notification.build());
     }
 
@@ -117,6 +117,9 @@ public class LocationUpdateService extends Service {
                 android.content.pm.PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this,
                 android.Manifest.permission.ACCESS_COARSE_LOCATION) !=
+                android.content.pm.PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this,
+                Manifest.permission.FOREGROUND_SERVICE_LOCATION) !=
                 android.content.pm.PackageManager.PERMISSION_GRANTED) {
             return;
         }

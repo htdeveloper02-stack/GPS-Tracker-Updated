@@ -1,24 +1,25 @@
 package gps.trackerid.location.adshelper;
 
-<<<<<<< HEAD
+import static gps.trackerid.location.utils.Global.mLog;
+
 import android.app.Activity;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
 
+import com.ads.module.admob.Admob;
 import com.ads.module.ads.ERainAd;
 import com.ads.module.ads.wrapper.ApInterstitialAd;
 import com.ads.module.funtion.AdCallback;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.LoadAdError;
 
+import java.lang.ref.WeakReference;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-=======
->>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 public class InterstitialAdManager {
 
     private static long lastAdShownTime = 0;
@@ -34,7 +35,7 @@ public class InterstitialAdManager {
     public static void onAdShown() {
         lastAdShownTime = System.currentTimeMillis();
     }
-<<<<<<< HEAD
+
 
     private static final Map<String, ApInterstitialAd> adMap = new HashMap<>();
     private static final Set<String> loadingAds = new HashSet<>();
@@ -66,7 +67,7 @@ public class InterstitialAdManager {
 
                         if (ad != null) {
                             adMap.put(adTag, ad);
-                            Log.e("AdManager=====", "Preloaded: " + adTag);
+                            mLog("AdManager=====", "Preloaded: " + adTag);
                         }
                     }
 
@@ -76,7 +77,7 @@ public class InterstitialAdManager {
 
                         loadingAds.remove(adTag);
                         adMap.remove(adTag);
-                        Log.e("AdManager====", "Preload failed: " + adTag);
+                        mLog("AdManager====", "Preload failed: " + adTag);
                     }
                 });
     }
@@ -84,8 +85,10 @@ public class InterstitialAdManager {
     // ==============================
     // SHOW
     // ==============================
-    public static void showIfReady(Activity activity, String adTag, AdsConfig.MyCallback callback) {
+    public static void showIfReady(Activity acti, String adTag, AdsConfig.MyCallback callback) {
 
+        WeakReference<Activity> activityRef = new WeakReference<>(acti);
+        Activity activity = activityRef.get();
         if (activity == null || activity.isFinishing() || activity.isDestroyed()) {
 
             callback.callbackCall();
@@ -96,11 +99,12 @@ public class InterstitialAdManager {
             callback.callbackCall();
             return;
         }
-        Log.e("TAG", "AdManager:===inter show tag==="+adTag );
+        Log.e("TAG", "AdManager:===inter show tag===" + adTag);
         ApInterstitialAd ad = adMap.get(adTag);
 
         if (ad != null) {
 
+            Admob.getInstance().setOpenActivityAfterShowInterAds(false);
             ERainAd.getInstance().forceShowInterstitial(
                     activity,
                     ad,
@@ -108,13 +112,14 @@ public class InterstitialAdManager {
 
                         @Override
                         public void onNextAction() {
+                            InterstitialAdManager.onAdShown();
+                            callback.callbackCall();
                         }
 
                         @Override
                         public void onAdClosed() {
 //                            clear(adTag);
-                            InterstitialAdManager.onAdShown();
-                            callback.callbackCall();
+
 
                             // preload next
 //                            preload(activity.getApplicationContext(), adTag);
@@ -123,8 +128,8 @@ public class InterstitialAdManager {
                         @Override
                         public void onAdFailedToShow(@Nullable AdError adError) {
 //                            clear(adTag);
-                            InterstitialAdManager.onAdShown();
-                            callback.callbackCall();
+//                            InterstitialAdManager.onAdShown();
+//                            callback.callbackCall();
 
 //                            preload(activity.getApplicationContext(), adTag);
                         }
@@ -154,7 +159,4 @@ public class InterstitialAdManager {
         adMap.clear();
     }
 
-
-=======
->>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 }

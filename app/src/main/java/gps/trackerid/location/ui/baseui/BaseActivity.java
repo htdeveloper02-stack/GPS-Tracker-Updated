@@ -1,5 +1,6 @@
 package gps.trackerid.location.ui.baseui;
 
+import static gps.trackerid.location.utils.Global.mLog;
 import static gps.trackerid.location.utils.Global.showInternetDialog;
 
 import android.app.Activity;
@@ -121,7 +122,7 @@ public class BaseActivity extends AppCompatActivity {
                             }
 
                         } else {
-                            Log.e("RemoteConfig", "Fetch failed");
+                            mLog("RemoteConfig", "Fetch failed");
 
                         }
                     });

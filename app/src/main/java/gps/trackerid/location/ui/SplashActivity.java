@@ -3,17 +3,14 @@ package gps.trackerid.location.ui;
 import static android.view.View.VISIBLE;
 import static gps.trackerid.location.adshelper.AdsConfig.getBannerSplash;
 import static gps.trackerid.location.adshelper.AdsConfig.getBannerSplashUninstall;
-<<<<<<< HEAD
 import static gps.trackerid.location.adshelper.AdsConfig.getNativeLanguage1;
 import static gps.trackerid.location.adshelper.AdsConfig.getNativeLanguage1Click;
 import static gps.trackerid.location.adshelper.AdsConfig.getNativeLanguage2;
 import static gps.trackerid.location.adshelper.AdsConfig.getNativeLanguage2Click;
 import static gps.trackerid.location.adshelper.AdsConfig.getNativeUninstall;
-=======
->>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 import static gps.trackerid.location.adshelper.AdsConfig.loadSplashInterstitialAds;
 import static gps.trackerid.location.adshelper.AdsConfig.loadUnsintallInterstitialAds;
-import static gps.trackerid.location.utils.Global.showInternetDialog;
+import static gps.trackerid.location.utils.Global.dismissInternetDialog;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -25,10 +22,6 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-<<<<<<< HEAD
-import com.ads.module.admob.Admob;
-=======
->>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 import com.ads.module.admob.AppOpenManager;
 import com.ads.module.ads.ERainAd;
 import com.ads.module.ump.IAdConsentCallBack;
@@ -42,10 +35,7 @@ import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 import gps.trackerid.location.BuildConfig;
 import gps.trackerid.location.R;
 import gps.trackerid.location.adshelper.AdsConfig;
-<<<<<<< HEAD
 import gps.trackerid.location.adshelper.NativeAdManager;
-=======
->>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 import gps.trackerid.location.databinding.ActivitySplashBinding;
 import gps.trackerid.location.utils.Global;
 import gps.trackerid.location.utils.SystmeUtils;
@@ -67,53 +57,58 @@ public class SplashActivity extends AppCompatActivity {
         if (rootView != null) {
             rootView.post(() -> SystmeUtils.enableFullScreenUi(this, rootView));
         }
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mCallData();
+            }
+        }, 500);
     }
 
     public void mCallRemoteConfigData() {
-        if (Global.isInternetConnected(this)) {
+//        if (Global.isInternetConnected(this)) {
 
-            mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
-            FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder().setMinimumFetchIntervalInSeconds(1).build();
-            mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
-            mFirebaseRemoteConfig.setDefaultsAsync(R.xml.remote_config_defaults);
-            mFirebaseRemoteConfig.fetchAndActivate()
-                    .addOnCompleteListener(task -> {
-                        if (task.isSuccessful()) {
-                            try {
-                                Global.iSGetAds = true;
-                                AdsConfig.mSetRemoteData(mFirebaseRemoteConfig);
-<<<<<<< HEAD
-                                if (Global.native_language_1 || Global.native_language_2) {
-                                    String nativeId = preference.getBoolean("First") ? getNativeLanguage1() : getNativeLanguage2();
-                                    String TagName = preference.getBoolean("First") ? "native_language_1" : "native_language_2";
-                                    NativeAdManager.getInstance().preloadNativeAd(SplashActivity.this, nativeId, R.layout.layout_native_ad_medium, TagName);
-                                }
-                                if (Global.native_language_1_click || Global.native_language_2_click) {
-                                    String nativeId = preference.getBoolean("First") ? getNativeLanguage1Click() : getNativeLanguage2Click();
-                                    String TagName = preference.getBoolean("First") ? "native_language_1_click" : "native_language_2_click";
-                                    NativeAdManager.getInstance().preloadNativeAd(SplashActivity.this, nativeId, R.layout.layout_native_ad_medium, TagName);
-                                }
-=======
->>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
-                                if (Global.open_resume) {
-                                    AppOpenManager.getInstance().enableAppResume();
-                                } else {
-                                    AppOpenManager.getInstance().disableAppResume();
-                                }
-                                mCallNext();
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                                mCallNext();
+        mFirebaseRemoteConfig = FirebaseRemoteConfig.getInstance();
+        FirebaseRemoteConfigSettings configSettings = new FirebaseRemoteConfigSettings.Builder().setMinimumFetchIntervalInSeconds(1).build();
+        mFirebaseRemoteConfig.setConfigSettingsAsync(configSettings);
+        mFirebaseRemoteConfig.setDefaultsAsync(R.xml.remote_config_defaults);
+        mFirebaseRemoteConfig.fetchAndActivate()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        try {
+                            Global.iSGetAds = true;
+                            AdsConfig.mSetRemoteData(mFirebaseRemoteConfig);
+
+                            if (Global.native_language_1 || Global.native_language_2) {
+                                String nativeId = preference.getBoolean("First") ? getNativeLanguage1() : getNativeLanguage2();
+                                String TagName = preference.getBoolean("First") ? "native_language_1" : "native_language_2";
+                                NativeAdManager.getInstance().preloadNativeAd(SplashActivity.this, nativeId, R.layout.layout_native_ad_medium, TagName);
+                            }
+                            if (Global.native_language_1_click || Global.native_language_2_click) {
+                                String nativeId = preference.getBoolean("First") ? getNativeLanguage1Click() : getNativeLanguage2Click();
+                                String TagName = preference.getBoolean("First") ? "native_language_1_click" : "native_language_2_click";
+                                NativeAdManager.getInstance().preloadNativeAd(SplashActivity.this, nativeId, R.layout.layout_native_ad_medium, TagName);
                             }
 
-                        } else {
-                            Log.e("RemoteConfig", "Fetch failed");
+                            if (Global.open_resume) {
+                                AppOpenManager.getInstance().enableAppResume();
+                            } else {
+                                AppOpenManager.getInstance().disableAppResume();
+                            }
+                            mCallNext();
+                        } catch (Exception e) {
+                            e.printStackTrace();
                             mCallNext();
                         }
-                    });
-        } else {
-            showInternetDialog(SplashActivity.this);
-        }
+
+                    } else {
+                        Log.e("RemoteConfig", "Fetch failed");
+                        mCallNext();
+                    }
+                });
+//        } else {
+//            showInternetDialog(SplashActivity.this);
+//        }
 
     }
 
@@ -124,12 +119,11 @@ public class SplashActivity extends AppCompatActivity {
                 splashBinding.mRlBanner.setVisibility(VISIBLE);
                 ERainAd.getInstance().loadBanner(SplashActivity.this, getBannerSplashUninstall());
             }
-<<<<<<< HEAD
+
             if (Global.native_uninstall) {
                 NativeAdManager.getInstance().preloadNativeAd(SplashActivity.this, getNativeUninstall(), R.layout.layout_native_ad_medium, "native_uninstall");
             }
-=======
->>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
+
         } else {
             if (Global.banner_splash && Global.isInternetConnected(SplashActivity.this)) {
                 splashBinding.mRlBanner.setVisibility(VISIBLE);
@@ -234,12 +228,12 @@ public class SplashActivity extends AppCompatActivity {
         mCallRemoteConfigData();
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Global.dismissInternetDialog(SplashActivity.this);
-        mCallData();
-    }
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        dismissInternetDialog(SplashActivity.this);
+//
+//    }
 
     private void mCallData() {
         preference = new Preference(SplashActivity.this);
@@ -254,13 +248,10 @@ public class SplashActivity extends AppCompatActivity {
                 intent.getStringExtra(Global.FROM_SHORTCUT)
         );
     }
-<<<<<<< HEAD
 
     @Override
     protected void onDestroy() {
-        Admob.getInstance().dismissDialog();
+        dismissInternetDialog(SplashActivity.this);
         super.onDestroy();
     }
-=======
->>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 }

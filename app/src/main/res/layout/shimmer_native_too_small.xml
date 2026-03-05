@@ -33,8 +33,8 @@
 
             <!-- ICON PLACEHOLDER -->
             <View
-                android:layout_width="56dp"
-                android:layout_height="56dp"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
                 android:layout_marginStart="8dp"
                 android:background="@drawable/bg_shimmer_item" />
 
@@ -62,7 +62,7 @@
             <!-- CTA BUTTON PLACEHOLDER -->
             <View
                 android:layout_width="0dp"
-                android:layout_height="56dp"
+                android:layout_height="40dp"
                 android:layout_weight="1"
                 android:layout_marginStart="6dp"
                 android:background="@drawable/bg_shimmer_item" />

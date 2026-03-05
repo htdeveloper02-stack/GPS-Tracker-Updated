@@ -420,7 +420,7 @@ public class ERainAd {
             containerShimmerLoading.setVisibility(View.GONE);
             return;
         }
-<<<<<<< HEAD
+
         if (activity == null || activity.isFinishing() || activity.isDestroyed()) {
             return;
         }
@@ -428,11 +428,9 @@ public class ERainAd {
         if (adPlaceHolder == null) {
             return;
         }
+        @SuppressLint("InflateParams")
+        NativeAdView adView = (NativeAdView) LayoutInflater.from(activity).inflate(apNativeAd.getLayoutCustomNative(), null);
 
-        @SuppressLint("InflateParams") NativeAdView adView = (NativeAdView) LayoutInflater.from(adPlaceHolder.getContext()).inflate(apNativeAd.getLayoutCustomNative(), null);
-=======
-        @SuppressLint("InflateParams") NativeAdView adView = (NativeAdView) LayoutInflater.from(activity).inflate(apNativeAd.getLayoutCustomNative(), null);
->>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
         View findViewById = adView.findViewById(R.id.ad_call_to_action);
         ViewGroup.LayoutParams layoutParams = findViewById.getLayoutParams();
         if (layoutParams != null) {

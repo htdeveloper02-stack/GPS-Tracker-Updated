@@ -3,11 +3,6 @@ package gps.trackerid.location.ui;
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static gps.trackerid.location.adshelper.AdsConfig.getBannerAll;
-<<<<<<< HEAD
-=======
-import static gps.trackerid.location.adshelper.AdsConfig.loadBAckInterstitialAds;
-import static gps.trackerid.location.adshelper.AdsConfig.loadHomeInterstitialAds;
->>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -25,11 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gps.trackerid.location.adapter.FriendListAdapter;
-<<<<<<< HEAD
 import gps.trackerid.location.adshelper.InterstitialAdManager;
-=======
-import gps.trackerid.location.adshelper.AdsConfig;
->>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 import gps.trackerid.location.database.DataUserDao;
 import gps.trackerid.location.database.FirebaseRequestHelper;
 import gps.trackerid.location.databinding.ActivityListuserBinding;
@@ -70,7 +61,7 @@ public class ListUserActivity extends BaseActivity {
         listuserBinding.mIvRequest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-<<<<<<< HEAD
+
                 InterstitialAdManager.showIfReady(
                         ListUserActivity.this,
                         "inter_home",
@@ -79,14 +70,6 @@ public class ListUserActivity extends BaseActivity {
 
                         }
                 );
-=======
-                loadHomeInterstitialAds(ListUserActivity.this, new AdsConfig.MyCallback() {
-                    @Override
-                    public void callbackCall() {
-                        startActivity(new Intent(ListUserActivity.this, RequestActivity.class));
-                    }
-                });
->>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
             }
         });
         friendListAdapter = new FriendListAdapter(ListUserActivity.this, new FriendListAdapter.OnClickUserBy() {
@@ -112,7 +95,7 @@ public class ListUserActivity extends BaseActivity {
     }
 
     private void onBackCall() {
-<<<<<<< HEAD
+
         InterstitialAdManager.showIfReady(
                 ListUserActivity.this,
                 "inter_back",
@@ -121,14 +104,6 @@ public class ListUserActivity extends BaseActivity {
                 }
         );
 
-=======
-        loadBAckInterstitialAds(ListUserActivity.this, new AdsConfig.MyCallback() {
-            @Override
-            public void callbackCall() {
-                finish();
-            }
-        });
->>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
     }
 
     @Override

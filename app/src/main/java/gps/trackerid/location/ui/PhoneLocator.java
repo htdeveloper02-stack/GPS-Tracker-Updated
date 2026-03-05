@@ -1,38 +1,21 @@
 package gps.trackerid.location.ui;
 
 import static gps.trackerid.location.adshelper.AdsConfig.getNativePhoneLocator;
-<<<<<<< HEAD
-=======
-import static gps.trackerid.location.adshelper.AdsConfig.loadBAckInterstitialAds;
->>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
+import static gps.trackerid.location.utils.Global.mLog;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.location.LocationListener;
 import android.os.Bundle;
-<<<<<<< HEAD
 import android.util.Log;
-=======
->>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
-<<<<<<< HEAD
 
 import com.facebook.shimmer.ShimmerFrameLayout;
-=======
-import androidx.annotation.Nullable;
-
-import com.ads.module.ads.ERainAd;
-import com.ads.module.ads.wrapper.ApNativeAd;
-import com.ads.module.funtion.AdCallback;
-import com.facebook.shimmer.ShimmerFrameLayout;
-import com.google.android.gms.ads.AdError;
-import com.google.android.gms.ads.LoadAdError;
->>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.hbb20.CountryCodePicker;
@@ -41,11 +24,8 @@ import java.util.List;
 
 import gps.trackerid.location.R;
 import gps.trackerid.location.adshelper.AdsConfig;
-<<<<<<< HEAD
 import gps.trackerid.location.adshelper.InterstitialAdManager;
 import gps.trackerid.location.adshelper.NativeAdManager;
-=======
->>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 import gps.trackerid.location.databinding.ActivityPhonelocatorBinding;
 import gps.trackerid.location.models.PhoneCarrierInfo;
 import gps.trackerid.location.models.State;
@@ -154,7 +134,6 @@ public class PhoneLocator extends BaseActivity implements OnMapReadyCallback {
     private void extracted() {
         shimmerAds = findViewById(R.id.shimmer_native);
 
-<<<<<<< HEAD
         boolean isShown = NativeAdManager.getInstance()
                 .showNativeAdIfAvailable(
                         this,
@@ -164,11 +143,11 @@ public class PhoneLocator extends BaseActivity implements OnMapReadyCallback {
                 );
 
         if (!isShown) {
-            Log.e("TAG", "Ad not ready, preload again");
+            mLog("TAG", "Ad not ready, preload again");
             shimmerAds.setVisibility(View.VISIBLE);
             phonelocatorBinding.frAds.setVisibility(View.VISIBLE);
             // Optional: preload again if missing
-            NativeAdManager.getInstance().preloadNativeAd(PhoneLocator.this, getNativePhoneLocator(), R.layout.layout_native_ad_medium, "native_language_1");
+//            NativeAdManager.getInstance().preloadNativeAd(PhoneLocator.this, getNativePhoneLocator(), R.layout.layout_native_ad_medium, "native_language_1");
         }
     }
 
@@ -186,45 +165,6 @@ public class PhoneLocator extends BaseActivity implements OnMapReadyCallback {
                 }
         );
 
-=======
-        final ApNativeAd[] mApNativeAd = new ApNativeAd[1];
-        ERainAd.getInstance().loadNativeAdResultCallback(phoneLocator, getNativePhoneLocator(), R.layout.layout_native_ad_middle, new AdCallback() {
-            @Override
-            public void onNativeAdLoaded(@NonNull ApNativeAd nativeAd) {
-                super.onNativeAdLoaded(nativeAd);
-                mApNativeAd[0] = nativeAd;
-                ERainAd.getInstance().populateNativeAdView(phoneLocator, mApNativeAd[0], phonelocatorBinding.frAds, shimmerAds);
-            }
-
-            @Override
-            public void onAdFailedToLoad(@Nullable LoadAdError i) {
-                super.onAdFailedToLoad(i);
-                mApNativeAd[0] = null;
-                phonelocatorBinding.frAds.removeAllViews();
-            }
-
-            @Override
-            public void onAdFailedToShow(@Nullable AdError adError) {
-                super.onAdFailedToShow(adError);
-                mApNativeAd[0] = null;
-                phonelocatorBinding.frAds.removeAllViews();
-            }
-        });
-    }
-
-    private void onBackCall() {
-        loadBAckInterstitialAds(phoneLocator, new AdsConfig.MyCallback() {
-            @Override
-            public void callbackCall() {
-                if (isShortcut) {
-                    startActivity(new Intent(phoneLocator, TimestampActivity.class));
-                    finish();
-                } else {
-                    finish();
-                }
-            }
-        });
->>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
     }
 
     List<State> stateList;
@@ -267,7 +207,7 @@ public class PhoneLocator extends BaseActivity implements OnMapReadyCallback {
 //                }
 //
 //                String jsonString = gson.toJson(resultList);
-//                Log.e("TAG", "doInBackground:=====jsonString==="+jsonString);
+//                mLog("TAG", "doInBackground:=====jsonString==="+jsonString);
 //            } catch (Exception unused) {
 //            }
 //            return null;
@@ -362,10 +302,7 @@ public class PhoneLocator extends BaseActivity implements OnMapReadyCallback {
 
         return true;
     }
-<<<<<<< HEAD
 
-=======
->>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
     private boolean isSequential(String number) {
         boolean ascending = true;
         boolean descending = true;

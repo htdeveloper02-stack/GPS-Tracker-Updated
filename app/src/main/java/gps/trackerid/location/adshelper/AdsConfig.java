@@ -6,26 +6,16 @@ import android.app.Activity;
 import android.util.Log;
 import android.widget.FrameLayout;
 
-<<<<<<< HEAD
-import com.ads.module.ads.ERainAd;
-import com.ads.module.ads.wrapper.ApInterstitialAd;
-import com.ads.module.funtion.AdCallback;
-=======
-import androidx.annotation.Nullable;
-
 import com.ads.module.admob.Admob;
 import com.ads.module.ads.ERainAd;
 import com.ads.module.ads.wrapper.ApInterstitialAd;
 import com.ads.module.funtion.AdCallback;
-import com.google.android.gms.ads.AdError;
-import com.google.android.gms.ads.LoadAdError;
->>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 
 import gps.trackerid.location.utils.Global;
 
 public class AdsConfig {
-    private static final boolean IS_TEST = false;
+    private static final boolean IS_TEST = true;
 
     public static String getInterSplash() {
         return IS_TEST
@@ -269,6 +259,7 @@ public class AdsConfig {
 
     public static void loadSplashInterstitialAds(Activity activity, MyCallback myCallback) {
         if (Global.inter_splash) {
+            Admob.getInstance().setOpenActivityAfterShowInterAds(false);
             ERainAd.getInstance().loadSplashInterstitialAds(activity, getInterSplash(), 25000, 5000, new AdCallback() {
                 @Override
                 public void onNextAction() {
@@ -283,6 +274,7 @@ public class AdsConfig {
 
     public static void loadUnsintallInterstitialAds(Activity activity, MyCallback myCallback) {
         if (Global.inter_splash_uninstall && Global.isInternetConnected(activity)) {
+            Admob.getInstance().setOpenActivityAfterShowInterAds(false);
             ERainAd.getInstance().loadSplashInterstitialAds(activity, getInterSplashUninstall(), 25000, 5000, new AdCallback() {
                 @Override
                 public void onNextAction() {
@@ -295,7 +287,6 @@ public class AdsConfig {
         }
     }
 
-<<<<<<< HEAD
 //    public static void loadInterstitialAds(Activity activity, String adsId, MyCallback myCallback) {
 //        if (Global.inter_onboarding && ERainAd.getInstance().getShouldDisplayInterOnboarding() && InterstitialAdManager.canShowAd() && Global.isInternetConnected(activity)) {
 //            Admob.getInstance().showDialog(activity);
@@ -458,169 +449,5 @@ public class AdsConfig {
 //            }
 //        });
 //    }
-=======
-    public static void loadInterstitialAds(Activity activity, String adsId, MyCallback myCallback) {
-        if (Global.inter_onboarding && ERainAd.getInstance().getShouldDisplayInterOnboarding() && InterstitialAdManager.canShowAd() && Global.isInternetConnected(activity)) {
-            Admob.getInstance().showDialog(activity);
-            if (mInterstitialAd == null) {
-                mShowIntestitial(activity, adsId, myCallback);
-            } else {
-                ERainAd.getInstance().forceShowInterstitial(activity, mInterstitialAd, new AdCallback() {
-                    @Override
-                    public void onNextAction() {
-                        super.onNextAction();
-                        InterstitialAdManager.onAdShown();
-                    }
-
-                    @Override
-                    public void onAdClosed() {
-                        super.onAdClosed();
-                        myCallback.callbackCall();
-                    }
-
-                    @Override
-                    public void onAdFailedToShow(@Nullable AdError adError) {
-                        super.onAdFailedToShow(adError);
-                        myCallback.callbackCall();
-                    }
-
-                    @Override
-                    public void onAdFailedToLoad(@Nullable LoadAdError i) {
-                        super.onAdFailedToLoad(i);
-                        myCallback.callbackCall();
-                    }
-                }, true);
-
-            }
-        } else {
-            myCallback.callbackCall();
-        }
-
-    }
-
-    private static void mShowIntestitial(Activity activity, String adsId, MyCallback myCallback) {
-        ERainAd.getInstance().getInterstitialAds(activity, adsId, new AdCallback() {
-            @Override
-            public void onApInterstitialLoad(@Nullable ApInterstitialAd apInterstitialAd) {
-                super.onApInterstitialLoad(apInterstitialAd);
-                mInterstitialAd = apInterstitialAd;
-                ERainAd.getInstance().forceShowInterstitial(activity, mInterstitialAd, new AdCallback() {
-                    @Override
-                    public void onNextAction() {
-                        super.onNextAction();
-                        InterstitialAdManager.onAdShown();
-                    }
-
-                    @Override
-                    public void onAdClosed() {
-                        super.onAdClosed();
-                        myCallback.callbackCall();
-                    }
-
-                    @Override
-                    public void onAdFailedToShow(@Nullable AdError adError) {
-                        super.onAdFailedToShow(adError);
-                        myCallback.callbackCall();
-                    }
-
-                    @Override
-                    public void onAdFailedToLoad(@Nullable LoadAdError i) {
-                        super.onAdFailedToLoad(i);
-                        myCallback.callbackCall();
-                    }
-                }, true);
-
-            }
-
-            @Override
-            public void onAdFailedToShow(@Nullable AdError adError) {
-                super.onAdFailedToShow(adError);
-                myCallback.callbackCall();
-            }
-
-            @Override
-            public void onAdFailedToLoad(@Nullable LoadAdError i) {
-                super.onAdFailedToLoad(i);
-                myCallback.callbackCall();
-            }
-        });
-    }
-
-    public static void loadHomeInterstitialAds(Activity activity, MyCallback myCallback) {
-        if (Global.inter_home && InterstitialAdManager.canShowAd() && Global.isInternetConnected(activity)) {
-            Admob.getInstance().showDialog(activity);
-            if (mHomeInterstitialAd == null) {
-                mShowHomeInterstitial(activity, myCallback);
-            } else {
-                ERainAd.getInstance().forceShowInterstitial(activity, mHomeInterstitialAd, new AdCallback() {
-                    @Override
-                    public void onNextAction() {
-                        super.onNextAction();
-                        myCallback.callbackCall();
-                        InterstitialAdManager.onAdShown();
-                    }
-                }, true);
-            }
-        } else {
-            myCallback.callbackCall();
-        }
-    }
-
-    private static void mShowHomeInterstitial(Activity activity, MyCallback myCallback) {
-        ERainAd.getInstance().getInterstitialAds(activity, getInterHome(), new AdCallback() {
-            @Override
-            public void onApInterstitialLoad(@Nullable ApInterstitialAd apInterstitialAd) {
-                super.onApInterstitialLoad(apInterstitialAd);
-                mHomeInterstitialAd = apInterstitialAd;
-                ERainAd.getInstance().forceShowInterstitial(activity, mHomeInterstitialAd, new AdCallback() {
-                    @Override
-                    public void onNextAction() {
-                        super.onNextAction();
-                        myCallback.callbackCall();
-                        InterstitialAdManager.onAdShown();
-                    }
-                }, true);
-            }
-        });
-    }
-
-    public static void loadBAckInterstitialAds(Activity activity, MyCallback myCallback) {
-        if (Global.inter_back && InterstitialAdManager.canShowAd() && Global.isInternetConnected(activity)) {
-            Admob.getInstance().showDialog(activity);
-            if (mBackInterstitialAd == null) {
-                ShowBAckInterstitial(activity, myCallback);
-            } else {
-                ERainAd.getInstance().forceShowInterstitial(activity, mBackInterstitialAd, new AdCallback() {
-                    @Override
-                    public void onNextAction() {
-                        super.onNextAction();
-                        myCallback.callbackCall();
-                        InterstitialAdManager.onAdShown();
-                    }
-                }, true);
-            }
-        } else {
-            myCallback.callbackCall();
-        }
-    }
-
-    private static void ShowBAckInterstitial(Activity activity, MyCallback myCallback) {
-        ERainAd.getInstance().getInterstitialAds(activity, getInterBack(), new AdCallback() {
-            @Override
-            public void onApInterstitialLoad(@Nullable ApInterstitialAd apInterstitialAd) {
-                super.onApInterstitialLoad(apInterstitialAd);
-                mBackInterstitialAd = apInterstitialAd;
-                ERainAd.getInstance().forceShowInterstitial(activity, mBackInterstitialAd, new AdCallback() {
-                    @Override
-                    public void onNextAction() {
-                        super.onNextAction();
-                        myCallback.callbackCall();
-                        InterstitialAdManager.onAdShown();
-                    }
-                }, true);
-            }
-        });
-    }
->>>>>>> f5e5efa8f659ab985326e6f2884b0dd0d70cbc9e
 
 }
