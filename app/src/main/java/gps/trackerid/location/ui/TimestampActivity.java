@@ -21,7 +21,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -34,7 +33,6 @@ import androidx.lifecycle.ProcessLifecycleOwner;
 import com.ads.module.ads.ERainAd;
 import com.ads.module.funtion.AdCallback;
 import com.ads.module.util.AppConstant;
-import com.ads.module.util.Preference;
 import com.facebook.shimmer.ShimmerFrameLayout;
 import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.LoadAdError;
@@ -49,6 +47,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gps.trackerid.location.R;
+import gps.trackerid.location.ads.Preference;
+import gps.trackerid.location.ads.SharedUtils;
 import gps.trackerid.location.adshelper.AdsConfig;
 import gps.trackerid.location.adshelper.InterstitialAdManager;
 import gps.trackerid.location.adshelper.NativeAdManager;
@@ -91,6 +91,9 @@ public class TimestampActivity extends BaseActivity {
         if (preference.getBoolean("First")) {
             preference.setBoolean("First", false);
         }
+
+        SharedUtils.INSTANCE.setValue(SharedUtils.OPEN_APP, true);
+
         CarrierDetector.loadFromAssets(timestampActivity);
         timestampBinding.mIvLiveLocation.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -553,6 +556,7 @@ public class TimestampActivity extends BaseActivity {
             timestampBinding.mRlBanner.setVisibility(GONE);
         }
     }
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -623,6 +627,7 @@ public class TimestampActivity extends BaseActivity {
             e.printStackTrace();
         }
     }
+
     @Override
     protected void onStop() {
         super.onStop();

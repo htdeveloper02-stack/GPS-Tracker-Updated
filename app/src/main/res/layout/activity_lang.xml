@@ -81,6 +81,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <include layout="@layout/shimmer_native_medium" />
+        <include
+            android:id="@+id/shimmerAds"
+            layout="@layout/shimmer_native_medium" />
     </FrameLayout>
 </LinearLayout>

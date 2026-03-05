@@ -1,94 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.facebook.shimmer.ShimmerFrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/shimmer_native"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:shimmer_auto_start="true"
-    app:shimmer_base_color="#DDDDDD"
-    app:shimmer_highlight_color="#F5F5F5">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.google.android.material.card.MaterialCardView
+    <data>
+
+    </data>
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_native"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="6dp"
-        app:cardBackgroundColor="@android:color/white">
+        app:shimmer_auto_start="true"
+        app:shimmer_base_color="#DDDDDD"
+        app:shimmer_highlight_color="#F5F5F5">
 
-        <LinearLayout
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            app:cardCornerRadius="6dp"
+            app:cardBackgroundColor="@android:color/white">
 
-            <!-- TOP ROW -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:orientation="vertical">
 
-                <!-- AD BADGE PLACEHOLDER -->
-                <View
-                    android:layout_width="24dp"
-                    android:layout_height="12dp"
-                    android:background="@drawable/bg_shimmer_item" />
-
-                <!-- ICON PLACEHOLDER -->
-                <View
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_marginStart="6dp"
-                    android:background="@drawable/bg_shimmer_item" />
-
-                <!-- TITLE + ADVERTISER -->
+                <!-- TOP ROW -->
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:orientation="horizontal">
 
+                    <!-- AD BADGE PLACEHOLDER -->
                     <View
-                        android:layout_width="match_parent"
+                        android:layout_width="24dp"
                         android:layout_height="12dp"
                         android:background="@drawable/bg_shimmer_item" />
 
+                    <!-- ICON PLACEHOLDER -->
                     <View
-                        android:layout_width="120dp"
-                        android:layout_height="10dp"
-                        android:layout_marginTop="6dp"
+                        android:layout_width="35dp"
+                        android:layout_height="35dp"
+                        android:layout_marginStart="6dp"
                         android:background="@drawable/bg_shimmer_item" />
+
+                    <!-- TITLE + ADVERTISER -->
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="12dp"
+                            android:background="@drawable/bg_shimmer_item" />
+
+                        <View
+                            android:layout_width="120dp"
+                            android:layout_height="10dp"
+                            android:layout_marginTop="6dp"
+                            android:background="@drawable/bg_shimmer_item" />
+                    </LinearLayout>
                 </LinearLayout>
+
+                <!-- BODY TEXT -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="12dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_shimmer_item" />
+
+                <View
+                    android:layout_width="80dp"
+                    android:layout_height="12dp"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_shimmer_item" />
+
+                <!-- MEDIA PLACEHOLDER -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_shimmer_item" />
+
+                <!-- CTA BUTTON -->
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/bg_shimmer_item" />
+
             </LinearLayout>
 
-            <!-- BODY TEXT -->
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="12dp"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/bg_shimmer_item" />
+        </com.google.android.material.card.MaterialCardView>
 
-            <View
-                android:layout_width="80dp"
-                android:layout_height="12dp"
-                android:layout_marginTop="6dp"
-                android:background="@drawable/bg_shimmer_item" />
-
-            <!-- MEDIA PLACEHOLDER -->
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_marginTop="12dp"
-                android:background="@drawable/bg_shimmer_item" />
-
-            <!-- CTA BUTTON -->
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginTop="16dp"
-                android:background="@drawable/bg_shimmer_item" />
-
-        </LinearLayout>
-
-    </com.google.android.material.card.MaterialCardView>
-
-</com.facebook.shimmer.ShimmerFrameLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+</layout>

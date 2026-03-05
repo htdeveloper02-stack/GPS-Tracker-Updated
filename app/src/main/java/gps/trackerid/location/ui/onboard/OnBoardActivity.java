@@ -25,13 +25,15 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.ads.module.ads.ERainAd;
-import com.ads.module.util.Preference;
 import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import gps.trackerid.location.R;
+import gps.trackerid.location.ads.AdsManager;
+import gps.trackerid.location.ads.Preference;
+import gps.trackerid.location.ads.SharedUtils;
 import gps.trackerid.location.adshelper.AdsConfig;
 import gps.trackerid.location.adshelper.InterstitialAdManager;
 import gps.trackerid.location.adshelper.NativeAdManager;
@@ -56,8 +58,6 @@ public class OnBoardActivity extends BaseActivity {
     private MyViewPagerAdapter myViewPagerAdapter;
     private int mPos = 0;
     private int[] layouts;
-
-    //    String adsid, adsId4, fullads;
     public ArrayList<String> mPermissions;
 
     @Override
@@ -70,17 +70,6 @@ public class OnBoardActivity extends BaseActivity {
         onBoardActivity = this;
 
         preference = new Preference(onBoardActivity);
-
-
-//        if (preference.getBoolean("First")) {
-//            adsid = getNativeOnboarding11();
-//            adsId4 = getNativeOnboarding14();
-//            fullads = getNativeOnboardingFullscreen12();
-//        } else {
-//            adsid = getNativeOnboarding21();
-//            adsId4 = getNativeOnboarding24();
-//            fullads = getNativeOnboardingFullscreen22();
-//        }
         setViewPager();
 
         if (ERainAd.getInstance().getShouldDisplayWidgetUninstall()) {
@@ -103,30 +92,6 @@ public class OnBoardActivity extends BaseActivity {
             return ActivityCompat.shouldShowRequestPermissionRationale((Activity) this, str);
         }
         return true;
-    }
-
-    private boolean IsCheckPermission() {
-        mPermissions = new ArrayList();
-        if (!IsTaken(mPermissions, "android.permission.ACCESS_COARSE_LOCATION")) {
-            mPermissions.add("android.permission.ACCESS_COARSE_LOCATION");
-        }
-        if (!IsTaken(mPermissions, "android.permission.ACCESS_FINE_LOCATION")) {
-            mPermissions.add("android.permission.ACCESS_FINE_LOCATION");
-        }
-        if (!IsTaken(mPermissions, "android.permission.CAMERA")) {
-            mPermissions.add("android.permission.CAMERA");
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (!IsTaken(mPermissions, "android.permission.POST_NOTIFICATIONS")) {
-                mPermissions.add("android.permission.POST_NOTIFICATIONS");
-            }
-        }
-
-        if (!mPermissions.isEmpty()) {
-            return false;
-        } else {
-            return true;
-        }
     }
 
     private boolean isShowAds() {
@@ -178,45 +143,31 @@ public class OnBoardActivity extends BaseActivity {
             View view = layoutInflater.inflate(layouts[position], container, false);
 
             if (!isShowAdsLayout(position)) {
-
                 TextView mIvNext = view.findViewById(R.id.mIvNext);
-                mIvNext.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        if (mPos == layouts.length - 1) {
-                            launchHomeScreen();
-                        } else {
-                            onboardBinding.viewPager.setCurrentItem(mPos + 1);
-                        }
+                mIvNext.setOnClickListener(view1 -> {
+                    if (mPos == layouts.length - 1) {
+                        launchHomeScreen();
+                    } else {
+                        onboardBinding.viewPager.setCurrentItem(mPos + 1);
                     }
                 });
             } else if (isShowAdsLayout(position)) {
                 ImageView mIvNext = view.findViewById(R.id.mIvNext);
-                mIvNext.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        if (mPos == layouts.length - 1) {
-                            launchHomeScreen();
-                        } else {
-                            onboardBinding.viewPager.setCurrentItem(mPos + 1);
-                        }
+                mIvNext.setOnClickListener(view2 -> {
+                    if (mPos == layouts.length - 1) {
+                        launchHomeScreen();
+                    } else {
+                        onboardBinding.viewPager.setCurrentItem(mPos + 1);
                     }
                 });
             }
             if (position == 0) {
                 frAds = view.findViewById(R.id.fr_ads);
-
-                shimmerAds = view.findViewById(R.id.shimmer_native);
-                if (AdsConfig.isShowNative(preference.getBoolean("First") ? Global.native_onboarding_1_1 : Global.native_onboarding_2_1, frAds)) {
-                    String TagName = preference.getBoolean("First") ? "native_onboarding_1_1" : "native_onboarding_2_1";
-                    showNative(TagName, frAds, shimmerAds);
-                }
+                AdsManager.INSTANCE.loadNativeOb1(OnBoardActivity.this, SharedUtils.INSTANCE.getValue(SharedUtils.OPEN_APP, false), frAds);
             }
             if (isShowAds()) {
                 if (position == 2) {
                     frAds = view.findViewById(R.id.fr_ads);
-
-                    shimmerAds = view.findViewById(R.id.shimmer_native);
                     if (AdsConfig.isShowNative(preference.getBoolean("First") ? isShowAds1() : isShowAds2(), frAds)) {
                         String TagName = preference.getBoolean("First") ? "native_onboarding_full_1" : "native_onboarding_full_2";
                         showNative(TagName, frAds, shimmerAds);
@@ -225,12 +176,7 @@ public class OnBoardActivity extends BaseActivity {
             }
             if (position == (layouts.length - 1)) {
                 frAds = view.findViewById(R.id.fr_ads);
-
-                shimmerAds = view.findViewById(R.id.shimmer_native);
-                if (AdsConfig.isShowNative(preference.getBoolean("First") ? Global.native_onboarding_1_4 : Global.native_onboarding_2_4, frAds)) {
-                    String TagName = preference.getBoolean("First") ? "native_onboarding_1_4" : "native_onboarding_2_4";
-                    showNative(TagName, frAds, shimmerAds);
-                }
+                AdsManager.INSTANCE.loadNativeOb4(OnBoardActivity.this, SharedUtils.INSTANCE.getValue(SharedUtils.OPEN_APP, false), frAds);
             }
             container.addView(view);
 
@@ -268,8 +214,6 @@ public class OnBoardActivity extends BaseActivity {
             mLog("TAG", "Ad not ready, preload again");
             shimmerAds.setVisibility(View.VISIBLE);
             frAds.setVisibility(View.VISIBLE);
-            // Optional: preload again if missing
-//            NativeAdManager.getInstance().preloadNativeAd(OnBoardActivity.this, getNativeLanguage1(), R.layout.layout_native_ad_medium, "native_language_1");
         }
 
     }
@@ -281,20 +225,12 @@ public class OnBoardActivity extends BaseActivity {
     }
 
     private void initShortCut() {
-
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N_MR1) return;
-
         try {
-            ShortcutManager shortcutManager =
-                    (ShortcutManager) getSystemService(ShortcutManager.class);
-
+            ShortcutManager shortcutManager = getSystemService(ShortcutManager.class);
             if (shortcutManager == null) return;
-
             shortcutManager.removeAllDynamicShortcuts();
-
             ArrayList<ShortcutInfo> shortcuts = new ArrayList<>();
-
-
             shortcuts.add(
                     new ShortcutInfo.Builder(this, "shortcut_locator")
                             .setShortLabel(getString(R.string.phonelocator))
@@ -352,10 +288,7 @@ public class OnBoardActivity extends BaseActivity {
         }
     }
 
-    private Intent createShortcutIntent(
-            Class<?> target,
-            String action,
-            String shortcutType) {
+    private Intent createShortcutIntent(Class<?> target, String action, String shortcutType) {
 
         Intent intent = new Intent(this, target);
         intent.setAction(action);

@@ -11,7 +11,6 @@ import android.content.pm.ShortcutManager;
 import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,13 +20,13 @@ import androidx.core.view.WindowInsetsCompat;
 
 import com.ads.module.admob.AppOpenManager;
 import com.ads.module.ads.ERainAd;
-import com.ads.module.util.Preference;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfig;
 import com.google.firebase.remoteconfig.FirebaseRemoteConfigSettings;
 
 import java.util.ArrayList;
 
 import gps.trackerid.location.R;
+import gps.trackerid.location.ads.Preference;
 import gps.trackerid.location.adshelper.AdsConfig;
 import gps.trackerid.location.ui.NearByActivity;
 import gps.trackerid.location.ui.PhoneLocator;
@@ -70,6 +69,7 @@ public class BaseActivity extends AppCompatActivity {
 
     /**
      * Call this method to change language dynamically
+     *
      * @param languageCode - e.g., "en", "es", "fr"
      */
     public void changeAppLanguage(String languageCode) {
@@ -137,16 +137,10 @@ public class BaseActivity extends AppCompatActivity {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N_MR1) return;
 
         try {
-            ShortcutManager shortcutManager =
-                    (ShortcutManager) getSystemService(ShortcutManager.class);
-
+            ShortcutManager shortcutManager = getSystemService(ShortcutManager.class);
             if (shortcutManager == null) return;
-
             shortcutManager.removeAllDynamicShortcuts();
-
             ArrayList<ShortcutInfo> shortcuts = new ArrayList<>();
-
-
             shortcuts.add(
                     new ShortcutInfo.Builder(this, "shortcut_locator")
                             .setShortLabel(getString(R.string.phonelocator))

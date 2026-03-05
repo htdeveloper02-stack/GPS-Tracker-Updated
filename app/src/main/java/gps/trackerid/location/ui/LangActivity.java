@@ -2,34 +2,30 @@ package gps.trackerid.location.ui;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
-import static gps.trackerid.location.adshelper.AdsConfig.getNativeOnboarding11;
-import static gps.trackerid.location.adshelper.AdsConfig.getNativeOnboarding14;
-import static gps.trackerid.location.adshelper.AdsConfig.getNativeOnboarding21;
-import static gps.trackerid.location.adshelper.AdsConfig.getNativeOnboarding24;
-import static gps.trackerid.location.adshelper.AdsConfig.getNativeOnboardingFullscreen12;
-import static gps.trackerid.location.adshelper.AdsConfig.getNativeOnboardingFullscreen22;
+import static gps.trackerid.location.ads.AdsManagerKt.isNetwork;
+import static gps.trackerid.location.ads.PopulateNativeAdViewKt.populateNativeAdView;
 import static gps.trackerid.location.utils.Global.mLog;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.ads.module.ads.ERainAd;
-import com.ads.module.util.Preference;
-import com.facebook.shimmer.ShimmerFrameLayout;
+import com.ads.module.ads.wrapper.ApNativeAd;
 
 import java.util.ArrayList;
 
 import gps.trackerid.location.R;
 import gps.trackerid.location.adapter.LanguageAdapter;
-import gps.trackerid.location.adshelper.AdsConfig;
+import gps.trackerid.location.ads.AdsManager;
+import gps.trackerid.location.ads.PreLoadNativeListener;
+import gps.trackerid.location.ads.Preference;
+import gps.trackerid.location.ads.RemoteUtils;
+import gps.trackerid.location.ads.SharedUtils;
 import gps.trackerid.location.adshelper.NativeAdManager;
 import gps.trackerid.location.databinding.ActivityLangBinding;
 import gps.trackerid.location.ui.onboard.OnBoardActivity;
@@ -50,10 +46,8 @@ public class LangActivity extends AppCompatActivity {
 
     public String mLang = "en";
     Preference preference;
-
-    //    String adsBeforeid, adsAfterid;
-    ShimmerFrameLayout shimmerAds;
     ArrayList<String> mTag = new ArrayList<>();
+    private boolean populateAds = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,57 +70,29 @@ public class LangActivity extends AppCompatActivity {
         if (mType != null) {
             languageBinding.mIvBack.setVisibility(VISIBLE);
         }
-        shimmerAds = findViewById(R.id.shimmer_native);
         lang = getResources().getStringArray(R.array.language);
         alllang = getAllLang();
         languageBinding.listlang.setLayoutManager(new LinearLayoutManager(this));
         languageAdapter = new LanguageAdapter(languageActivity, alllang);
         languageBinding.listlang.setAdapter(languageAdapter);
-        languageBinding.mLLDone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (!Global.delay_button_done_language) {
-                    languageAdapter.setLanguage();
-                }
-//                    startActivity(new Intent(languageActivity, OnBoardActivity.class));
-//                    finish();
-//                } else {
-                if (mType != null) {
-//                    changeAppLanguage(preference.getSavedLanguage());
-//                    finish();
-                    if (!mLang.equalsIgnoreCase(preference.getSavedLanguage())) {
-                        restartApp();
-                    } else {
-                        finish();
-                    }
+        languageBinding.mLLDone.setOnClickListener(view -> {
+            if (!Global.delay_button_done_language) {
+                languageAdapter.setLanguage();
+            }
+            if (mType != null) {
+                if (!mLang.equalsIgnoreCase(preference.getSavedLanguage())) {
+                    restartApp();
                 } else {
-                    startActivity(new Intent(languageActivity, OnBoardActivity.class));
                     finish();
                 }
-            }
-        });
-        languageBinding.mIvBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+            } else {
+                startActivity(new Intent(languageActivity, OnBoardActivity.class));
                 finish();
             }
         });
-        if (preference.getBoolean("First")) {
+        languageBinding.mIvBack.setOnClickListener(view -> finish());
 
-            if (AdsConfig.isShowNative(Global.native_language_1, languageBinding.frAds) && mType == null) {
-                showNative("native_language_1");
-            } else {
-                languageBinding.frAds.setVisibility(GONE);
-            }
-        } else {
-            if (AdsConfig.isShowNative(Global.native_language_2, languageBinding.frAds) && mType == null) {
-                showNative("native_language_2");
-            } else {
-                languageBinding.frAds.setVisibility(GONE);
-            }
-        }
-
-        if (Global.delay_button_done_language) {
+        if (RemoteUtils.INSTANCE.getDelayButtonDoneLanguage()) {
             languageBinding.mLLDone.setVisibility(GONE);
             languageBinding.mTxtDone.setVisibility(GONE);
         } else {
@@ -136,88 +102,57 @@ public class LangActivity extends AppCompatActivity {
         }
 
         if (mType == null) {
-            mloadOnBoardingNative();
+            AdsManager.INSTANCE.loadNativeObFull(this, SharedUtils.INSTANCE.getValue(SharedUtils.OPEN_APP, false));
         }
+
+        initAdmob(AdsManager.NativeLanguageType.NORMAL);
     }
 
-    private void showNative(String adTag) {
-        if (isFinishing() || isDestroyed()) return;
-        if (!mTag.contains(adTag)) {
-            mTag.add(adTag);
-        }
+    private AdsManager.NativeLanguageType currentNativeType = null;
 
-        if (languageBinding == null || languageBinding.frAds == null) {
-            Log.d("AdDebug", "Ad container is null.");
+    private void initAdmob(AdsManager.NativeLanguageType type) {
+        currentNativeType = type;
+        populateAds = false;
+        showAds();
+
+        AdsManager.INSTANCE.setPreLoadNativeCallback(new PreLoadNativeListener() {
+            @Override
+            public void onLoadNativeSuccess() {
+
+            }
+
+            @Override
+            public void onLoadNativeFail() {
+                languageBinding.shimmerAds.shimmerNative.setVisibility(GONE);
+            }
+        });
+    }
+
+    private void showAds() {
+        if (!isNetwork(this)) {
+            languageBinding.shimmerAds.shimmerNative.setVisibility(GONE);
             return;
         }
-        shimmerAds = findViewById(R.id.shimmer_native);
 
-        boolean isShown = NativeAdManager.getInstance().showNativeAdIfAvailable(
-                this,
-                adTag,
-                languageBinding.frAds,
-                shimmerAds
-        );
+        if (populateAds) return;
 
-        if (!isShown) {
-            if (isFinishing() || isDestroyed()) return;
-            mLog("TAG", "Ad not ready, preload again");
-            // Optional: preload again if missing
-//            NativeAdManager.getInstance().preloadNativeAd(LangActivity.this, getNativeLanguage1(), R.layout.layout_native_ad_medium, "native_language_1");
-        }
-    }
-
-    private void showNativeAfterClick(String adTag) {
-        if (isFinishing() || isDestroyed()) return;
-        if (!mTag.contains(adTag)) {
-            mTag.add(adTag);
+        ApNativeAd nativeAd;
+        if (currentNativeType == AdsManager.NativeLanguageType.NORMAL) {
+            nativeAd = AdsManager.INSTANCE.getNativeAdLanguageNormal();
+        } else {
+            nativeAd = AdsManager.INSTANCE.getNativeAdLanguageClick();
         }
 
-        if (languageBinding == null || languageBinding.frAds == null) {
-            Log.d("AdDebug", "Ad container is null.");
-            return;
+        if (nativeAd != null) {
+            languageBinding.shimmerAds.shimmerNative.setVisibility(VISIBLE);
+            populateNativeAdView(
+                    this, nativeAd, languageBinding.frAds, languageBinding.shimmerAds.shimmerNative,
+                    (int) RemoteUtils.INSTANCE.getCTAButtonHeight()
+            );
+            populateAds = true;
+        } else {
+            languageBinding.shimmerAds.shimmerNative.setVisibility(GONE);
         }
-        shimmerAds = findViewById(R.id.shimmer_native);
-
-        boolean isShown = NativeAdManager.getInstance().showNativeAdIfAvailable(
-                this,
-                adTag,
-                languageBinding.frAds,
-                shimmerAds
-        );
-
-        if (!isShown) {
-            if (isFinishing() || isDestroyed()) return;
-            mLog("TAG", "Ad not ready, preload again");
-            // Optional: preload again if missing
-//            NativeAdManager.getInstance().preloadNativeAd(LangActivity.this, getNativeLanguage1(), R.layout.layout_native_ad_medium, "native_language_1");
-        }
-    }
-
-    private void mloadOnBoardingNative() {
-        if (Global.native_onboarding_1_1 || Global.native_onboarding_2_1) {
-            String nativeId = preference.getBoolean("First") ? getNativeOnboarding11() : getNativeOnboarding21();
-            String TagName = preference.getBoolean("First") ? "native_onboarding_1_1" : "native_onboarding_2_1";
-            NativeAdManager.getInstance().preloadNativeAd(LangActivity.this, nativeId, R.layout.layout_native_ad_medium, TagName);
-        }
-        if (Global.native_onboarding_1_4 || Global.native_onboarding_2_4) {
-            String nativeId = preference.getBoolean("First") ? getNativeOnboarding14() : getNativeOnboarding24();
-            String TagName = preference.getBoolean("First") ? "native_onboarding_1_4" : "native_onboarding_2_4";
-            NativeAdManager.getInstance().preloadNativeAd(LangActivity.this, nativeId, R.layout.layout_native_ad_medium, TagName);
-        }
-        if (isShowAds1() || isShowAds2()) {
-            String nativeId = preference.getBoolean("First") ? getNativeOnboardingFullscreen12() : getNativeOnboardingFullscreen22();
-            String TagName = preference.getBoolean("First") ? "native_onboarding_full_1" : "native_onboarding_full_2";
-            NativeAdManager.getInstance().preloadNativeAd(LangActivity.this, nativeId, R.layout.layout_native_ad_full, TagName);
-        }
-    }
-
-    private boolean isShowAds1() {
-        return ERainAd.getInstance().getShouldDisplayNativeOnboardingFull1() || Global.native_onboarding_fullscreen_1_2;
-    }
-
-    private boolean isShowAds2() {
-        return ERainAd.getInstance().getShouldDisplayNativeOnboardingFull2() || Global.native_onboarding_fullscreen_2_2;
     }
 
 
@@ -257,48 +192,18 @@ public class LangActivity extends AppCompatActivity {
         mLog("TAG", "clearAd:====mTag===" + mTag.size());
     }
 
-    public void setvisibility() {
+    public void setVisibility() {
         if (isFinishing() || isDestroyed()) return;
         if (languageBinding == null) return;
-        if (preference.getBoolean("First")) {
-            if (Global.native_language_1_click && mType == null) {
-                if (!isFinishing() && !isDestroyed()) {
-                    showNativeAfterClick("native_language_1_click");
-                }
-            }
-        } else {
-            if (Global.native_language_2_click && mType == null) {
-                if (!isFinishing() && !isDestroyed()) {
-                    showNativeAfterClick("native_language_2_click");
-                }
-            }
+        if (!isFinishing() && !isDestroyed()) {
+            initAdmob(AdsManager.NativeLanguageType.CLICK);
         }
-
         if (languageBinding.mLLDone.getVisibility() != VISIBLE) {
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    if (!isFinishing() && !isDestroyed() && languageBinding != null) {
-                        languageBinding.mLLDone.setVisibility(View.VISIBLE);
-                    }
+            new Handler().postDelayed(() -> {
+                if (!isFinishing() && !isDestroyed() && languageBinding != null) {
+                    languageBinding.mLLDone.setVisibility(View.VISIBLE);
                 }
             }, 500);
         }
-    }
-
-    @Override
-    protected void attachBaseContext(Context newBase) {
-        // Get saved language or default to English
-//        if (getIntent() != null) {
-//            if (getIntent().hasExtra("Type")) {
-//                mType = getIntent().getStringExtra("Type");
-//            }
-//            if (mType != null) {
-//                preference = new Preference(newBase);
-//                String lang = preference.getSavedLanguage();
-//                LocaleHelper.setLocale(newBase, lang);
-//            }
-//        }
-        super.attachBaseContext(newBase);
     }
 }

@@ -1,6 +1,5 @@
 package gps.trackerid.location.ui;
 
-import static gps.trackerid.location.adshelper.AdsConfig.getNativeSetting;
 import static gps.trackerid.location.utils.Global.mLog;
 
 import android.content.ActivityNotFoundException;
@@ -8,15 +7,14 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import androidx.activity.OnBackPressedCallback;
 
-import com.ads.module.util.Preference;
 import com.facebook.shimmer.ShimmerFrameLayout;
 
 import gps.trackerid.location.R;
+import gps.trackerid.location.ads.Preference;
 import gps.trackerid.location.adshelper.AdsConfig;
 import gps.trackerid.location.adshelper.NativeAdManager;
 import gps.trackerid.location.databinding.ActivitySettingBinding;

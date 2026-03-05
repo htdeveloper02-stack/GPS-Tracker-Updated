@@ -9,7 +9,7 @@ import com.ads.module.application.AdsMultiDexApplication;
 import com.ads.module.config.AdjustConfig;
 import com.ads.module.config.ERainAdConfig;
 
-import gps.trackerid.location.BuildConfig;
+import gps.trackerid.location.ads.SharedUtils;
 import gps.trackerid.location.ui.LangActivity;
 import gps.trackerid.location.ui.SplashActivity;
 import gps.trackerid.location.ui.onboard.OnBoardActivity;
@@ -18,6 +18,7 @@ public class MyApp extends AdsMultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        SharedUtils.INSTANCE.init(this);
         initAds();
     }
 

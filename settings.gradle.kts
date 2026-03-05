@@ -32,4 +32,3 @@ dependencyResolutionManagement {
 
 rootProject.name = "GPSTracker"
 include(":app")
-include(":ads")

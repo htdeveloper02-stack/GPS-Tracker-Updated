@@ -22,9 +22,73 @@ android {
     }
 
     buildTypes {
+        debug {
+            isMinifyEnabled = false
+            isShrinkResources = false
+
+            manifestPlaceholders["ad_app_id"] = "ca-app-pub-3940256099942544~3347511713"
+            buildConfigField("String", "inter_splash", "\"ca-app-pub-3940256099942544/1033173712\"")
+            buildConfigField("String", "banner_splash", "\"ca-app-pub-3940256099942544/2014213617\"")
+            buildConfigField("String", "native_language_1", "\"ca-app-pub-3940256099942544/2247696110\"")
+            buildConfigField("String", "native_language_1_click", "\"ca-app-pub-3940256099942544/2247696110\"")
+            buildConfigField("String", "native_language_2", "\"ca-app-pub-3940256099942544/2247696110\"")
+            buildConfigField("String", "native_language_2_click", "\"ca-app-pub-3940256099942544/2247696110\"")
+            buildConfigField("String", "native_onboarding_1_1", "\"ca-app-pub-3940256099942544/2247696110\"")
+            buildConfigField("String", "native_onboarding_2_1", "\"ca-app-pub-3940256099942544/2247696110\"")
+            buildConfigField("String", "native_onboarding_1_4", "\"ca-app-pub-3940256099942544/2247696110\"")
+            buildConfigField("String", "native_onboarding_2_4", "\"ca-app-pub-3940256099942544/2247696110\"")
+            buildConfigField("String", "native_onboarding_fullscreen_1_2", "\"ca-app-pub-3940256099942544/2247696110\"")
+            buildConfigField("String", "native_onboarding_fullscreen_2_2", "\"ca-app-pub-3940256099942544/2247696110\"")
+            buildConfigField("String", "open_resume", "\"ca-app-pub-3940256099942544/9257395921\"")
+            buildConfigField("String", "inter_onboarding", "\"ca-app-pub-3940256099942544/1033173712\"")
+            buildConfigField("String", "inter_home", "\"ca-app-pub-3940256099942544/1033173712\"")
+            buildConfigField("String", "native_home", "\"ca-app-pub-3940256099942544/2247696110\"")
+            buildConfigField("String", "banner_collap_home", "\"ca-app-pub-3940256099942544/2014213617\"")
+            buildConfigField("String", "inter_back", "\"ca-app-pub-3940256099942544/1033173712\"")
+            buildConfigField("String", "banner_all", "\"ca-app-pub-3940256099942544/2014213617\"")
+            buildConfigField("String", "native_phone_locator", "\"ca-app-pub-3940256099942544/2247696110\"")
+            buildConfigField("String", "inter_splash_uninstall", "\"ca-app-pub-3940256099942544/1033173712\"")
+            buildConfigField("String", "banner_splash_uninstall", "\"ca-app-pub-3940256099942544/2014213617\"")
+            buildConfigField("String", "native_uninstall", "\"ca-app-pub-3940256099942544/2247696110\"")
+            buildConfigField("String", "native_survey_uninstall", "\"ca-app-pub-3940256099942544/2247696110\"")
+            buildConfigField("String", "native_setting", "\"ca-app-pub-3940256099942544/2247696110\"")
+
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
         release {
             isMinifyEnabled = true
             isShrinkResources = true
+
+            manifestPlaceholders["ad_app_id"] = "ca-app-pub-2864154863223892~9366593122"
+            buildConfigField("String", "inter_splash", "\"ca-app-pub-2864154863223892/1887558354\"")
+            buildConfigField("String", "banner_splash", "\"ca-app-pub-2864154863223892/9574476683\"")
+            buildConfigField("String", "native_language_1", "\"ca-app-pub-2864154863223892/1481002276\"")
+            buildConfigField("String", "native_language_1_click", "\"ca-app-pub-2864154863223892/9167920602\"")
+            buildConfigField("String", "native_language_2", "\"ca-app-pub-2864154863223892/4186418638\"")
+            buildConfigField("String", "native_language_2_click", "\"ca-app-pub-2864154863223892/3349863581\"")
+            buildConfigField("String", "native_onboarding_1_1", "\"ca-app-pub-2864154863223892/5213609593\"")
+            buildConfigField("String", "native_onboarding_2_1", "\"ca-app-pub-2864154863223892/9247173622\"")
+            buildConfigField("String", "native_onboarding_1_4", "\"ca-app-pub-2864154863223892/5667021269\"")
+            buildConfigField("String", "native_onboarding_2_4", "\"ca-app-pub-2864154863223892/4353939592\"")
+            buildConfigField("String", "native_onboarding_fullscreen_1_2", "\"ca-app-pub-2864154863223892/3760927121\"")
+            buildConfigField("String", "native_onboarding_fullscreen_2_2", "\"ca-app-pub-2864154863223892/9382904998\"")
+            buildConfigField("String", "open_resume", "\"ca-app-pub-2864154863223892/9055601933\"")
+            buildConfigField("String", "inter_onboarding", "\"ca-app-pub-2864154863223892/2754967211\"")
+            buildConfigField("String", "inter_home", "\"ca-app-pub-2864154863223892/7742520266\"")
+            buildConfigField("String", "native_home", "\"ca-app-pub-2864154863223892/6195518772\"")
+            buildConfigField("String", "banner_collap_home", "\"ca-app-pub-2864154863223892/9414694589\"")
+            buildConfigField("String", "inter_back", "\"ca-app-pub-2864154863223892/6429438590\"")
+            buildConfigField("String", "banner_all", "\"ca-app-pub-2864154863223892/5443659987\"")
+            buildConfigField("String", "native_phone_locator", "\"ca-app-pub-2864154863223892/9128803875\"")
+            buildConfigField("String", "inter_splash_uninstall", "\"ca-app-pub-2864154863223892/4162367906\"")
+            buildConfigField("String", "banner_splash_uninstall", "\"ca-app-pub-2864154863223892/9606333485\"")
+            buildConfigField("String", "native_uninstall", "\"ca-app-pub-2864154863223892/5220258110\"")
+            buildConfigField("String", "native_survey_uninstall", "\"ca-app-pub-2864154863223892/5615409167\"")
+            buildConfigField("String", "native_setting", "\"ca-app-pub-2864154863223892/1999597789\"")
+
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -92,7 +156,7 @@ dependencies {
     annotationProcessor("com.google.dagger:hilt-compiler:2.51")
     implementation("com.google.zxing:core:3.5.2")
     implementation("com.google.code.gson:gson:2.10.1")
-// unbundled:
+
     implementation("io.github.g00fy2.quickie:quickie-bundled:1.11.0")
     // Firebase BOM
     implementation(platform(libs.firebase.bom))
@@ -107,7 +171,7 @@ dependencies {
     implementation("com.google.firebase:firebase-analytics")
     implementation("com.hbb20:ccp:2.7.3")
     implementation ("com.airbnb.android:lottie:4.2.1")
-    implementation(project(":ads"))
     implementation("androidx.multidex:multidex:2.0.1")
+    implementation("com.github.trongluan99:ERain-Studio:1.2")
 
 }

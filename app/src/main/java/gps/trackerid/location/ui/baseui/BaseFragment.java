@@ -4,8 +4,7 @@ import android.content.Context;
 
 import androidx.fragment.app.Fragment;
 
-import com.ads.module.util.Preference;
-
+import gps.trackerid.location.ads.Preference;
 import gps.trackerid.location.utils.LocaleHelper;
 
 

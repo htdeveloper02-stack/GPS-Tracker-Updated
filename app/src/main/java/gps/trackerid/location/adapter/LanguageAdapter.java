@@ -1,8 +1,6 @@
 package gps.trackerid.location.adapter;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +12,10 @@ import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ads.module.util.Preference;
-
 import java.util.ArrayList;
 
 import gps.trackerid.location.R;
+import gps.trackerid.location.ads.Preference;
 import gps.trackerid.location.ui.LangActivity;
 
 public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.ViewHolder> {
@@ -60,7 +57,7 @@ public class LanguageAdapter extends RecyclerView.Adapter<LanguageAdapter.ViewHo
             @Override
             public void onClick(View view) {
                 if (LangActivity.getInstance() != null) {
-                    LangActivity.getInstance().setvisibility();
+                    LangActivity.getInstance().setVisibility();
                 }
                 preference.setInteger("LANG", position);
                 preference.saveLanguage(lang[position]);
