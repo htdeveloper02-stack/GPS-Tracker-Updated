@@ -1,6 +1,6 @@
 package gps.trackerid.location.ui;
 
-import android.app.Activity;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
@@ -8,7 +8,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
-import android.view.View;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -25,7 +24,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gps.trackerid.location.R;
-import gps.trackerid.location.adshelper.InterstitialAdManager;
 import gps.trackerid.location.databinding.ActivityPermissionBinding;
 import gps.trackerid.location.ui.baseui.BaseActivity;
 
@@ -33,6 +31,7 @@ public class PermissionActivity extends BaseActivity {
     ActivityPermissionBinding permissionBinding;
     public ArrayList<String> mPermissions;
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,18 +42,13 @@ public class PermissionActivity extends BaseActivity {
         if (IsCheckPermission()) {
             mCallNext();
         }
-        permissionBinding.mIvGrant.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mCheckPermission();
-            }
-        });
+        permissionBinding.mIvGrant.setOnClickListener(view -> mCheckPermission());
     }
 
     private boolean IsTaken(List<String> list, String str) {
         if (ContextCompat.checkSelfPermission(this, str) != 0) {
             list.add(str);
-            return ActivityCompat.shouldShowRequestPermissionRationale((Activity) this, str);
+            return ActivityCompat.shouldShowRequestPermissionRationale(this, str);
         }
         return true;
     }
@@ -125,29 +119,13 @@ public class PermissionActivity extends BaseActivity {
             }
         }
 
-        if (!mPermissions.isEmpty()) {
-            return false;
-        } else {
-            return true;
-        }
+        return mPermissions.isEmpty();
     }
 
     private void mCallNext() {
-
-        InterstitialAdManager.showIfReady(
-                PermissionActivity.this,
-                "inter_onboarding",
-                () -> {
-                    runOnUiThread(() -> {
-
-                        if (isFinishing() || isDestroyed()) return;
-
-                        startActivity(new Intent(PermissionActivity.this, TimestampActivity.class));
-                        finish();
-                    });
-                }
-        );
-
+        if (isFinishing() || isDestroyed()) return;
+        startActivity(new Intent(PermissionActivity.this, TimestampActivity.class));
+        finish();
     }
 
     private void showSettingsDialog() {
@@ -180,6 +158,5 @@ public class PermissionActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-//        mCheckPermission();
     }
 }

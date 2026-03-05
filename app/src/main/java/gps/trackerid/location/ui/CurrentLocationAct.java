@@ -1,7 +1,5 @@
 package gps.trackerid.location.ui;
 
-import static android.view.View.VISIBLE;
-import static gps.trackerid.location.adshelper.AdsConfig.getBannerAll;
 import static gps.trackerid.location.utils.Global.isFastClick;
 
 import android.Manifest;
@@ -30,7 +28,6 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.ads.module.ads.ERainAd;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -45,10 +42,9 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import gps.trackerid.location.R;
-import gps.trackerid.location.adshelper.InterstitialAdManager;
+import gps.trackerid.location.ads.AdsManager;
 import gps.trackerid.location.databinding.ActivityCurrentlocationBinding;
 import gps.trackerid.location.ui.baseui.BaseActivity;
-import gps.trackerid.location.utils.Global;
 import kotlin.jvm.internal.Intrinsics;
 import kotlin.text.StringsKt;
 
@@ -77,27 +73,21 @@ public class CurrentLocationAct extends BaseActivity implements OnMapReadyCallba
         currentlocationBinding.realMapView.getMapAsync(this);
 
         clickListeners();
-        if (Global.banner_all && Global.isInternetConnected(currentLocationAct)) {
-            currentlocationBinding.mRlBanner.setVisibility(VISIBLE);
-            ERainAd.getInstance().loadBanner(this, getBannerAll());
-        }
         getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
                 onBackCall();
             }
         });
+
+        AdsManager.INSTANCE.loadBannerAll(this, currentlocationBinding.mRlBanner);
     }
 
     private void onBackCall() {
-
-        InterstitialAdManager.showIfReady(
-                CurrentLocationAct.this,
-                "inter_back",
-                () -> {
-                    finish();
-                }
-        );
+        AdsManager.INSTANCE.showInterBack(CurrentLocationAct.this, () -> {
+            finish();
+            return null;
+        });
     }
 
     private void clickListeners() {

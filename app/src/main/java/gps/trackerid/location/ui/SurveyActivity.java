@@ -1,30 +1,24 @@
 package gps.trackerid.location.ui;
 
-import static gps.trackerid.location.utils.Global.mLog;
-
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.Settings;
-import android.util.Log;
 import android.view.View;
 
 import androidx.activity.OnBackPressedCallback;
 
-import com.facebook.shimmer.ShimmerFrameLayout;
-
-import gps.trackerid.location.R;
-import gps.trackerid.location.adshelper.AdsConfig;
-import gps.trackerid.location.adshelper.NativeAdManager;
+import gps.trackerid.location.ads.AdsManager;
 import gps.trackerid.location.databinding.ActivitySurveyBinding;
 import gps.trackerid.location.ui.baseui.BaseActivity;
 import gps.trackerid.location.utils.Global;
 
 public class SurveyActivity extends BaseActivity {
     ActivitySurveyBinding surveyBinding;
-    ShimmerFrameLayout shimmerAds;
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,15 +47,14 @@ public class SurveyActivity extends BaseActivity {
                 mOpenScreen();
             }
         });
-        if (AdsConfig.isShowNative(Global.native_survey_uninstall, surveyBinding.frAds)) {
-            extracted();
-        }
         getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
                 onBackCall();
             }
         });
+
+        AdsManager.INSTANCE.loadNativeSurveyUninstall(this, surveyBinding.frAds);
     }
 
     private void onBackCall() {
@@ -69,26 +62,6 @@ public class SurveyActivity extends BaseActivity {
         intent.setFlags(268468224);
         intent.putExtra(Global.KEY_TRACKING_SCREEN_FROM, getClass().getSimpleName());
         startActivity(intent);
-    }
-
-    private void extracted() {
-        shimmerAds = findViewById(R.id.shimmer_native);
-
-
-        boolean isShown = NativeAdManager.getInstance()
-                .showNativeAdIfAvailable(
-                        this,
-                        "native_survey_uninstall",
-                        surveyBinding.frAds,
-                        shimmerAds
-                );
-
-        if (!isShown) {
-            mLog("TAG", "Ad not ready, preload again");
-            shimmerAds.setVisibility(View.VISIBLE);
-            surveyBinding.frAds.setVisibility(View.VISIBLE);
-        }
-
     }
 
     private void mOpenScreen() {

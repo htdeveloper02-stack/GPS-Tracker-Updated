@@ -1,13 +1,9 @@
 package gps.trackerid.location.ui;
 
-import static gps.trackerid.location.adshelper.AdsConfig.getNativePhoneLocator;
-import static gps.trackerid.location.utils.Global.mLog;
-
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.location.LocationListener;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
@@ -20,19 +16,14 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.hbb20.CountryCodePicker;
 
-import java.util.List;
-
 import gps.trackerid.location.R;
-import gps.trackerid.location.adshelper.AdsConfig;
-import gps.trackerid.location.adshelper.InterstitialAdManager;
-import gps.trackerid.location.adshelper.NativeAdManager;
+import gps.trackerid.location.ads.AdsManager;
+import gps.trackerid.location.ads.RemoteUtils;
 import gps.trackerid.location.databinding.ActivityPhonelocatorBinding;
 import gps.trackerid.location.models.PhoneCarrierInfo;
-import gps.trackerid.location.models.State;
 import gps.trackerid.location.ui.baseui.BaseActivity;
 import gps.trackerid.location.ui.phonetracker.PhoneDetails;
 import gps.trackerid.location.utils.CarrierDetector;
-import gps.trackerid.location.utils.Global;
 
 public class PhoneLocator extends BaseActivity implements OnMapReadyCallback {
     ActivityPhonelocatorBinding phonelocatorBinding;
@@ -87,9 +78,6 @@ public class PhoneLocator extends BaseActivity implements OnMapReadyCallback {
                 phonelocatorBinding.etPhoneNumber.setText(removeCountryCodeIfExists(Number));
             }
         }
-//        String Name = getIntent().getStringExtra("Name");
-
-//        new AsyncTaskSearch().execute(new String[0]);
 
         phonelocatorBinding.mCCodePicker.setOnCountryChangeListener(new CountryCodePicker.OnCountryChangeListener() {
             @Override
@@ -120,111 +108,28 @@ public class PhoneLocator extends BaseActivity implements OnMapReadyCallback {
                 onBackCall();
             }
         });
-        if (AdsConfig.isShowNative(Global.native_phone_locator, phonelocatorBinding.frAds)) {
-            extracted();
-        }
+
         getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
                 onBackCall();
             }
         });
-    }
 
-    private void extracted() {
-        shimmerAds = findViewById(R.id.shimmer_native);
-
-        boolean isShown = NativeAdManager.getInstance()
-                .showNativeAdIfAvailable(
-                        this,
-                        "native_phone_locator",
-                        phonelocatorBinding.frAds,
-                        shimmerAds
-                );
-
-        if (!isShown) {
-            mLog("TAG", "Ad not ready, preload again");
-            shimmerAds.setVisibility(View.VISIBLE);
-            phonelocatorBinding.frAds.setVisibility(View.VISIBLE);
-            // Optional: preload again if missing
-//            NativeAdManager.getInstance().preloadNativeAd(PhoneLocator.this, getNativePhoneLocator(), R.layout.layout_native_ad_medium, "native_language_1");
-        }
+        AdsManager.INSTANCE.loadNativePhoneLocator(this, phonelocatorBinding.frAds);
     }
 
     private void onBackCall() {
-        InterstitialAdManager.showIfReady(
-                PhoneLocator.this,
-                "inter_back",
-                () -> {
-                    if (isShortcut) {
-                        startActivity(new Intent(phoneLocator, TimestampActivity.class));
-                        finish();
-                    } else {
-                        finish();
-                    }
-                }
-        );
-
+        AdsManager.INSTANCE.showInterBack(PhoneLocator.this, () -> {
+            if (isShortcut) {
+                startActivity(new Intent(phoneLocator, TimestampActivity.class));
+                finish();
+            } else {
+                finish();
+            }
+            return null;
+        });
     }
-
-    List<State> stateList;
-
-//    private class AsyncTaskSearch extends AsyncTask<String, Void, String> {
-//        ProgressDialog progressDialog;
-//
-//        private AsyncTaskSearch() {
-//
-//        }
-//
-//        @Override
-//        protected void onPreExecute() {
-//            progressDialog = new ProgressDialog(phoneLocator);
-//            progressDialog.setProgressStyle(0);
-//            progressDialog.setCancelable(false);
-//            progressDialog.setMessage("Please wait...");
-//            progressDialog.show();
-//        }
-//
-//        @Override
-//
-//        public String doInBackground(String... strArr) {
-//            try {
-//                List<PrefixModel> resultList = new ArrayList<>();
-//                Sqlhandler sqlhandler = new Sqlhandler(phoneLocator);
-//                stateList = sqlhandler.getMobileData();
-//                Gson gson = new Gson();
-//                for (State s : stateList) {
-//
-//                    String prefix = String.valueOf(s.getSetMobileno()); // int → String
-//
-//                    PrefixModel model = new PrefixModel(
-//                            prefix,               // prefix
-//                            s.getState(),          // country
-//                            s.getOpertator()       // carrier
-//                    );
-//
-//                    resultList.add(model);
-//                }
-//
-//                String jsonString = gson.toJson(resultList);
-//                mLog("TAG", "doInBackground:=====jsonString==="+jsonString);
-//            } catch (Exception unused) {
-//            }
-//            return null;
-//        }
-//
-//        @Override
-//
-//        public void onPostExecute(String str) {
-//            try {
-//                if (progressDialog.isShowing()) {
-//                    progressDialog.dismiss();
-//                }
-//
-//            } catch (Exception unused3) {
-//            }
-//        }
-//    }
 
     private void searchPhoneNumber() {
 
@@ -385,13 +290,8 @@ public class PhoneLocator extends BaseActivity implements OnMapReadyCallback {
         if (intent != null && "android.intent.action.SHORTCUT_PHONE_LOCATOR".equals(intent.getAction())) {
             // Open the VPN Server screen
             isShortcut = true;
-            setRemoteConfigListener(new RemoteConfigListener() {
-                @Override
-                public void onRemoteConfigLoaded() {
-                    if (AdsConfig.isShowNative(Global.native_phone_locator, phonelocatorBinding.frAds)) {
-                        extracted();
-                    }
-                }
+            RemoteUtils.INSTANCE.init(() -> {
+                AdsManager.INSTANCE.loadNativePhoneLocator(this, phonelocatorBinding.frAds);
             });
         } else {
             isShortcut = false;

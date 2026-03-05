@@ -1,7 +1,5 @@
 package gps.trackerid.location;
 
-import static gps.trackerid.location.adshelper.AdsConfig.getAppOpenResume;
-
 import com.ads.module.admob.Admob;
 import com.ads.module.admob.AppOpenManager;
 import com.ads.module.ads.ERainAd;
@@ -11,6 +9,7 @@ import com.ads.module.config.ERainAdConfig;
 
 import gps.trackerid.location.ads.SharedUtils;
 import gps.trackerid.location.ui.LangActivity;
+import gps.trackerid.location.ui.PermissionActivity;
 import gps.trackerid.location.ui.SplashActivity;
 import gps.trackerid.location.ui.onboard.OnBoardActivity;
 
@@ -30,7 +29,8 @@ public class MyApp extends AdsMultiDexApplication {
         mERainAdConfig.setAdjustConfig(adjustConfig);
         mERainAdConfig.setFacebookClientToken(getString(R.string.facebook_client_token));
         mERainAdConfig.setAdjustTokenTiktok(getString(R.string.tiktok_token));
-        mERainAdConfig.setIdAdResume(getAppOpenResume());
+        mERainAdConfig.setIdAdResume(BuildConfig.open_resume);
+        mERainAdConfig.setIntervalInterstitialAd(30);
 
         ERainAd.getInstance().init(this, mERainAdConfig);
         Admob.getInstance().setDisableAdResumeWhenClickAds(true);
@@ -38,5 +38,6 @@ public class MyApp extends AdsMultiDexApplication {
         AppOpenManager.getInstance().disableAppResumeWithActivity(SplashActivity.class);
         AppOpenManager.getInstance().disableAppResumeWithActivity(LangActivity.class);
         AppOpenManager.getInstance().disableAppResumeWithActivity(OnBoardActivity.class);
+        AppOpenManager.getInstance().disableAppResumeWithActivity(PermissionActivity.class);
     }
 }

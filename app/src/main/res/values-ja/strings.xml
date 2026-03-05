@@ -7,7 +7,6 @@
     <string name="infosub3"><![CDATA[コンパス、周辺スポット、ルートプランナーを搭載]]></string>
     <string name="infosub4"><![CDATA[シンプルで正確なナビゲーション]]></string>
 
-    <string name="map_key">AIzaSyBLIGwxAlODMg1i9AJiVKG4tNdTVKbSwSI</string>
     <string name="mDeletSub">このゾーンを削除してもよろしいですか？</string>
     <string name="waiting_for_gps_signal_d">GPS信号を待機中</string>
     <string name="chooselang">言語を選択</string>
@@ -90,10 +89,6 @@
     <string name="survey_2">広告が多すぎる</string>
     <string name="survey_3">ストレージを使いすぎる</string>
     <string name="survey_4">プレミアム機能が高すぎる</string>
-
-    <string name="facebook_client_token" translatable="false">95c71e4402046c3690f3f4c3e76166a4</string>
-    <string name="tiktok_token" translatable="false">q32ux0</string>
-    <string name="adjust_token" translatable="false">uurp9o91gpvk</string>
 
     <string name="nocityfound">都市が見つかりません</string>
     <string name="waiting_gps">GPS信号を待機中</string>

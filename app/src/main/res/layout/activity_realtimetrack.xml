@@ -47,7 +47,7 @@
 
     </RelativeLayout>
 
-    <RelativeLayout
+    <FrameLayout
         android:id="@+id/mRlBanner"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -57,5 +57,5 @@
             layout="@layout/layout_banner_control"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
-    </RelativeLayout>
+    </FrameLayout>
 </LinearLayout>

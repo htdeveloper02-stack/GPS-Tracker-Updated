@@ -3,13 +3,16 @@ package gps.trackerid.location.ui;
 import static gps.trackerid.location.ads.AdsManagerKt.isNetwork;
 import static gps.trackerid.location.utils.Global.dismissInternetDialog;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.util.Log;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.ads.module.ads.ERainAd;
@@ -18,8 +21,6 @@ import com.ads.module.ump.IAdConsentCallBack;
 import com.ads.module.ump.ITGAdConsent;
 import com.google.android.ump.ConsentInformation;
 import com.google.android.ump.FormError;
-
-import java.util.Objects;
 
 import gps.trackerid.location.BuildConfig;
 import gps.trackerid.location.ads.AdsManager;
@@ -35,6 +36,7 @@ public class SplashActivity extends AppCompatActivity {
     private boolean canPersonalized = true;
 
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +49,7 @@ public class SplashActivity extends AppCompatActivity {
         }
 
         RemoteUtils.INSTANCE.init(() -> getConfigSuccess = true);
+        AdsManager.INSTANCE.resetAds();
 
         if (!SharedUtils.INSTANCE.getValue(SharedUtils.KEY_CONFIRM_CONSENT, false)
                 && !SharedUtils.INSTANCE.getValue(SharedUtils.KEY_IS_USER_GLOBAL, false)
@@ -59,6 +62,7 @@ public class SplashActivity extends AppCompatActivity {
 
     private void checkNeedToLoadConsent() {
         ITGAdConsent.INSTANCE.loadAndShowConsent(true, new IAdConsentCallBack() {
+            @NonNull
             @Override
             public Activity getCurrentActivity() {
                 return SplashActivity.this;
@@ -75,7 +79,7 @@ public class SplashActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onConsentError(FormError formError) {
+            public void onConsentError(@NonNull FormError formError) {
                 canPersonalized = true;
                 loadingRemoteConfig();
             }
@@ -102,6 +106,7 @@ public class SplashActivity extends AppCompatActivity {
             public void onRequestShowDialog() {
             }
 
+            @NonNull
             @Override
             public String testDeviceID() {
                 return "ED3576D8FCF2F8C52AD8E98B4CFA4005";
@@ -121,7 +126,6 @@ public class SplashActivity extends AppCompatActivity {
 
     private void loadingRemoteConfig() {
         new CountDownTimer(6500, 100) {
-
             @Override
             public void onTick(long millisUntilFinished) {
                 if (getConfigSuccess && millisUntilFinished < 5000) {
@@ -141,28 +145,83 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void checkRemoteConfigResult() {
-        AdsManager.INSTANCE.loadBannerSplash(this, splashBinding.mRlBanner);
-        if (!Objects.equals(getIntent().getStringExtra(Global.FROM_SHORTCUT), Global.ACTION_OPEN_UNINSTALL)) {
-            ERainAd.getInstance().loadSplashInterstitialAds(this, BuildConfig.inter_splash, 25000, 5000, new AdCallback() {
-                @Override
-                public void onNextAction() {
-                    super.onNextAction();
-                    mCallNextLanguage();
-                }
-            });
+        String action = getIntent().getStringExtra(Global.FROM_SHORTCUT);
+
+        if (action != null) {
+            switch (action) {
+                case Global.ACTION_OPEN_UNINSTALL:
+                    AdsManager.INSTANCE.loadBannerSplash(this, splashBinding.mRlBanner);
+                    if (RemoteUtils.INSTANCE.getOnInterSplash()) {
+                        Log.d("DEV_ITG", "checkRemoteConfigResult: inter_splash_uninstall");
+                        ERainAd.getInstance().loadSplashInterstitialAds(this, BuildConfig.inter_splash_uninstall, 25000, 5000, new AdCallback() {
+                            @Override
+                            public void onNextAction() {
+                                super.onNextAction();
+                                startConfirmUninstallActivity();
+                            }
+                        });
+                    } else {
+                        startConfirmUninstallActivity();
+                    }
+                    break;
+
+                case Global.ACTION_OPEN_NEAR_BY:
+                    Log.d("DEV_ITG", "checkRemoteConfigResult: mCallNearByActivity");
+                    mCallNearByActivity();
+                    break;
+
+                case Global.ACTION_OPEN_TRAFFIC_ALERT:
+                    Log.d("DEV_ITG", "checkRemoteConfigResult: mCallTrafficAlertActivity");
+                    mCallTrafficAlertActivity();
+                    break;
+
+                case Global.ACTION_OPEN_LOCATOR:
+                    Log.d("DEV_ITG", "checkRemoteConfigResult: mCallPhoneLocator");
+                    mCallPhoneLocator();
+                    break;
+            }
         } else {
-            ERainAd.getInstance().loadSplashInterstitialAds(this, BuildConfig.inter_splash_uninstall, 25000, 5000, new AdCallback() {
-                @Override
-                public void onNextAction() {
-                    super.onNextAction();
-                    startConfirmUninstallActivity();
-                }
-            });
+            AdsManager.INSTANCE.loadBannerSplash(this, splashBinding.mRlBanner);
+            AdsManager.INSTANCE.loadNativeLanguageNormal(this, SharedUtils.INSTANCE.getValue(SharedUtils.OPEN_APP, false));
+            AdsManager.INSTANCE.loadNativeLanguageClick(this, SharedUtils.INSTANCE.getValue(SharedUtils.OPEN_APP, false));
+            if (RemoteUtils.INSTANCE.getOnInterSplash()) {
+                Log.d("DEV_ITG", "checkRemoteConfigResult: inter_splash action null");
+                ERainAd.getInstance().loadSplashInterstitialAds(this, BuildConfig.inter_splash, 25000, 5000, new AdCallback() {
+                    @Override
+                    public void onNextAction() {
+                        super.onNextAction();
+                        mCallNextLanguage();
+                    }
+                });
+            } else {
+                mCallNextLanguage();
+            }
         }
     }
 
     private void mCallNextLanguage() {
         startActivity(new Intent(SplashActivity.this, LangActivity.class));
+        finish();
+    }
+
+    private void mCallNearByActivity() {
+        Intent intent = new Intent(SplashActivity.this, NearByActivity.class);
+        intent.setAction("android.intent.action.SHORTCUT_NEAR_BY");
+        startActivity(intent);
+        finish();
+    }
+
+    private void mCallTrafficAlertActivity() {
+        Intent intent = new Intent(SplashActivity.this, TrafficAlertActivity.class);
+        intent.setAction("android.intent.action.SHORTCUT_TRAFFIC_ALERT");
+        startActivity(intent);
+        finish();
+    }
+
+    private void mCallPhoneLocator() {
+        Intent intent = new Intent(SplashActivity.this, PhoneLocator.class);
+        intent.setAction("android.intent.action.SHORTCUT_PHONE_LOCATOR");
+        startActivity(intent);
         finish();
     }
 

@@ -2,7 +2,6 @@ package gps.trackerid.location.ui;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
-import static gps.trackerid.location.adshelper.AdsConfig.getBannerAll;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -14,13 +13,11 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 
-import com.ads.module.ads.ERainAd;
-
 import java.util.ArrayList;
 import java.util.List;
 
 import gps.trackerid.location.adapter.FriendListAdapter;
-import gps.trackerid.location.adshelper.InterstitialAdManager;
+import gps.trackerid.location.ads.AdsManager;
 import gps.trackerid.location.database.DataUserDao;
 import gps.trackerid.location.database.FirebaseRequestHelper;
 import gps.trackerid.location.databinding.ActivityListuserBinding;
@@ -30,7 +27,6 @@ import gps.trackerid.location.models.users.DataUserViewModelFactory;
 import gps.trackerid.location.models.users.USerListViewModel;
 import gps.trackerid.location.models.zonedata.AppDatabase;
 import gps.trackerid.location.ui.baseui.BaseActivity;
-import gps.trackerid.location.utils.Global;
 import kotlin.Unit;
 import kotlin.jvm.functions.Function1;
 
@@ -62,14 +58,10 @@ public class ListUserActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
 
-                InterstitialAdManager.showIfReady(
-                        ListUserActivity.this,
-                        "inter_home",
-                        () -> {
-                            startActivity(new Intent(ListUserActivity.this, RequestActivity.class));
-
-                        }
-                );
+                AdsManager.INSTANCE.showInterHome(ListUserActivity.this, () -> {
+                    startActivity(new Intent(ListUserActivity.this, RequestActivity.class));
+                    return null;
+                });
             }
         });
         friendListAdapter = new FriendListAdapter(ListUserActivity.this, new FriendListAdapter.OnClickUserBy() {
@@ -82,28 +74,22 @@ public class ListUserActivity extends BaseActivity {
         });
         listuserBinding.mRvUserList.setAdapter(friendListAdapter);
         listuserBinding.mRvUserList.setLayoutManager(new GridLayoutManager(this, 1));
-        if (Global.banner_all && Global.isInternetConnected(ListUserActivity.this)) {
-            listuserBinding.mRlBanner.setVisibility(VISIBLE);
-            ERainAd.getInstance().loadBanner(this, getBannerAll());
-        }
+
         getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
                 onBackCall();
             }
         });
+
+        AdsManager.INSTANCE.loadBannerAll(this, listuserBinding.mRlBanner);
     }
 
     private void onBackCall() {
-
-        InterstitialAdManager.showIfReady(
-                ListUserActivity.this,
-                "inter_back",
-                () -> {
-                    finish();
-                }
-        );
-
+        AdsManager.INSTANCE.showInterBack(ListUserActivity.this, () -> {
+            finish();
+            return null;
+        });
     }
 
     @Override

@@ -1,8 +1,6 @@
 package gps.trackerid.location.ui;
 
-import static android.view.View.VISIBLE;
-import static gps.trackerid.location.adshelper.AdsConfig.getBannerAll;
-
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.net.Uri;
@@ -13,18 +11,16 @@ import android.widget.Toast;
 import androidx.activity.OnBackPressedCallback;
 import androidx.recyclerview.widget.GridLayoutManager;
 
-import com.ads.module.ads.ERainAd;
-
 import java.util.Arrays;
 import java.util.List;
 
 import gps.trackerid.location.R;
 import gps.trackerid.location.adapter.NearByAdapter;
-import gps.trackerid.location.adshelper.InterstitialAdManager;
+import gps.trackerid.location.ads.AdsManager;
+import gps.trackerid.location.ads.RemoteUtils;
 import gps.trackerid.location.databinding.ActivityNearbyBinding;
 import gps.trackerid.location.models.NearbyItem;
 import gps.trackerid.location.ui.baseui.BaseActivity;
-import gps.trackerid.location.utils.Global;
 
 public class NearByActivity extends BaseActivity {
 
@@ -33,6 +29,7 @@ public class NearByActivity extends BaseActivity {
     NearByAdapter nearByAdapter;
     private boolean isShortcut = false;
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,30 +41,22 @@ public class NearByActivity extends BaseActivity {
 
         mSetData();
 
-        if (Global.banner_all && Global.isInternetConnected(NearByActivity.this)) {
-            binding.mRlBanner.setVisibility(VISIBLE);
-            ERainAd.getInstance().loadBanner(this, getBannerAll());
-        }
         getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
                 onBackCall();
             }
         });
+
+        AdsManager.INSTANCE.loadBannerAll(this, binding.mRlBanner);
     }
 
     private void handleShortcutIntent(Intent intent) {
         if (intent != null && "android.intent.action.SHORTCUT_NEAR_BY".equals(intent.getAction())) {
             // Open the VPN Server screen
             isShortcut = true;
-            setRemoteConfigListener(new RemoteConfigListener() {
-                @Override
-                public void onRemoteConfigLoaded() {
-                    if (Global.banner_all && Global.isInternetConnected(NearByActivity.this)) {
-                        binding.mRlBanner.setVisibility(VISIBLE);
-                        ERainAd.getInstance().loadBanner(NearByActivity.this, getBannerAll());
-                    }
-                }
+            RemoteUtils.INSTANCE.init(() -> {
+                AdsManager.INSTANCE.loadBannerAll(this, binding.mRlBanner);
             });
         } else {
             isShortcut = false;
@@ -76,20 +65,15 @@ public class NearByActivity extends BaseActivity {
     }
 
     private void onBackCall() {
-
-        InterstitialAdManager.showIfReady(
-                NearByActivity.this,
-                "inter_back",
-                () -> {
-                    if (isShortcut) {
-                        startActivity(new Intent(NearByActivity.this, TimestampActivity.class));
-                        finish();
-                    } else {
-                        finish();
-                    }
-                }
-        );
-
+        AdsManager.INSTANCE.showInterBack(NearByActivity.this, () -> {
+            if (isShortcut) {
+                startActivity(new Intent(NearByActivity.this, TimestampActivity.class));
+                finish();
+            } else {
+                finish();
+            }
+            return null;
+        });
     }
 
     private void mSetData() {

@@ -1,7 +1,5 @@
 package gps.trackerid.location.ui.zoneui;
 
-import static android.view.View.VISIBLE;
-import static gps.trackerid.location.adshelper.AdsConfig.getBannerAll;
 import static gps.trackerid.location.utils.Global.mLog;
 
 import android.Manifest;
@@ -19,7 +17,6 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.ContextThemeWrapper;
 import android.view.KeyEvent;
 import android.view.MenuItem;
@@ -34,7 +31,6 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.ads.module.ads.ERainAd;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -48,10 +44,10 @@ import java.util.List;
 import java.util.Locale;
 
 import gps.trackerid.location.R;
+import gps.trackerid.location.ads.AdsManager;
 import gps.trackerid.location.databinding.ActivityCreatezoneBinding;
 import gps.trackerid.location.models.zonedata.DataZone;
 import gps.trackerid.location.ui.baseui.BaseActivity;
-import gps.trackerid.location.utils.Global;
 import kotlin.Deprecated;
 import kotlin.collections.CollectionsKt;
 import kotlin.jvm.internal.Intrinsics;
@@ -119,16 +115,15 @@ public class CreateZoneActivity extends BaseActivity implements OnMapReadyCallba
                 }
             }
         });
-        if (Global.banner_all && Global.isInternetConnected(createZoneActivity)) {
-            createzoneBinding.mRlBanner.setVisibility(VISIBLE);
-            ERainAd.getInstance().loadBanner(this, getBannerAll());
-        }
+
         getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
                 onBackCall();
             }
         });
+
+        AdsManager.INSTANCE.loadBannerAll(this, createzoneBinding.mRlBanner);
     }
 
     private void onBackCall() {

@@ -7,7 +7,6 @@
     <string name="infosub3"><![CDATA[Bússola, locais próximos e planejador de rotas incluídos]]></string>
     <string name="infosub4"><![CDATA[Orientação simples e precisa]]></string>
 
-    <string name="map_key">AIzaSyBLIGwxAlODMg1i9AJiVKG4tNdTVKbSwSI</string>
     <string name="mDeletSub">Tem certeza de que deseja excluir esta zona?</string>
     <string name="waiting_for_gps_signal_d">Aguardando sinal de GPS</string>
     <string name="chooselang">Escolha seu idioma</string>
@@ -90,10 +89,6 @@
     <string name="survey_2">Muitos anúncios</string>
     <string name="survey_3">Ocupa muito espaço de armazenamento</string>
     <string name="survey_4">Os recursos premium são muito caros</string>
-
-    <string name="facebook_client_token" translatable="false">95c71e4402046c3690f3f4c3e76166a4</string>
-    <string name="tiktok_token" translatable="false">q32ux0</string>
-    <string name="adjust_token" translatable="false">uurp9o91gpvk</string>
 
     <string name="nocityfound">Nenhuma cidade encontrada</string>
     <string name="waiting_gps">Aguardando sinal de GPS</string>

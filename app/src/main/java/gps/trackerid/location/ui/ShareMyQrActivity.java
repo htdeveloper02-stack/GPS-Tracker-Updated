@@ -2,7 +2,6 @@ package gps.trackerid.location.ui;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
-import static gps.trackerid.location.adshelper.AdsConfig.getBannerAll;
 
 import android.app.Activity;
 import android.content.ClipData;
@@ -20,19 +19,17 @@ import android.widget.Toast;
 import androidx.activity.OnBackPressedCallback;
 import androidx.core.content.FileProvider;
 
-import com.ads.module.ads.ERainAd;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
 import gps.trackerid.location.R;
+import gps.trackerid.location.ads.AdsManager;
 import gps.trackerid.location.databinding.ActivitySharemyqrBinding;
 import gps.trackerid.location.models.users.CurrentUserUtil;
 import gps.trackerid.location.models.users.DataUser;
 import gps.trackerid.location.ui.baseui.BaseActivity;
-import gps.trackerid.location.utils.Global;
 import gps.trackerid.location.utils.PreferenceUtil;
 import gps.trackerid.location.utils.QrHelper;
 import gps.trackerid.location.utils.TrackingCodeUtil;
@@ -82,16 +79,15 @@ public class ShareMyQrActivity extends BaseActivity {
                 copyToClipboard(shareCodeActivity, binding.tvMyCode.getText().toString());
             }
         });
-        if (Global.banner_all && Global.isInternetConnected(shareCodeActivity)) {
-            binding.mRlBanner.setVisibility(VISIBLE);
-            ERainAd.getInstance().loadBanner(this, getBannerAll());
-        }
+
         getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
                 onBackCall();
             }
         });
+
+        AdsManager.INSTANCE.loadBannerAll(this, binding.mRlBanner);
     }
 
     private void onBackCall() {

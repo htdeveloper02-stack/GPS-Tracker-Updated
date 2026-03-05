@@ -2,7 +2,6 @@ package gps.trackerid.location.ui.phonetracker;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
-import static gps.trackerid.location.adshelper.AdsConfig.getBannerAll;
 
 import android.content.Context;
 import android.content.pm.ActivityInfo;
@@ -21,7 +20,6 @@ import android.widget.Toast;
 import androidx.activity.OnBackPressedCallback;
 import androidx.recyclerview.widget.GridLayoutManager;
 
-import com.ads.module.ads.ERainAd;
 import com.hbb20.CountryCodePicker;
 
 import java.util.ArrayList;
@@ -30,10 +28,10 @@ import java.util.concurrent.Executors;
 
 import gps.trackerid.location.R;
 import gps.trackerid.location.adapter.AreaAdapter;
+import gps.trackerid.location.ads.AdsManager;
 import gps.trackerid.location.databinding.AreaCodesBinding;
 import gps.trackerid.location.models.AreaModel;
 import gps.trackerid.location.ui.baseui.BaseActivity;
-import gps.trackerid.location.utils.Global;
 
 public class AreaCodes extends BaseActivity {
     AreaCodesBinding areaCodesBinding;
@@ -155,10 +153,6 @@ public class AreaCodes extends BaseActivity {
                 });
             }
         });
-        if (Global.banner_all && Global.isInternetConnected(AreaCodes.this)) {
-            areaCodesBinding.mRlBanner.setVisibility(VISIBLE);
-            ERainAd.getInstance().loadBanner(this, getBannerAll());
-        }
         getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
@@ -166,6 +160,7 @@ public class AreaCodes extends BaseActivity {
             }
         });
 
+        AdsManager.INSTANCE.loadBannerAll(this, areaCodesBinding.mRlBanner);
     }
 
     private void onBackCall() {

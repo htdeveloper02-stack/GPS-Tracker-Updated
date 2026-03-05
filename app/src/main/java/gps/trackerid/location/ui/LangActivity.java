@@ -4,12 +4,12 @@ import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
 import static gps.trackerid.location.ads.AdsManagerKt.isNetwork;
 import static gps.trackerid.location.ads.PopulateNativeAdViewKt.populateNativeAdView;
-import static gps.trackerid.location.utils.Global.mLog;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,7 +26,6 @@ import gps.trackerid.location.ads.PreLoadNativeListener;
 import gps.trackerid.location.ads.Preference;
 import gps.trackerid.location.ads.RemoteUtils;
 import gps.trackerid.location.ads.SharedUtils;
-import gps.trackerid.location.adshelper.NativeAdManager;
 import gps.trackerid.location.databinding.ActivityLangBinding;
 import gps.trackerid.location.ui.onboard.OnBoardActivity;
 import gps.trackerid.location.utils.Global;
@@ -76,7 +75,7 @@ public class LangActivity extends AppCompatActivity {
         languageAdapter = new LanguageAdapter(languageActivity, alllang);
         languageBinding.listlang.setAdapter(languageAdapter);
         languageBinding.mLLDone.setOnClickListener(view -> {
-            if (!Global.delay_button_done_language) {
+            if (!RemoteUtils.INSTANCE.getDelayButtonDoneLanguage()) {
                 languageAdapter.setLanguage();
             }
             if (mType != null) {
@@ -106,6 +105,7 @@ public class LangActivity extends AppCompatActivity {
         }
 
         initAdmob(AdsManager.NativeLanguageType.NORMAL);
+        Log.d("DEV_ITG", "Show: getNativeAdLanguageNormal");
     }
 
     private AdsManager.NativeLanguageType currentNativeType = null;
@@ -179,24 +179,19 @@ public class LangActivity extends AppCompatActivity {
     protected void onDestroy() {
         super.onDestroy();
         languageActivity = null;
-
-        clearAd();
     }
 
-    public void clearAd() {
-        if (mTag != null && !mTag.isEmpty()) {
-            for (int i = 0; i < mTag.size(); i++) {
-                NativeAdManager.getInstance().clearAd(mTag.get(i));
-            }
-        }
-        mLog("TAG", "clearAd:====mTag===" + mTag.size());
-    }
+    private boolean isNativeClick = false;
 
     public void setVisibility() {
         if (isFinishing() || isDestroyed()) return;
         if (languageBinding == null) return;
         if (!isFinishing() && !isDestroyed()) {
-            initAdmob(AdsManager.NativeLanguageType.CLICK);
+            if (!isNativeClick && AdsManager.INSTANCE.getNativeAdLanguageClick() != null) {
+                Log.d("DEV_ITG", "Show: getNativeAdLanguageClick");
+                initAdmob(AdsManager.NativeLanguageType.CLICK);
+                isNativeClick = true;
+            }
         }
         if (languageBinding.mLLDone.getVisibility() != VISIBLE) {
             new Handler().postDelayed(() -> {

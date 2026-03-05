@@ -2,7 +2,6 @@ package gps.trackerid.location.ui;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
-import static gps.trackerid.location.adshelper.AdsConfig.getBannerAll;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -17,7 +16,6 @@ import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.appcompat.app.AlertDialog;
 
-import com.ads.module.ads.ERainAd;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
 import com.karumi.dexter.PermissionToken;
@@ -27,7 +25,7 @@ import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 import java.util.List;
 
 import gps.trackerid.location.R;
-import gps.trackerid.location.adshelper.InterstitialAdManager;
+import gps.trackerid.location.ads.AdsManager;
 import gps.trackerid.location.database.FirebaseRequestHelper;
 import gps.trackerid.location.database.FirebaseUserHelper;
 import gps.trackerid.location.databinding.ActivityAdduserBinding;
@@ -35,7 +33,6 @@ import gps.trackerid.location.models.users.CurrentUserUtil;
 import gps.trackerid.location.models.users.DataUser;
 import gps.trackerid.location.ui.baseui.BaseActivity;
 import gps.trackerid.location.utils.ExceptionUtil;
-import gps.trackerid.location.utils.Global;
 import io.github.g00fy2.quickie.QRResult;
 import io.github.g00fy2.quickie.ScanCustomCode;
 import io.github.g00fy2.quickie.config.ScannerConfig;
@@ -71,14 +68,10 @@ public class AddUserActivity extends BaseActivity {
         adduserBinding.mIvMyQR.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                InterstitialAdManager.showIfReady(
-                        AddUserActivity.this,
-                        "inter_home",
-                        () -> {
-                            startActivity(new Intent(addUserActivity, ShareMyQrActivity.class));
-                        }
-                );
+                AdsManager.INSTANCE.showInterHome(AddUserActivity.this, () -> {
+                    startActivity(new Intent(addUserActivity, ShareMyQrActivity.class));
+                    return null;
+                });
 
             }
         });
@@ -106,16 +99,14 @@ public class AddUserActivity extends BaseActivity {
                 }
             }
         });
-        if (Global.banner_all && Global.isInternetConnected(addUserActivity)) {
-            adduserBinding.mRlBanner.setVisibility(VISIBLE);
-            ERainAd.getInstance().loadBanner(this, getBannerAll());
-        }
         getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
                 onBackCall();
             }
         });
+
+        AdsManager.INSTANCE.loadBannerAll(this, adduserBinding.mRlBanner);
     }
 
     private void onBackCall() {
@@ -123,26 +114,18 @@ public class AddUserActivity extends BaseActivity {
             String string = getIntent().getStringExtra("type");
 
             if (string == null) {
-                InterstitialAdManager.showIfReady(
-                        AddUserActivity.this,
-                        "inter_back",
-                        () -> {
-                            finish();
-                        }
-                );
+                AdsManager.INSTANCE.showInterBack(AddUserActivity.this, () -> {
+                    finish();
+                    return null;
+                });
             } else {
                 finish();
             }
         } else {
-
-            InterstitialAdManager.showIfReady(
-                    AddUserActivity.this,
-                    "inter_back",
-                    () -> {
-                        finish();
-                    }
-            );
-
+            AdsManager.INSTANCE.showInterBack(AddUserActivity.this, () -> {
+                finish();
+                return null;
+            });
         }
     }
 

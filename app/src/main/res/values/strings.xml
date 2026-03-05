@@ -5,7 +5,6 @@
     <string name="infosub2"><![CDATA[See location & movement on an interactive map]]></string>
     <string name="infosub3"><![CDATA[Compass, nearby places, & route planner included]]></string>
     <string name="infosub4"><![CDATA[Simple, precise direction guidance]]></string>
-    <string name="map_key">AIzaSyBLIGwxAlODMg1i9AJiVKG4tNdTVKbSwSI</string>
     <string name="mDeletSub">Are you sure you want to delete this zone?</string>
     <string name="waiting_for_gps_signal_d">Waiting for GPS Signal</string>
     <string name="chooselang">Choose your Language</string>
@@ -68,9 +67,6 @@
     <string name="survey_2">Too many ads</string>
     <string name="survey_3">Takes too much storage</string>
     <string name="survey_4">Premium features are too expensive</string>
-    <string name="facebook_client_token" translatable="false">470d5de1fb1f0ecd67aec080c9f5835f</string>
-    <string name="tiktok_token" translatable="false">t9ddtu</string>
-    <string name="adjust_token" translatable="false">9r5ojughol4w</string>
     <string name="nocityfound">No City Found</string>
     <string name="waiting_gps">Waiting for GPS Signal</string>
     <string name="total">Total</string>

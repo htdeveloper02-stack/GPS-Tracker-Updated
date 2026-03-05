@@ -1,65 +1,39 @@
 package gps.trackerid.location.ui.onboard;
 
-import static gps.trackerid.location.adshelper.AdsConfig.getInterOnboarding;
-import static gps.trackerid.location.utils.Global.mLog;
+import static gps.trackerid.location.ads.AdsManagerKt.isNetwork;
 
-import android.app.Activity;
-import android.content.Context;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.content.pm.ShortcutInfo;
-import android.content.pm.ShortcutManager;
-import android.graphics.drawable.Icon;
 import android.os.Build;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.viewpager.widget.PagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 
 import com.ads.module.ads.ERainAd;
-import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import gps.trackerid.location.R;
 import gps.trackerid.location.ads.AdsManager;
-import gps.trackerid.location.ads.Preference;
-import gps.trackerid.location.ads.SharedUtils;
-import gps.trackerid.location.adshelper.AdsConfig;
-import gps.trackerid.location.adshelper.InterstitialAdManager;
-import gps.trackerid.location.adshelper.NativeAdManager;
+import gps.trackerid.location.ads.ShortcutUtils;
 import gps.trackerid.location.databinding.ActivityOnboardBinding;
-import gps.trackerid.location.ui.NearByActivity;
 import gps.trackerid.location.ui.PermissionActivity;
-import gps.trackerid.location.ui.PhoneLocator;
-import gps.trackerid.location.ui.SplashActivity;
-import gps.trackerid.location.ui.TrafficAlertActivity;
+import gps.trackerid.location.ui.TimestampActivity;
 import gps.trackerid.location.ui.baseui.BaseActivity;
-import gps.trackerid.location.utils.Global;
+import gps.trackerid.location.ui.baseui.BaseFragment;
 
 public class OnBoardActivity extends BaseActivity {
     ActivityOnboardBinding onboardBinding;
     public static OnBoardActivity onBoardActivity;
-    private Preference preference;
 
     public static OnBoardActivity getInstance() {
         return onBoardActivity;
     }
 
-    private MyViewPagerAdapter myViewPagerAdapter;
-    private int mPos = 0;
-    private int[] layouts;
-    public ArrayList<String> mPermissions;
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,254 +43,72 @@ public class OnBoardActivity extends BaseActivity {
 
         onBoardActivity = this;
 
-        preference = new Preference(onBoardActivity);
-        setViewPager();
+        ShortcutUtils.INSTANCE.checkInit(this);
 
-        if (ERainAd.getInstance().getShouldDisplayWidgetUninstall()) {
-            initShortCut();
+        initViewPager();
+    }
+
+    private void initViewPager() {
+        boolean isAddObFull = (ERainAd.getInstance().getShouldDisplayNativeOnboardingFull1() || ERainAd.getInstance().getShouldDisplayNativeOnboardingFull1());
+        List<BaseFragment> fragments = new ArrayList<>();
+        fragments.add(new OnBoardFragment1());
+        fragments.add(new OnBoardFragment2());
+        if (isAddObFull && isNetwork(this) && AdsManager.INSTANCE.getNativeAdObFull() != null) {
+            fragments.add(new OnBoardFullFragment());
         }
-        if (Global.inter_onboarding && ERainAd.getInstance().getShouldDisplayInterOnboarding() && Global.isInternetConnected(onBoardActivity)) {
-            InterstitialAdManager.preload(this, getInterOnboarding(), "inter_onboarding");
+        fragments.add(new OnBoardFragment3());
+        fragments.add(new OnBoardFragment4());
+
+        OnBoardAdapter adapter = new OnBoardAdapter(this, fragments);
+        onboardBinding.viewPager.setOffscreenPageLimit(5);
+        onboardBinding.viewPager.setAdapter(adapter);
+
+        AdsManager.INSTANCE.loadInterOb(this);
+    }
+
+    public void nextPage() {
+        onboardBinding.viewPager.setCurrentItem(onboardBinding.viewPager.getCurrentItem() + 1);
+    }
+
+    public void launchHomeScreen() {
+        if (IsCheckPermission()) {
+            startActivity(new Intent(OnBoardActivity.this, TimestampActivity.class));
+            finish();
+        } else {
+            startActivity(new Intent(OnBoardActivity.this, PermissionActivity.class));
+            finish();
         }
 
     }
 
-    private void launchHomeScreen() {
-        startActivity(new Intent(OnBoardActivity.this, PermissionActivity.class));
-        finish();
-    }
+    public ArrayList<String> mPermissions;
 
     private boolean IsTaken(List<String> list, String str) {
         if (ContextCompat.checkSelfPermission(this, str) != 0) {
             list.add(str);
-            return ActivityCompat.shouldShowRequestPermissionRationale((Activity) this, str);
+            return ActivityCompat.shouldShowRequestPermissionRationale(this, str);
         }
         return true;
     }
 
-    private boolean isShowAds() {
-        return ERainAd.getInstance().getShouldDisplayNativeOnboardingFull1() || ERainAd.getInstance().getShouldDisplayNativeOnboardingFull2();
-    }
-
-    private boolean isShowAdsLayout(int pos) {
-        return layouts[pos] == R.layout.layout_native;
-    }
-
-    private boolean isShowAds1() {
-        return ERainAd.getInstance().getShouldDisplayNativeOnboardingFull1() || Global.native_onboarding_fullscreen_1_2;
-    }
-
-    private boolean isShowAds2() {
-        return ERainAd.getInstance().getShouldDisplayNativeOnboardingFull2() || Global.native_onboarding_fullscreen_2_2;
-    }
-
-    ViewPager.OnPageChangeListener viewPagerPageChangeListener = new ViewPager.OnPageChangeListener() {
-
-        @Override
-        public void onPageSelected(int position) {
-            mPos = position;
+    private boolean IsCheckPermission() {
+        mPermissions = new ArrayList();
+        if (!IsTaken(mPermissions, "android.permission.ACCESS_COARSE_LOCATION")) {
+            mPermissions.add("android.permission.ACCESS_COARSE_LOCATION");
         }
-
-        @Override
-        public void onPageScrolled(int arg0, float arg1, int arg2) {
-
+        if (!IsTaken(mPermissions, "android.permission.ACCESS_FINE_LOCATION")) {
+            mPermissions.add("android.permission.ACCESS_FINE_LOCATION");
         }
-
-        @Override
-        public void onPageScrollStateChanged(int arg0) {
-
+        if (!IsTaken(mPermissions, "android.permission.CAMERA")) {
+            mPermissions.add("android.permission.CAMERA");
         }
-    };
-    private FrameLayout frAds;
-    private ShimmerFrameLayout shimmerAds;
-
-    public class MyViewPagerAdapter extends PagerAdapter {
-        private LayoutInflater layoutInflater;
-
-        public MyViewPagerAdapter() {
-        }
-
-        @Override
-        public Object instantiateItem(ViewGroup container, int position) {
-            layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-            View view = layoutInflater.inflate(layouts[position], container, false);
-
-            if (!isShowAdsLayout(position)) {
-                TextView mIvNext = view.findViewById(R.id.mIvNext);
-                mIvNext.setOnClickListener(view1 -> {
-                    if (mPos == layouts.length - 1) {
-                        launchHomeScreen();
-                    } else {
-                        onboardBinding.viewPager.setCurrentItem(mPos + 1);
-                    }
-                });
-            } else if (isShowAdsLayout(position)) {
-                ImageView mIvNext = view.findViewById(R.id.mIvNext);
-                mIvNext.setOnClickListener(view2 -> {
-                    if (mPos == layouts.length - 1) {
-                        launchHomeScreen();
-                    } else {
-                        onboardBinding.viewPager.setCurrentItem(mPos + 1);
-                    }
-                });
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (!IsTaken(mPermissions, "android.permission.POST_NOTIFICATIONS")) {
+                mPermissions.add("android.permission.POST_NOTIFICATIONS");
             }
-            if (position == 0) {
-                frAds = view.findViewById(R.id.fr_ads);
-                AdsManager.INSTANCE.loadNativeOb1(OnBoardActivity.this, SharedUtils.INSTANCE.getValue(SharedUtils.OPEN_APP, false), frAds);
-            }
-            if (isShowAds()) {
-                if (position == 2) {
-                    frAds = view.findViewById(R.id.fr_ads);
-                    if (AdsConfig.isShowNative(preference.getBoolean("First") ? isShowAds1() : isShowAds2(), frAds)) {
-                        String TagName = preference.getBoolean("First") ? "native_onboarding_full_1" : "native_onboarding_full_2";
-                        showNative(TagName, frAds, shimmerAds);
-                    }
-                }
-            }
-            if (position == (layouts.length - 1)) {
-                frAds = view.findViewById(R.id.fr_ads);
-                AdsManager.INSTANCE.loadNativeOb4(OnBoardActivity.this, SharedUtils.INSTANCE.getValue(SharedUtils.OPEN_APP, false), frAds);
-            }
-            container.addView(view);
-
-            return view;
         }
 
-        @Override
-        public int getCount() {
-            return layouts.length;
-        }
-
-        @Override
-        public boolean isViewFromObject(View view, Object obj) {
-            return view == obj;
-        }
-
-
-        @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
-            View view = (View) object;
-            container.removeView(view);
-        }
-    }
-
-    private void showNative(String adTag, FrameLayout frAds, ShimmerFrameLayout shimmerAds) {
-        boolean isShown = NativeAdManager.getInstance()
-                .showNativeAdIfAvailable(
-                        this,
-                        adTag,
-                        frAds,
-                        shimmerAds
-                );
-
-        if (!isShown) {
-            mLog("TAG", "Ad not ready, preload again");
-            shimmerAds.setVisibility(View.VISIBLE);
-            frAds.setVisibility(View.VISIBLE);
-        }
-
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        onBoardActivity = null;
-    }
-
-    private void initShortCut() {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N_MR1) return;
-        try {
-            ShortcutManager shortcutManager = getSystemService(ShortcutManager.class);
-            if (shortcutManager == null) return;
-            shortcutManager.removeAllDynamicShortcuts();
-            ArrayList<ShortcutInfo> shortcuts = new ArrayList<>();
-            shortcuts.add(
-                    new ShortcutInfo.Builder(this, "shortcut_locator")
-                            .setShortLabel(getString(R.string.phonelocator))
-                            .setIcon(Icon.createWithResource(
-                                    this, R.drawable.ic_shortcut_locator))
-                            .setIntent(createShortcutIntent(
-                                    PhoneLocator.class,
-                                    "android.intent.action.SHORTCUT_PHONE_LOCATOR",
-                                    Global.ACTION_OPEN_LOCATOR))
-                            .setRank(0)
-                            .build()
-            );
-            shortcuts.add(
-                    new ShortcutInfo.Builder(this, "hortcut_traffic")
-                            .setShortLabel(getString(R.string.traffic))
-                            .setIcon(Icon.createWithResource(
-                                    this, R.drawable.ic_shortcut_traffic))
-                            .setIntent(createShortcutIntent(
-                                    TrafficAlertActivity.class,
-                                    "android.intent.action.SHORTCUT_TRAFFIC_ALERT",
-                                    Global.ACTION_OPEN_HOME))
-                            .setRank(1)
-                            .build()
-            );
-            shortcuts.add(
-                    new ShortcutInfo.Builder(this, "shortcut_nearby")
-                            .setShortLabel(getString(R.string.nearby))
-                            .setIcon(Icon.createWithResource(
-                                    this, R.drawable.ic_shortcut_nearby))
-                            .setIntent(createShortcutIntent(
-                                    NearByActivity.class,
-                                    "android.intent.action.SHORTCUT_NEAR_BY",
-                                    Global.ACTION_OPEN_HOME))
-                            .setRank(2)
-                            .build()
-            );
-
-            shortcuts.add(
-                    new ShortcutInfo.Builder(this, "shortcut_uninstall")
-                            .setShortLabel(getString(R.string.txt_uninstall))
-                            .setIcon(Icon.createWithResource(
-                                    this, R.drawable.ic_shortcut_uninstall))
-                            .setIntent(createShortcutIntent(
-                                    SplashActivity.class,
-                                    "android.intent.action.SHORTCUT_UNINSTALL_APP",
-                                    Global.ACTION_OPEN_UNINSTALL))
-                            .setRank(3)
-                            .build()
-            );
-
-            shortcutManager.setDynamicShortcuts(shortcuts);
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    private Intent createShortcutIntent(Class<?> target, String action, String shortcutType) {
-
-        Intent intent = new Intent(this, target);
-        intent.setAction(action);
-        intent.putExtra(Global.FROM_SHORTCUT, shortcutType);
-
-        // Clears task properly
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK
-                | Intent.FLAG_ACTIVITY_CLEAR_TOP
-                | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-
-        return intent;
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    private void setViewPager() {
-        if (isShowAds()) {
-            layouts = new int[]{R.layout.layout_intro1, R.layout.layout_intro2, R.layout.layout_native, R.layout.layout_intro3, R.layout.layout_intro4};
-        } else {
-            layouts = new int[]{R.layout.layout_intro1, R.layout.layout_intro2, R.layout.layout_intro3, R.layout.layout_intro4};
-        }
-
-        myViewPagerAdapter = new MyViewPagerAdapter();
-        onboardBinding.viewPager.setAdapter(myViewPagerAdapter);
-        onboardBinding.viewPager.addOnPageChangeListener(viewPagerPageChangeListener);
+        return mPermissions.isEmpty();
     }
 
 }

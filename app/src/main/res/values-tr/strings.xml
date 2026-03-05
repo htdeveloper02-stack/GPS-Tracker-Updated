@@ -7,7 +7,6 @@
     <string name="infosub3"><![CDATA[Pusula, yakındaki yerler ve rota planlayıcı dahildir]]></string>
     <string name="infosub4"><![CDATA[Basit ve hassas yönlendirme]]></string>
 
-    <string name="map_key">AIzaSyBLIGwxAlODMg1i9AJiVKG4tNdTVKbSwSI</string>
     <string name="mDeletSub">Bu bölgeyi silmek istediğinizden emin misiniz?</string>
     <string name="waiting_for_gps_signal_d">GPS sinyali bekleniyor</string>
     <string name="chooselang">Dilinizi seçin</string>
@@ -90,10 +89,6 @@
     <string name="survey_2">Çok fazla reklam</string>
     <string name="survey_3">Çok fazla depolama alanı kaplıyor</string>
     <string name="survey_4">Premium özellikler çok pahalı</string>
-
-    <string name="facebook_client_token" translatable="false">95c71e4402046c3690f3f4c3e76166a4</string>
-    <string name="tiktok_token" translatable="false">q32ux0</string>
-    <string name="adjust_token" translatable="false">uurp9o91gpvk</string>
 
     <string name="nocityfound">Şehir bulunamadı</string>
     <string name="waiting_gps">GPS sinyali bekleniyor</string>

@@ -1,7 +1,6 @@
 package gps.trackerid.location.ui;
 
-import static gps.trackerid.location.utils.Global.mLog;
-
+import android.annotation.SuppressLint;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -11,21 +10,18 @@ import android.view.View;
 
 import androidx.activity.OnBackPressedCallback;
 
-import com.facebook.shimmer.ShimmerFrameLayout;
-
 import gps.trackerid.location.R;
+import gps.trackerid.location.ads.AdsManager;
 import gps.trackerid.location.ads.Preference;
-import gps.trackerid.location.adshelper.AdsConfig;
-import gps.trackerid.location.adshelper.NativeAdManager;
 import gps.trackerid.location.databinding.ActivitySettingBinding;
 import gps.trackerid.location.ui.baseui.BaseActivity;
 import gps.trackerid.location.utils.Global;
 
 public class SettingActivity extends BaseActivity {
     ActivitySettingBinding binding;
-    ShimmerFrameLayout shimmerAds;
     Preference preference;
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,41 +73,19 @@ public class SettingActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
-        if (AdsConfig.isShowNative(Global.native_setting, binding.frAds)) {
-            extracted();
-        }
+
         getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
                 onBackCall();
             }
         });
+
+        AdsManager.INSTANCE.loadNativeSetting(this, binding.frAds);
     }
 
     private void onBackCall() {
         finish();
-    }
-
-    private void extracted() {
-        shimmerAds = findViewById(R.id.shimmer_native);
-
-        shimmerAds = findViewById(R.id.shimmer_native);
-
-        boolean isShown = NativeAdManager.getInstance()
-                .showNativeAdIfAvailable(
-                        this,
-                        "native_setting",
-                        binding.frAds,
-                        shimmerAds
-                );
-
-        if (!isShown) {
-            mLog("TAG", "Ad not ready, preload again");
-            shimmerAds.setVisibility(View.VISIBLE);
-            binding.frAds.setVisibility(View.VISIBLE);
-//            NativeAdManager.getInstance().preloadNativeAd(SettingActivity.this, getNativeSetting(), R.layout.layout_native_ad_medium, "native_setting");
-        }
-
     }
 
     private void mShareApp() {
@@ -132,10 +106,8 @@ public class SettingActivity extends BaseActivity {
         String packageName = getApplicationContext().getPackageName();
         try {
             startActivity(new Intent("android.intent.action.VIEW", Uri.parse("market://details?id=" + packageName)));
-            return;
         } catch (ActivityNotFoundException unused) {
             startActivity(new Intent("android.intent.action.VIEW", Uri.parse("http://play.google.com/store/apps/details?id=" + packageName)));
-            return;
         }
     }
 

@@ -7,7 +7,6 @@
     <string name="infosub3"><![CDATA[कम्पास, नज़दीकी स्थान और रूट प्लानर शामिल]]></string>
     <string name="infosub4"><![CDATA[सरल और सटीक दिशा मार्गदर्शन]]></string>
 
-    <string name="map_key">AIzaSyBLIGwxAlODMg1i9AJiVKG4tNdTVKbSwSI</string>
     <string name="mDeletSub">क्या आप वाकई इस ज़ोन को हटाना चाहते हैं?</string>
     <string name="waiting_for_gps_signal_d">GPS सिग्नल की प्रतीक्षा</string>
     <string name="chooselang">भाषा चुनें</string>
@@ -90,10 +89,6 @@
     <string name="survey_2">बहुत ज़्यादा विज्ञापन</string>
     <string name="survey_3">बहुत अधिक स्टोरेज लेती है</string>
     <string name="survey_4">प्रीमियम फीचर बहुत महंगे हैं</string>
-
-    <string name="facebook_client_token" translatable="false">95c71e4402046c3690f3f4c3e76166a4</string>
-    <string name="tiktok_token" translatable="false">q32ux0</string>
-    <string name="adjust_token" translatable="false">uurp9o91gpvk</string>
 
     <string name="nocityfound">कोई शहर नहीं मिला</string>
     <string name="waiting_gps">GPS सिग्नल की प्रतीक्षा</string>

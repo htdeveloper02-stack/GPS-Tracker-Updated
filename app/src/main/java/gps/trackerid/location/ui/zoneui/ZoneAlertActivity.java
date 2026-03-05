@@ -2,7 +2,6 @@ package gps.trackerid.location.ui.zoneui;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
-import static gps.trackerid.location.adshelper.AdsConfig.getBannerAll;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -16,11 +15,9 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 
-import com.ads.module.ads.ERainAd;
-
 import gps.trackerid.location.R;
 import gps.trackerid.location.adapter.ZoneAdapter;
-import gps.trackerid.location.adshelper.InterstitialAdManager;
+import gps.trackerid.location.ads.AdsManager;
 import gps.trackerid.location.databinding.ActivityZonealertBinding;
 import gps.trackerid.location.models.zonedata.AppDatabase;
 import gps.trackerid.location.models.zonedata.DataZone;
@@ -28,7 +25,6 @@ import gps.trackerid.location.models.zonedata.DataZoneDao;
 import gps.trackerid.location.models.zonedata.DataZoneViewModel;
 import gps.trackerid.location.models.zonedata.DataZoneViewModelFactory;
 import gps.trackerid.location.ui.baseui.BaseActivity;
-import gps.trackerid.location.utils.Global;
 
 public class ZoneAlertActivity extends BaseActivity {
     ActivityZonealertBinding zonealertBinding;
@@ -118,28 +114,21 @@ public class ZoneAlertActivity extends BaseActivity {
             }
         });
 
-        if (Global.banner_all && Global.isInternetConnected(ZoneAlertActivity.this)) {
-            zonealertBinding.mRlBanner.setVisibility(VISIBLE);
-            ERainAd.getInstance().loadBanner(this, getBannerAll());
-        }
         getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
                 onBackCall();
             }
         });
+
+        AdsManager.INSTANCE.loadBannerAll(this, zonealertBinding.mRlBanner);
     }
 
     private void onBackCall() {
-
-        InterstitialAdManager.showIfReady(
-                ZoneAlertActivity.this,
-                "inter_back",
-                () -> {
-                    finish();
-                }
-        );
-
+        AdsManager.INSTANCE.showInterBack(ZoneAlertActivity.this, () -> {
+            finish();
+            return null;
+        });
     }
 
     private void mshowDailog(DataZone dataZone) {

@@ -26,56 +26,17 @@ import gps.trackerid.location.BuildConfig;
 import gps.trackerid.location.R;
 
 public class Global {
-    public static boolean iSGetAds = false;
     public static boolean ISLanguageChange = false;
 
     public static final String KEY_TRACKING_SCREEN_FROM = "key_tracking_screen_from";
-    public static final String ACTION_OPEN_HOME = "action_open_home";
+    public static final String ACTION_OPEN_NEAR_BY = "action_open_near_by";
+    public static final String ACTION_OPEN_TRAFFIC_ALERT = "action_open_traffic_alert";
     public static final String ACTION_OPEN_LOCATOR = "action_open_locator";
     public static final String FROM_SHORTCUT = "from_shortcut";
     public static final String ACTION_OPEN_UNINSTALL = "action_open_uninstall";
-    public static String FREE_SERVERS = "";
     public static String privacy_policy = "";
     public static String about_us = "";
     public static String contact_us = "";
-    public static String PRO_SERVERS = "";
-    public static String ip = "";
-    public static String API_KEY = "wbnMYs9bha0Geg.2yeegiZBJ3cUfjUPWrokcHDRqnjOhwEK2tH";
-    public static boolean inter_splash=true;
-    public static boolean banner_splash=true;
-
-    public static boolean native_language_1=true;
-    public static boolean native_language_1_click=true;
-    public static boolean native_language_2=true;
-    public static boolean native_language_2_click=true;
-
-    public static boolean native_onboarding_1_1=true;
-    public static boolean native_onboarding_2_1=true;
-    public static boolean native_onboarding_1_4=true;
-    public static boolean native_onboarding_2_4=true;
-
-    public static boolean native_onboarding_fullscreen_1_2=true;
-    public static boolean native_onboarding_fullscreen_2_2=true;
-
-
-    public static boolean open_resume=true;
-    public static boolean inter_onboarding=true;
-
-    public static boolean inter_home=true;
-    public static boolean native_home=true;
-    public static boolean banner_collap_home=true;
-
-    public static boolean inter_back=true;
-    public static boolean banner_all=true;
-
-    public static boolean native_phone_locator=true;
-    public static boolean inter_splash_uninstall=true;
-    public static boolean banner_splash_uninstall=true;
-    public static boolean native_uninstall=true;
-    public static boolean native_survey_uninstall=true;
-    public static boolean native_setting=true;
-    public static boolean delay_button_done_language=true;
-    public static long height_button_cta = 40;
 
     public static boolean IsTaken(Activity activity, List<String> list, String str) {
         if (ContextCompat.checkSelfPermission(activity, str) != 0) {
@@ -133,9 +94,6 @@ public class Global {
 
             internetDialog.dismiss();
         }
-//        if (internetDialog != null && internetDialog.isShowing()) {
-//            internetDialog.dismiss();
-//        }
     }
 
     public static boolean isFastClick() {

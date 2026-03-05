@@ -7,7 +7,6 @@
     <string name="infosub3"><![CDATA[Kompass, Orte in der Nähe & Routenplaner inklusive]]></string>
     <string name="infosub4"><![CDATA[Einfache, präzise Richtungsführung]]></string>
 
-    <string name="map_key">AIzaSyBLIGwxAlODMg1i9AJiVKG4tNdTVKbSwSI</string>
     <string name="mDeletSub">Möchten Sie diese Zone wirklich löschen?</string>
     <string name="waiting_for_gps_signal_d">Warten auf GPS-Signal</string>
     <string name="chooselang">Sprache auswählen</string>
@@ -90,10 +89,6 @@
     <string name="survey_2">Zu viele Werbeanzeigen</string>
     <string name="survey_3">Benötigt zu viel Speicherplatz</string>
     <string name="survey_4">Premium-Funktionen sind zu teuer</string>
-
-    <string name="facebook_client_token" translatable="false">95c71e4402046c3690f3f4c3e76166a4</string>
-    <string name="tiktok_token" translatable="false">q32ux0</string>
-    <string name="adjust_token" translatable="false">uurp9o91gpvk</string>
 
     <string name="nocityfound">Keine Stadt gefunden</string>
     <string name="waiting_gps">Warten auf GPS-Signal</string>

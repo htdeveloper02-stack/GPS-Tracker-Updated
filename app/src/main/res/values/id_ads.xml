@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="facebook_client_token" translatable="false">470d5de1fb1f0ecd67aec080c9f5835f</string>
+    <string name="facebook_app_id" translatable="false">1536553580968786</string>
+    <string name="tiktok_token" translatable="false">t9ddtu</string>
+    <string name="adjust_token" translatable="false">9r5ojughol4w</string>
+    <string name="map_key">AIzaSyBLIGwxAlODMg1i9AJiVKG4tNdTVKbSwSI</string>
+
+</resources>

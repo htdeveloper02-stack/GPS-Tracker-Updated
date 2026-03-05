@@ -7,7 +7,6 @@
     <string name="infosub3"><![CDATA[Kompas, tempat terdekat & perencana rute tersedia]]></string>
     <string name="infosub4"><![CDATA[Panduan arah yang sederhana dan akurat]]></string>
 
-    <string name="map_key">AIzaSyBLIGwxAlODMg1i9AJiVKG4tNdTVKbSwSI</string>
     <string name="mDeletSub">Apakah Anda yakin ingin menghapus zona ini?</string>
     <string name="waiting_for_gps_signal_d">Menunggu Sinyal GPS</string>
     <string name="chooselang">Pilih Bahasa Anda</string>
@@ -90,10 +89,6 @@
     <string name="survey_2">Terlalu banyak iklan</string>
     <string name="survey_3">Memakan terlalu banyak penyimpanan</string>
     <string name="survey_4">Fitur premium terlalu mahal</string>
-
-    <string name="facebook_client_token" translatable="false">95c71e4402046c3690f3f4c3e76166a4</string>
-    <string name="tiktok_token" translatable="false">q32ux0</string>
-    <string name="adjust_token" translatable="false">uurp9o91gpvk</string>
 
     <string name="nocityfound">Kota Tidak Ditemukan</string>
     <string name="waiting_gps">Menunggu Sinyal GPS</string>

@@ -1,8 +1,5 @@
 package gps.trackerid.location.ui.phonetracker;
 
-import static android.view.View.VISIBLE;
-import static gps.trackerid.location.adshelper.AdsConfig.getBannerAll;
-
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.database.Cursor;
@@ -15,12 +12,10 @@ import android.widget.Toast;
 import androidx.activity.OnBackPressedCallback;
 import androidx.core.app.ActivityCompat;
 
-import com.ads.module.ads.ERainAd;
-
 import gps.trackerid.location.R;
+import gps.trackerid.location.ads.AdsManager;
 import gps.trackerid.location.databinding.ActivityPhonedetailsBinding;
 import gps.trackerid.location.ui.baseui.BaseActivity;
-import gps.trackerid.location.utils.Global;
 
 public class PhoneDetails extends BaseActivity {
     ActivityPhonedetailsBinding phonedetailsBinding;
@@ -100,16 +95,15 @@ public class PhoneDetails extends BaseActivity {
         } else {
             phonedetailsBinding.mTxtName.setText("Unknown");
         }
-        if (Global.banner_all && Global.isInternetConnected(phoneDetails)) {
-            phonedetailsBinding.mRlBanner.setVisibility(VISIBLE);
-            ERainAd.getInstance().loadBanner(this, getBannerAll());
-        }
+
         getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
                 onBackCall();
             }
         });
+
+        AdsManager.INSTANCE.loadBannerAll(this, phonedetailsBinding.mRlBanner);
     }
 
     private void onBackCall() {

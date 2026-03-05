@@ -1,8 +1,5 @@
 package gps.trackerid.location.ui.phonetracker;
 
-import static android.view.View.VISIBLE;
-import static gps.trackerid.location.adshelper.AdsConfig.getBannerAll;
-
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Handler;
@@ -12,14 +9,13 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.ads.module.ads.ERainAd;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 
 import gps.trackerid.location.R;
 import gps.trackerid.location.adapter.StopwatchAdapter;
+import gps.trackerid.location.ads.AdsManager;
 import gps.trackerid.location.databinding.ActivityStopwatchBinding;
 import gps.trackerid.location.ui.baseui.BaseActivity;
-import gps.trackerid.location.utils.Global;
 import gps.trackerid.location.utils.StopWatchUtils;
 import gps.trackerid.location.utils.StopwatchHelper;
 
@@ -93,16 +89,15 @@ public class StopwatchAct extends BaseActivity {
                 onBackCall();
             }
         });
-        if (Global.banner_all && Global.isInternetConnected(stopwatchAct)) {
-            binding.mRlBanner.setVisibility(VISIBLE);
-            ERainAd.getInstance().loadBanner(this, getBannerAll());
-        }
+
         getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
                 onBackCall();
             }
         });
+
+        AdsManager.INSTANCE.loadBannerAll(this, binding.mRlBanner);
     }
 
     private void onBackCall() {

@@ -2,30 +2,26 @@ package gps.trackerid.location.ui;
 
 import static android.view.View.GONE;
 import static android.view.View.VISIBLE;
-import static gps.trackerid.location.adshelper.AdsConfig.getBannerAll;
 import static gps.trackerid.location.utils.Global.mLog;
 
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.recyclerview.widget.GridLayoutManager;
 
-import com.ads.module.ads.ERainAd;
-
 import java.util.List;
 
 import gps.trackerid.location.R;
 import gps.trackerid.location.adapter.RequestAdapter;
+import gps.trackerid.location.ads.AdsManager;
 import gps.trackerid.location.database.FirebaseRequestHelper;
 import gps.trackerid.location.databinding.ActivityRequestBinding;
 import gps.trackerid.location.models.users.CurrentUserUtil;
 import gps.trackerid.location.models.users.DataUser;
 import gps.trackerid.location.ui.baseui.BaseActivity;
-import gps.trackerid.location.utils.Global;
 
 public class RequestActivity extends BaseActivity {
     ActivityRequestBinding binding;
@@ -62,16 +58,15 @@ public class RequestActivity extends BaseActivity {
         binding.mRvUserList.setAdapter(requestAdapter);
         binding.mRvUserList.setLayoutManager(new GridLayoutManager(this, 1));
         findRequests();
-        if (Global.banner_all && Global.isInternetConnected(activity)) {
-            binding.mRlBanner.setVisibility(VISIBLE);
-            ERainAd.getInstance().loadBanner(this, getBannerAll());
-        }
+
         getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
                 onBackCall();
             }
         });
+
+        AdsManager.INSTANCE.loadBannerAll(this, binding.mRlBanner);
     }
 
     private void onBackCall() {
@@ -171,7 +166,7 @@ public class RequestActivity extends BaseActivity {
      * Handles errors while fetching requests.
      */
     private void handleRequestsError(Exception e) {
-        mLog("FirebaseRequestHelper", "Failed to fetch requests"+e.getMessage());
+        mLog("FirebaseRequestHelper", "Failed to fetch requests" + e.getMessage());
 
         binding.mRvUserList.setVisibility(GONE);
         binding.progressUser.setVisibility(GONE);

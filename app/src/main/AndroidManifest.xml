@@ -179,7 +179,7 @@
             android:value="@string/map_key" />
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"
-            android:value="1536553580968786" />
+            android:value="@string/facebook_app_id" />
         <meta-data
             android:name="com.facebook.sdk.AutoInitEnabled"
             android:value="true" />

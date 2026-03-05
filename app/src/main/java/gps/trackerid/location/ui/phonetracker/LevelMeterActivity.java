@@ -1,8 +1,5 @@
 package gps.trackerid.location.ui.phonetracker;
 
-import static android.view.View.VISIBLE;
-import static gps.trackerid.location.adshelper.AdsConfig.getBannerAll;
-
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.content.res.ColorStateList;
@@ -19,11 +16,9 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 
 import androidx.activity.OnBackPressedCallback;
 
-import com.ads.module.ads.ERainAd;
-
+import gps.trackerid.location.ads.AdsManager;
 import gps.trackerid.location.databinding.ActivityLevelmeterBinding;
 import gps.trackerid.location.ui.baseui.BaseActivity;
-import gps.trackerid.location.utils.Global;
 
 public class LevelMeterActivity extends BaseActivity implements SensorEventListener {
     ActivityLevelmeterBinding binding;
@@ -62,16 +57,15 @@ public class LevelMeterActivity extends BaseActivity implements SensorEventListe
                 onBackCall();
             }
         });
-        if (Global.banner_all && Global.isInternetConnected(levelMeterActivity)) {
-            binding.mRlBanner.setVisibility(VISIBLE);
-            ERainAd.getInstance().loadBanner(this, getBannerAll());
-        }
+
         getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
                 onBackCall();
             }
         });
+
+        AdsManager.INSTANCE.loadBannerAll(this, binding.mRlBanner);
     }
 
     private void onBackCall() {

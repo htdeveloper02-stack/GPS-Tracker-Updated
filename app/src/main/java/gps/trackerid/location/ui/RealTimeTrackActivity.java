@@ -1,7 +1,5 @@
 package gps.trackerid.location.ui;
 
-import static android.view.View.VISIBLE;
-import static gps.trackerid.location.adshelper.AdsConfig.getBannerAll;
 import static gps.trackerid.location.utils.Global.mLog;
 
 import android.Manifest;
@@ -30,7 +28,6 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.ads.module.ads.ERainAd;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -47,8 +44,7 @@ import java.util.List;
 import java.util.Map;
 
 import gps.trackerid.location.R;
-
-import gps.trackerid.location.adshelper.InterstitialAdManager;
+import gps.trackerid.location.ads.AdsManager;
 import gps.trackerid.location.database.DataUserDao;
 import gps.trackerid.location.database.FirebaseUserHelper;
 import gps.trackerid.location.databinding.ActivityRealtimetrackBinding;
@@ -57,7 +53,6 @@ import gps.trackerid.location.models.users.DataUserViewModelFactory;
 import gps.trackerid.location.models.users.USerListViewModel;
 import gps.trackerid.location.models.zonedata.AppDatabase;
 import gps.trackerid.location.ui.baseui.BaseActivity;
-import gps.trackerid.location.utils.Global;
 import kotlin.Deprecated;
 import kotlin.collections.CollectionsKt;
 import kotlin.jvm.internal.Intrinsics;
@@ -113,17 +108,12 @@ public class RealTimeTrackActivity extends BaseActivity implements OnMapReadyCal
                 }, new BSDUserDialog.OnAddUserListener() {
                     @Override
                     public void onAddUser() {
-
-                        InterstitialAdManager.showIfReady(
-                                RealTimeTrackActivity.this,
-                                "inter_home",
-                                () -> {
-                                    Intent intent = new Intent(realTimeTrackActivity, AddUserActivity.class);
-                                    intent.putExtra("type", "type");
-                                    startActivity(intent);
-                                }
-                        );
-
+                        AdsManager.INSTANCE.showInterHome(RealTimeTrackActivity.this, () -> {
+                            Intent intent = new Intent(realTimeTrackActivity, AddUserActivity.class);
+                            intent.putExtra("type", "type");
+                            startActivity(intent);
+                            return null;
+                        });
                     }
                 });
                 bottomSheet.show(getSupportFragmentManager(), "ModalBottomSheet");
@@ -136,28 +126,22 @@ public class RealTimeTrackActivity extends BaseActivity implements OnMapReadyCal
 
 //        uSerListViewModel.getAllUserss();
         getUsers();
-        if (Global.banner_all && Global.isInternetConnected(realTimeTrackActivity)) {
-            binding.mRlBanner.setVisibility(VISIBLE);
-            ERainAd.getInstance().loadBanner(this, getBannerAll());
-        }
+
         getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
                 onBackCall();
             }
         });
+
+        AdsManager.INSTANCE.loadBannerAll(this, binding.mRlBanner);
     }
 
     private void onBackCall() {
-
-        InterstitialAdManager.showIfReady(
-                RealTimeTrackActivity.this,
-                "inter_back",
-                () -> {
-                    finish();
-                }
-        );
-
+        AdsManager.INSTANCE.showInterBack(RealTimeTrackActivity.this, () -> {
+            finish();
+            return null;
+        });
     }
 
     private void ShowUserOnmap(DataUser dataUser) {
@@ -217,7 +201,7 @@ public class RealTimeTrackActivity extends BaseActivity implements OnMapReadyCal
                             .startListeningUsers(userList.get(selectedUserIndex).getCode());
                 }
             } catch (DatabaseException e) {
-                mLog("RealTimeTracking", "Failed to start listening users"+e.getMessage());
+                mLog("RealTimeTracking", "Failed to start listening users" + e.getMessage());
             }
         });
 

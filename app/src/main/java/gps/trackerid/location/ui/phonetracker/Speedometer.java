@@ -1,8 +1,5 @@
 package gps.trackerid.location.ui.phonetracker;
 
-import static android.view.View.VISIBLE;
-import static gps.trackerid.location.adshelper.AdsConfig.getBannerAll;
-
 import android.Manifest;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
@@ -15,12 +12,10 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.ads.module.ads.ERainAd;
-
 import gps.trackerid.location.R;
+import gps.trackerid.location.ads.AdsManager;
 import gps.trackerid.location.databinding.SpeedometerBinding;
 import gps.trackerid.location.ui.baseui.BaseActivity;
-import gps.trackerid.location.utils.Global;
 
 public class Speedometer extends BaseActivity {
     SpeedometerBinding speedometerBinding;
@@ -39,16 +34,16 @@ public class Speedometer extends BaseActivity {
         setupUI();
         observeData();
         checkPermission();
-        if (Global.banner_all && Global.isInternetConnected(Speedometer.this)) {
-            speedometerBinding.mRlBanner.setVisibility(VISIBLE);
-            ERainAd.getInstance().loadBanner(this, getBannerAll());
-        }
+
         getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
                 onBackCall();
             }
         });
+
+        AdsManager.INSTANCE.loadBannerAll(this, speedometerBinding.mRlBanner);
+
     }
 
     private void onBackCall() {

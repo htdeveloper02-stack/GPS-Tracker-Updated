@@ -1,8 +1,5 @@
 package gps.trackerid.location.ui;
 
-import static android.view.View.VISIBLE;
-import static gps.trackerid.location.adshelper.AdsConfig.getBannerAll;
-
 import android.Manifest;
 import android.content.Context;
 import android.content.Intent;
@@ -24,7 +21,6 @@ import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import com.ads.module.ads.ERainAd;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -36,10 +32,10 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.List;
 
 import gps.trackerid.location.R;
-import gps.trackerid.location.adshelper.InterstitialAdManager;
+import gps.trackerid.location.ads.AdsManager;
+import gps.trackerid.location.ads.RemoteUtils;
 import gps.trackerid.location.databinding.ActivityTrafficalertBinding;
 import gps.trackerid.location.ui.baseui.BaseActivity;
-import gps.trackerid.location.utils.Global;
 import kotlin.collections.CollectionsKt;
 
 public class TrafficAlertActivity extends BaseActivity implements OnMapReadyCallback {
@@ -71,33 +67,26 @@ public class TrafficAlertActivity extends BaseActivity implements OnMapReadyCall
                 getCurrentLocation();
             }
         });
-        if (Global.banner_all && Global.isInternetConnected(TrafficAlertActivity.this)) {
-            trafficalertBinding.mRlBanner.setVisibility(VISIBLE);
-            ERainAd.getInstance().loadBanner(this, getBannerAll());
-        }
         getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
                 onBackCall();
             }
         });
+
+        AdsManager.INSTANCE.loadBannerAll(this, trafficalertBinding.mRlBanner);
     }
 
     private void onBackCall() {
-
-        InterstitialAdManager.showIfReady(
-                TrafficAlertActivity.this,
-                "inter_back",
-                () -> {
-                    if (isShortcut) {
-                        startActivity(new Intent(TrafficAlertActivity.this, TimestampActivity.class));
-                        finish();
-                    } else {
-                        finish();
-                    }
-                }
-        );
-
+        AdsManager.INSTANCE.showInterBack(TrafficAlertActivity.this, () -> {
+            if (isShortcut) {
+                startActivity(new Intent(TrafficAlertActivity.this, TimestampActivity.class));
+                finish();
+            } else {
+                finish();
+            }
+            return null;
+        });
     }
 
     @Override
@@ -249,14 +238,8 @@ public class TrafficAlertActivity extends BaseActivity implements OnMapReadyCall
         if (intent != null && "android.intent.action.SHORTCUT_TRAFFIC_ALERT".equals(intent.getAction())) {
             // Open the VPN Server screen
             isShortcut = true;
-            setRemoteConfigListener(new RemoteConfigListener() {
-                @Override
-                public void onRemoteConfigLoaded() {
-                    if (Global.banner_all && Global.isInternetConnected(TrafficAlertActivity.this)) {
-                        trafficalertBinding.mRlBanner.setVisibility(VISIBLE);
-                        ERainAd.getInstance().loadBanner(TrafficAlertActivity.this, getBannerAll());
-                    }
-                }
+            RemoteUtils.INSTANCE.init(() -> {
+                AdsManager.INSTANCE.loadBannerAll(this, trafficalertBinding.mRlBanner);
             });
         } else {
             isShortcut = false;

@@ -1,8 +1,5 @@
 package gps.trackerid.location.ui;
 
-import static android.view.View.VISIBLE;
-import static gps.trackerid.location.adshelper.AdsConfig.getBannerAll;
-
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.view.View;
@@ -10,15 +7,13 @@ import android.view.View;
 import androidx.activity.OnBackPressedCallback;
 import androidx.core.content.ContextCompat;
 
-import com.ads.module.ads.ERainAd;
-
 import gps.trackerid.location.R;
+import gps.trackerid.location.ads.AdsManager;
 import gps.trackerid.location.databinding.ActivityCompassBinding;
 import gps.trackerid.location.ui.baseui.BaseActivity;
 import gps.trackerid.location.ui.compassui.NormalFragment;
 import gps.trackerid.location.ui.compassui.SateliteFragment;
 import gps.trackerid.location.ui.compassui.StandardFragment;
-import gps.trackerid.location.utils.Global;
 
 public class CompassActivity extends BaseActivity {
     ActivityCompassBinding compassBinding;
@@ -61,16 +56,14 @@ public class CompassActivity extends BaseActivity {
             }
         });
         compassBinding.mTxtStandard.performClick();
-        if (Global.banner_all && Global.isInternetConnected(CompassActivity.this)) {
-            compassBinding.mRlBanner.setVisibility(VISIBLE);
-            ERainAd.getInstance().loadBanner(this, getBannerAll());
-        }
         getOnBackPressedDispatcher().addCallback(new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
                 onBackCall();
             }
         });
+
+        AdsManager.INSTANCE.loadBannerAll(this, compassBinding.mRlBanner);
     }
 
     private void onBackCall() {

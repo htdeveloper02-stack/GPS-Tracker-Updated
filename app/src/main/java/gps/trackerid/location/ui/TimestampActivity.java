@@ -1,18 +1,12 @@
 package gps.trackerid.location.ui;
 
-import static android.view.View.GONE;
-import static gps.trackerid.location.adshelper.AdsConfig.getBannerHomeCollapse;
-import static gps.trackerid.location.adshelper.AdsConfig.getInterBack;
-import static gps.trackerid.location.adshelper.AdsConfig.getInterHome;
-import static gps.trackerid.location.adshelper.AdsConfig.getNativeHome;
-import static gps.trackerid.location.adshelper.AdsConfig.getNativePhoneLocator;
-import static gps.trackerid.location.adshelper.AdsConfig.getNativeSetting;
+import static gps.trackerid.location.ads.AdsManagerKt.isNetwork;
 import static gps.trackerid.location.utils.Global.IsTaken;
 import static gps.trackerid.location.utils.Global.mLog;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
@@ -25,17 +19,12 @@ import android.view.View;
 import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
-import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.ProcessLifecycleOwner;
 
-import com.ads.module.ads.ERainAd;
-import com.ads.module.funtion.AdCallback;
-import com.ads.module.util.AppConstant;
+import com.ads.module.admob.AppOpenManager;
 import com.facebook.shimmer.ShimmerFrameLayout;
-import com.google.android.gms.ads.AdError;
-import com.google.android.gms.ads.LoadAdError;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.karumi.dexter.Dexter;
 import com.karumi.dexter.MultiplePermissionsReport;
@@ -47,11 +36,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import gps.trackerid.location.R;
+import gps.trackerid.location.ads.AdsManager;
 import gps.trackerid.location.ads.Preference;
+import gps.trackerid.location.ads.RemoteUtils;
 import gps.trackerid.location.ads.SharedUtils;
-import gps.trackerid.location.adshelper.AdsConfig;
-import gps.trackerid.location.adshelper.InterstitialAdManager;
-import gps.trackerid.location.adshelper.NativeAdManager;
 import gps.trackerid.location.database.FirebaseUserHelper;
 import gps.trackerid.location.databinding.ActivityTimestampBinding;
 import gps.trackerid.location.models.users.CurrentUserUtil;
@@ -61,7 +49,6 @@ import gps.trackerid.location.ui.baseui.BaseActivity;
 import gps.trackerid.location.ui.phonetracker.GPStoolActivity;
 import gps.trackerid.location.ui.zoneui.ZoneAlertActivity;
 import gps.trackerid.location.utils.CarrierDetector;
-import gps.trackerid.location.utils.Global;
 import gps.trackerid.location.utils.PreferenceUtil;
 import gps.trackerid.location.utils.QrHelper;
 import gps.trackerid.location.utils.TrackingCodeUtil;
@@ -79,6 +66,7 @@ public class TimestampActivity extends BaseActivity {
     ShimmerFrameLayout shimmerAds;
     Preference preference;
 
+    @SuppressLint("SourceLockedOrientationActivity")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -174,121 +162,27 @@ public class TimestampActivity extends BaseActivity {
             }
         });
         mCheckPermission(false);
-        mLoadNative();
 
-        mPreloadNative();
+        mLoadAds();
         mPreloadInter();
     }
 
     private void mPreloadInter() {
-        if (Global.inter_home && Global.isInternetConnected(TimestampActivity.this)) {
-            InterstitialAdManager.preload(this, getInterHome(), "inter_home");
-        }
-        if (Global.inter_back && Global.isInternetConnected(TimestampActivity.this)) {
-            InterstitialAdManager.preload(this, getInterBack(), "inter_back");
-        }
-    }
+        AdsManager.INSTANCE.loadInterBack(this);
+        AdsManager.INSTANCE.loadInterHome(this);
 
-    private void mPreloadNative() {
-
-        if (Global.native_phone_locator) {
-            NativeAdManager.getInstance().preloadNativeAd(TimestampActivity.this, getNativePhoneLocator(), R.layout.layout_native_ad_middle, "native_phone_locator");
-        }
-        if (Global.native_setting) {
-            NativeAdManager.getInstance().preloadNativeAd(TimestampActivity.this, getNativeSetting(), R.layout.layout_native_ad_medium, "native_setting");
+        if (RemoteUtils.INSTANCE.getOnOpenResume() && isNetwork(this)) {
+            AppOpenManager.getInstance().enableAppResume();
+        } else {
+            AppOpenManager.getInstance().disableAppResume();
         }
     }
 
     private void mNextCallActivity(Class<?> activityClass) {
-        InterstitialAdManager.showIfReady(
-                TimestampActivity.this,
-                "inter_home",
-                () -> {
-                    startActivity(new Intent(timestampActivity, activityClass));
-                }
-        );
-
-    }
-
-    private void mCheckPermission() {
-        ArrayList<String> mPermissions = new ArrayList<>();
-        if (!IsTaken(timestampActivity, mPermissions, "android.permission.ACCESS_NETWORK_STATE")) {
-            mPermissions.add("android.permission.ACCESS_NETWORK_STATE");
-        }
-        if (!mPermissions.isEmpty()) {
-            Dexter.withContext(timestampActivity)
-                    .withPermissions(mPermissions).withListener(new MultiplePermissionsListener() {
-                        @Override
-                        public void onPermissionsChecked(MultiplePermissionsReport report) {
-                            if (report.areAllPermissionsGranted()) {
-                                mCallPhoneLocator();
-                            }
-                            if (report.isAnyPermissionPermanentlyDenied()) {
-                                showSettingsDialog();
-                            }
-                        }
-
-                        @Override
-                        public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
-                            token.continuePermissionRequest();
-                        }
-                    }).withErrorListener(error -> {
-                        // we are displaying a toast message for error message.
-                        Toast.makeText(getApplicationContext(), getResources().getString(R.string.error), Toast.LENGTH_SHORT).show();
-                    }).check();
-        } else {
-            mCallPhoneLocator();
-        }
-    }
-
-    private void mCallPhoneLocator() {
-        Dexter.withContext(timestampActivity)
-                .withPermissions("android.permission.READ_CONTACTS").withListener(new MultiplePermissionsListener() {
-                    @Override
-                    public void onPermissionsChecked(MultiplePermissionsReport report) {
-                        if (report.areAllPermissionsGranted()) {
-                            mNextCallActivity(PhoneLocator.class);
-                        }
-                        if (report.isAnyPermissionPermanentlyDenied()) {
-                            showSettingsContactDialog();
-                        }
-                    }
-
-                    @Override
-                    public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
-                        token.continuePermissionRequest();
-                    }
-                }).withErrorListener(error -> {
-                    // we are displaying a toast message for error message.
-                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.error), Toast.LENGTH_SHORT).show();
-                }).check();
-    }
-
-    private void showSettingsContactDialog() {
-        // we are displaying an alert dialog for permissions
-        AlertDialog.Builder builder = new AlertDialog.Builder(timestampActivity, R.style.AppAlertDialogStyle);
-
-        // below line is the title for our alert dialog.
-        builder.setTitle(getResources().getString(R.string.needpermission));
-
-        // below line is our message for our dialog
-        builder.setMessage(getResources().getString(R.string.needpermission1));
-        builder.setPositiveButton(getResources().getString(R.string.gotosetting), (dialog, which) -> {
-            // this method is called on click on positive button and on clicking shit button
-            // we are redirecting our user from our app to the settings page of our app.
-            dialog.cancel();
-            // below is the intent from which we are redirecting our user.
-            Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
-            Uri uri = Uri.fromParts("package", getPackageName(), null);
-            intent.setData(uri);
-            startActivityForResult(intent, 101);
+        AdsManager.INSTANCE.showInterHome(TimestampActivity.this, () -> {
+            startActivity(new Intent(timestampActivity, activityClass));
+            return null;
         });
-        builder.setNegativeButton(getResources().getString(R.string.cancel1), (dialog, which) -> {
-            // this method is called when user click on negative button.
-            dialog.cancel();
-        });
-        // below line is used to display our dialog
-        builder.show();
     }
 
     private void mCheckPermission(boolean b) {
@@ -391,14 +285,6 @@ public class TimestampActivity extends BaseActivity {
             // Save as current user locally
             CurrentUserUtil.saveCurrentUser(this, dataUser);
         }
-//        Intent intent = new Intent(timestampActivity, (Class<?>) LocationUpdateService.class);
-//        if (Build.VERSION.SDK_INT >= 26) {
-//            ContextCompat.startForegroundService(timestampActivity, intent);
-//        } else {
-//            startService(intent);
-//        }
-
-
     }
 
     public boolean isLocationEnabled() {
@@ -450,15 +336,11 @@ public class TimestampActivity extends BaseActivity {
         } else if (isGooglePlayServicesAvailable != 2) {
             charSequence = null;
             builder.setMessage(str);
-            builder.setNeutralButton(charSequence, new DialogInterface.OnClickListener() { // from class: gps.trackerid.location.gps.LocationTrackerHome1.27
-
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    try {
-                        startActivity(new Intent("android.intent.action.VIEW", Uri.parse(String.format("market://details?id=%1$s", "com.google.android.gms"))));
-                    } catch (Exception unused2) {
-                        startActivity(new Intent("android.intent.action.VIEW", Uri.parse("https://play.google.com/store/apps/details?id=com.google.android.gms")));
-                    }
+            builder.setNeutralButton(charSequence, (dialogInterface, i) -> {
+                try {
+                    startActivity(new Intent("android.intent.action.VIEW", Uri.parse(String.format("market://details?id=%1$s", "com.google.android.gms"))));
+                } catch (Exception unused2) {
+                    startActivity(new Intent("android.intent.action.VIEW", Uri.parse("https://play.google.com/store/apps/details?id=com.google.android.gms")));
                 }
             });
             if (z) {
@@ -471,15 +353,11 @@ public class TimestampActivity extends BaseActivity {
         }
         z = true;
         builder.setMessage(str);
-        builder.setNeutralButton(charSequence, new DialogInterface.OnClickListener() { // from class: gps.trackerid.location.gps.LocationTrackerHome1.27
-
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                try {
-                    startActivity(new Intent("android.intent.action.VIEW", Uri.parse(String.format("market://details?id=%1$s", "com.google.android.gms"))));
-                } catch (Exception unused2) {
-                    startActivity(new Intent("android.intent.action.VIEW", Uri.parse("https://play.google.com/store/apps/details?id=com.google.android.gms")));
-                }
+        builder.setNeutralButton(charSequence, (dialogInterface, i) -> {
+            try {
+                startActivity(new Intent("android.intent.action.VIEW", Uri.parse(String.format("market://details?id=%1$s", "com.google.android.gms"))));
+            } catch (Exception unused2) {
+                startActivity(new Intent("android.intent.action.VIEW", Uri.parse("https://play.google.com/store/apps/details?id=com.google.android.gms")));
             }
         });
         if (z) {
@@ -504,7 +382,6 @@ public class TimestampActivity extends BaseActivity {
 
         if (!isGpsEnabled) {
             // GPS is disabled, show alert dialog
-
             new AlertDialog.Builder(timestampActivity, R.style.AppAlertDialogStyle)
                     .setTitle("GPS is off")
                     .setMessage("Please turn on gps first for using more features")
@@ -530,31 +407,9 @@ public class TimestampActivity extends BaseActivity {
         timestampActivity = null;
     }
 
-    private void mLoadNative() {
-        if (AdsConfig.isShowNative(Global.native_home, timestampBinding.frAds) && Global.isInternetConnected(timestampActivity)) {
-
-            shimmerAds = findViewById(R.id.shimmer_native);
-
-            ERainAd.getInstance().loadNativeAd(this, getNativeHome(), R.layout.layout_native_ad_middle, timestampBinding.frAds, shimmerAds, new AdCallback() {
-                @Override
-                public void onAdFailedToLoad(@Nullable LoadAdError i) {
-                    super.onAdFailedToLoad(i);
-                    timestampBinding.frAds.removeAllViews();
-                }
-
-                @Override
-                public void onAdFailedToShow(@Nullable AdError adError) {
-                    super.onAdFailedToShow(adError);
-                    timestampBinding.frAds.removeAllViews();
-                }
-            });
-
-        }
-        if (Global.banner_collap_home && Global.isInternetConnected(timestampActivity)) {
-            ERainAd.getInstance().loadCollapsibleBanner(this, getBannerHomeCollapse(), AppConstant.CollapsibleGravity.BOTTOM, new AdCallback());
-        } else {
-            timestampBinding.mRlBanner.setVisibility(GONE);
-        }
+    private void mLoadAds() {
+        AdsManager.INSTANCE.loadNativeHome(this, timestampBinding.frAds);
+        AdsManager.INSTANCE.loadBannerHome(this, timestampBinding.frBanner);
     }
 
     @Override
@@ -570,7 +425,6 @@ public class TimestampActivity extends BaseActivity {
 
                 if (isLocationEnabled()) {
                     // Location is ON
-//            startService(new Intent(this, LocationUpdateService.class));
                     if (!isFinishing() && !isDestroyed()) {
 
                         Intent intent = new Intent(TimestampActivity.this, LocationUpdateService.class);
@@ -593,36 +447,10 @@ public class TimestampActivity extends BaseActivity {
                                     startService(intent);
                                 }
                             }
-//                    startService(new Intent(TimestampActivity.this, LocationUpdateService.class));
                         }
                     });
                 }
             }
-
-
-//            // Location is OFF
-//            LocationRequest locationRequest = LocationRequest.create()
-//                    .setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
-//
-//            LocationSettingsRequest.Builder builder =
-//                    new LocationSettingsRequest.Builder()
-//                            .addLocationRequest(locationRequest);
-//
-//            SettingsClient client = LocationServices.getSettingsClient(this);
-//            Task<LocationSettingsResponse> task = client.checkLocationSettings(builder.build());
-//
-//            task.addOnSuccessListener(locationSettingsResponse -> {
-//                // Location is ON
-//                startService(new Intent(this, LocationUpdateService.class));
-//            });
-//
-//            task.addOnFailureListener(e -> {
-//                if (e instanceof ResolvableApiException) {
-//                    try {
-//                        ((ResolvableApiException) e).startResolutionForResult(this, 1001);
-//                    } catch (IntentSender.SendIntentException ignored) {}
-//                }
-//            });
         } catch (Exception e) {
             e.printStackTrace();
         }

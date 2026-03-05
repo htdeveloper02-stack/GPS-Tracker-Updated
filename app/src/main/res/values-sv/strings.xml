@@ -7,7 +7,6 @@
     <string name="infosub3"><![CDATA[Kompass, närliggande platser och ruttplanerare ingår]]></string>
     <string name="infosub4"><![CDATA[Enkel och exakt vägledning]]></string>
 
-    <string name="map_key">AIzaSyBLIGwxAlODMg1i9AJiVKG4tNdTVKbSwSI</string>
     <string name="mDeletSub">Är du säker på att du vill ta bort denna zon?</string>
     <string name="waiting_for_gps_signal_d">Väntar på GPS-signal</string>
     <string name="chooselang">Välj ditt språk</string>
@@ -90,10 +89,6 @@
     <string name="survey_2">För många annonser</string>
     <string name="survey_3">Tar upp för mycket lagringsutrymme</string>
     <string name="survey_4">Premiumfunktioner är för dyra</string>
-
-    <string name="facebook_client_token" translatable="false">95c71e4402046c3690f3f4c3e76166a4</string>
-    <string name="tiktok_token" translatable="false">q32ux0</string>
-    <string name="adjust_token" translatable="false">uurp9o91gpvk</string>
 
     <string name="nocityfound">Ingen stad hittades</string>
     <string name="waiting_gps">Väntar på GPS-signal</string>

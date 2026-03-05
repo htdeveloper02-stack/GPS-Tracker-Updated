@@ -7,7 +7,6 @@
     <string name="infosub3"><![CDATA[Boussole, lieux à proximité et planificateur d’itinéraires inclus]]></string>
     <string name="infosub4"><![CDATA[Guidage simple et précis]]></string>
 
-    <string name="map_key">AIzaSyBLIGwxAlODMg1i9AJiVKG4tNdTVKbSwSI</string>
     <string name="mDeletSub">Êtes-vous sûr de vouloir supprimer cette zone ?</string>
     <string name="waiting_for_gps_signal_d">En attente du signal GPS</string>
     <string name="chooselang">Choisissez votre langue</string>
@@ -90,10 +89,6 @@
     <string name="survey_2">Trop de publicités</string>
     <string name="survey_3">Prend trop d’espace de stockage</string>
     <string name="survey_4">Les fonctionnalités premium sont trop chères</string>
-
-    <string name="facebook_client_token" translatable="false">95c71e4402046c3690f3f4c3e76166a4</string>
-    <string name="tiktok_token" translatable="false">q32ux0</string>
-    <string name="adjust_token" translatable="false">uurp9o91gpvk</string>
 
     <string name="nocityfound">Aucune ville trouvée</string>
     <string name="waiting_gps">En attente du signal GPS</string>

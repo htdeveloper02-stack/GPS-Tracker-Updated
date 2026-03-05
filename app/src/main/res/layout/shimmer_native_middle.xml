@@ -1,107 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.facebook.shimmer.ShimmerFrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/shimmer_native"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    app:shimmer_auto_start="true"
-    app:shimmer_base_color="#E0E0E0"
-    app:shimmer_highlight_color="#F5F5F5">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <com.google.android.material.card.MaterialCardView
+    <data>
+
+    </data>
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer_native"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardCornerRadius="6dp"
-        app:cardBackgroundColor="@android:color/white"
-        app:strokeColor="#F0F0F0"
-        app:strokeWidth="0.8dp">
+        app:shimmer_auto_start="true"
+        app:shimmer_base_color="#E0E0E0"
+        app:shimmer_highlight_color="#F5F5F5">
 
-        <LinearLayout
+        <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            app:cardBackgroundColor="@android:color/white"
+            app:cardCornerRadius="6dp"
+            app:strokeColor="#F0F0F0"
+            app:strokeWidth="0.8dp">
 
-            <!-- TOP CONTENT -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="10dp">
+                android:orientation="vertical">
 
-                <!-- LEFT SIDE -->
+                <!-- TOP CONTENT -->
                 <LinearLayout
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:orientation="horizontal"
+                    android:padding="10dp">
 
-                    <!-- Badge + Icon + Title -->
+                    <!-- LEFT SIDE -->
                     <LinearLayout
-                        android:layout_width="match_parent"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-                        <!-- AD badge -->
-                        <View
-                            android:layout_width="24dp"
-                            android:layout_height="14dp"
-                            android:background="@color/lightTransparent" />
-
-                        <!-- App Icon -->
-                        <View
-                            android:layout_width="35dp"
-                            android:layout_height="35dp"
-                            android:layout_marginStart="6dp"
-                            android:background="@color/lightTransparent" />
-
-                        <!-- Headline + Advertiser -->
+                        <!-- Badge + Icon + Title -->
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="6dp"
-                            android:orientation="vertical">
+                            android:orientation="horizontal">
 
+                            <!-- AD badge -->
                             <View
-                                android:layout_width="match_parent"
+                                android:layout_width="24dp"
                                 android:layout_height="14dp"
                                 android:background="@color/lightTransparent" />
 
+                            <!-- App Icon -->
                             <View
-                                android:layout_width="80dp"
-                                android:layout_height="12dp"
-                                android:layout_marginTop="6dp"
+                                android:layout_width="35dp"
+                                android:layout_height="35dp"
+                                android:layout_marginStart="6dp"
                                 android:background="@color/lightTransparent" />
+
+                            <!-- Headline + Advertiser -->
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="6dp"
+                                android:orientation="vertical">
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="14dp"
+                                    android:background="@color/lightTransparent" />
+
+                                <View
+                                    android:layout_width="80dp"
+                                    android:layout_height="12dp"
+                                    android:layout_marginTop="6dp"
+                                    android:background="@color/lightTransparent" />
+                            </LinearLayout>
                         </LinearLayout>
+
+                        <!-- Body text -->
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_marginTop="12dp"
+                            android:background="@color/lightTransparent" />
                     </LinearLayout>
 
-                    <!-- Body text -->
+                    <!-- RIGHT SIDE MEDIA -->
                     <View
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_marginTop="12dp"
+                        android:layout_width="0dp"
+                        android:layout_height="120dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_weight="1"
                         android:background="@color/lightTransparent" />
                 </LinearLayout>
 
-                <!-- RIGHT SIDE MEDIA -->
+                <!-- CTA BUTTON -->
                 <View
-                    android:layout_width="0dp"
-                    android:layout_height="120dp"
-                    android:layout_weight="1"
-                    android:layout_marginStart="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_margin="10dp"
                     android:background="@color/lightTransparent" />
+
             </LinearLayout>
 
-            <!-- CTA BUTTON -->
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_margin="10dp"
-                android:background="@color/lightTransparent" />
+        </com.google.android.material.card.MaterialCardView>
 
-        </LinearLayout>
-
-    </com.google.android.material.card.MaterialCardView>
-
-</com.facebook.shimmer.ShimmerFrameLayout>
+    </com.facebook.shimmer.ShimmerFrameLayout>
+</layout>
 
