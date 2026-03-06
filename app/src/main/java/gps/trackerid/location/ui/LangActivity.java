@@ -100,10 +100,6 @@ public class LangActivity extends AppCompatActivity {
             languageBinding.mIvDone.setVisibility(GONE);
         }
 
-        if (mType == null) {
-            AdsManager.INSTANCE.loadNativeObFull(this, SharedUtils.INSTANCE.getValue(SharedUtils.OPEN_APP, false));
-        }
-
         initAdmob(AdsManager.NativeLanguageType.NORMAL);
         Log.d("DEV_ITG", "Show: getNativeAdLanguageNormal");
     }

@@ -15,6 +15,7 @@ import com.ads.module.util.AppConstant
 import com.google.android.gms.ads.LoadAdError
 import gps.trackerid.location.BuildConfig
 import gps.trackerid.location.R
+import gps.trackerid.location.databinding.ShimmerNativeFullBinding
 import gps.trackerid.location.databinding.ShimmerNativeMediumBinding
 import gps.trackerid.location.databinding.ShimmerNativeMiddleBinding
 
@@ -71,6 +72,25 @@ object AdsManager {
         }
     }
 
+    fun loadBannerSplashUninstall(activity: Activity, frAds: FrameLayout) {
+        val layout = LayoutInflater.from(activity)
+            .inflate(com.ads.module.R.layout.layout_banner_control, null)
+        frAds.removeAllViews()
+        frAds.addView(layout)
+        if (RemoteUtils.getOnBannerSplashUninstall() && activity.isNetwork()) {
+            Log.d("DEV_ITG", "loadBannerSplashUninstall: 1")
+            ERainAd.getInstance()
+                .loadBanner(activity, BuildConfig.banner_splash_uninstall, object : AdCallback() {
+                    override fun onAdFailedToLoad(i: LoadAdError?) {
+                        super.onAdFailedToLoad(i)
+                        frAds.removeAllViews()
+                    }
+                })
+        } else {
+            frAds.removeAllViews()
+        }
+    }
+
     fun loadNativeLanguageNormal(activity: Activity, isOpen: Boolean) {
         if (nativeAdLanguageNormal == null) {
             if (RemoteUtils.getOnNativeLanguage1() && activity.isNetwork() && isOpen.not()) {
@@ -97,7 +117,7 @@ object AdsManager {
                     })
             }
 
-            if (RemoteUtils.getOnNativeLanguage2Click() && activity.isNetwork() && isOpen) {
+            if (RemoteUtils.getOnNativeLanguage2() && activity.isNetwork() && isOpen) {
                 ERainAd.getInstance().loadNativeAdResultCallback(
                     activity,
                     BuildConfig.native_language_2,
@@ -184,7 +204,6 @@ object AdsManager {
         if (activity.isNetwork()) {
             if (isOpen.not()) {
                 if (RemoteUtils.getOnNativeOnboarding11()) {
-                    Log.d("DEV_ITG", "loadNativeOb4: 11")
                     ERainAd.getInstance().loadNativeAdResultCallback(
                         activity,
                         BuildConfig.native_onboarding_1_1,
@@ -192,6 +211,8 @@ object AdsManager {
                         object : AdCallback() {
                             override fun onNativeAdLoaded(nativeAd: ApNativeAd) {
                                 super.onNativeAdLoaded(nativeAd)
+                                Log.d("DEV_ITG", "loadNativeOb4: 11 true")
+
                                 populateNativeAdView(
                                     activity, nativeAd, frAds, layoutShimmer.shimmerNative,
                                     RemoteUtils.getCTAButtonHeight().toInt()
@@ -200,6 +221,7 @@ object AdsManager {
 
                             override fun onAdFailedToLoad(i: LoadAdError?) {
                                 super.onAdFailedToLoad(i)
+                                Log.d("DEV_ITG", "loadNativeOb4: 11 false")
                                 frAds.removeAllViews()
                             }
                         }
@@ -217,6 +239,7 @@ object AdsManager {
                         object : AdCallback() {
                             override fun onNativeAdLoaded(nativeAd: ApNativeAd) {
                                 super.onNativeAdLoaded(nativeAd)
+                                Log.d("DEV_ITG", "loadNativeOb4: 21 true")
                                 populateNativeAdView(
                                     activity, nativeAd, frAds, layoutShimmer.shimmerNative,
                                     RemoteUtils.getCTAButtonHeight().toInt()
@@ -225,6 +248,7 @@ object AdsManager {
 
                             override fun onAdFailedToLoad(i: LoadAdError?) {
                                 super.onAdFailedToLoad(i)
+                                Log.d("DEV_ITG", "loadNativeOb4: 21 false")
                                 frAds.removeAllViews()
                             }
                         }
@@ -244,16 +268,24 @@ object AdsManager {
         frAds.addView(layoutShimmer.shimmerNative)
         if (activity.isNetwork()) {
             if (isOpen.not()) {
-                if (RemoteUtils.getOnNativeOnboarding11()) {
-                    Log.d("DEV_ITG", "loadNativeOb4: 14")
-                    ERainAd.getInstance().loadNativeAd(
+                if (RemoteUtils.getOnNativeOnboarding14()) {
+                    ERainAd.getInstance().loadNativeAdResultCallback(
                         activity,
                         BuildConfig.native_onboarding_1_4,
                         R.layout.layout_native_ad_medium,
-                        frAds,
-                        layoutShimmer.shimmerNative, object : AdCallback() {
+                        object : AdCallback() {
+                            override fun onNativeAdLoaded(nativeAd: ApNativeAd) {
+                                super.onNativeAdLoaded(nativeAd)
+                                Log.d("DEV_ITG", "loadNativeOb4: 14 true")
+                                populateNativeAdView(
+                                    activity, nativeAd, frAds, layoutShimmer.shimmerNative,
+                                    RemoteUtils.getCTAButtonHeight().toInt()
+                                )
+                            }
+
                             override fun onAdFailedToLoad(i: LoadAdError?) {
                                 super.onAdFailedToLoad(i)
+                                Log.d("DEV_ITG", "loadNativeOb4: 14 false")
                                 frAds.removeAllViews()
                             }
                         }
@@ -263,15 +295,23 @@ object AdsManager {
                 }
             } else {
                 if (RemoteUtils.getOnNativeOnboarding24()) {
-                    Log.d("DEV_ITG", "loadNativeOb4: 24")
-                    ERainAd.getInstance().loadNativeAd(
+                    ERainAd.getInstance().loadNativeAdResultCallback(
                         activity,
                         BuildConfig.native_onboarding_2_4,
                         R.layout.layout_native_ad_medium,
-                        frAds,
-                        layoutShimmer.shimmerNative, object : AdCallback() {
+                        object : AdCallback() {
+                            override fun onNativeAdLoaded(nativeAd: ApNativeAd) {
+                                super.onNativeAdLoaded(nativeAd)
+                                Log.d("DEV_ITG", "loadNativeOb4: 24 true")
+                                populateNativeAdView(
+                                    activity, nativeAd, frAds, layoutShimmer.shimmerNative,
+                                    RemoteUtils.getCTAButtonHeight().toInt()
+                                )
+                            }
+
                             override fun onAdFailedToLoad(i: LoadAdError?) {
                                 super.onAdFailedToLoad(i)
+                                Log.d("DEV_ITG", "loadNativeOb4: 24 false")
                                 frAds.removeAllViews()
                             }
                         }
@@ -285,7 +325,10 @@ object AdsManager {
         }
     }
 
-    fun loadNativeObFull(activity: Activity, isOpen: Boolean) {
+    fun loadNativeObFull(activity: Activity, isOpen: Boolean, frAds: FrameLayout) {
+        val layoutShimmer = ShimmerNativeFullBinding.inflate(activity.layoutInflater)
+        frAds.removeAllViews()
+        frAds.addView(layoutShimmer.shimmerNative)
         if (activity.isNetwork()) {
             if (isOpen.not()) {
                 if (RemoteUtils.getOnNativeOnboardingFullscreen12() && ERainAd.getInstance().shouldDisplayNativeOnboardingFull1) {
@@ -296,14 +339,24 @@ object AdsManager {
                         object : AdCallback() {
                             override fun onNativeAdLoaded(nativeAd: ApNativeAd) {
                                 super.onNativeAdLoaded(nativeAd)
-                                nativeAdObFull = nativeAd
-                                Log.d("DEV_ITG", "onNativeAdLoaded: Full 1")
+                                populateNativeAdView(
+                                    activity, nativeAd, frAds, layoutShimmer.shimmerNative,
+                                    RemoteUtils.getCTAButtonHeight().toInt()
+                                )
+                                Log.d("DEV_ITG", "onNativeAdLoaded: Full 12 true")
+                            }
+
+                            override fun onAdFailedToLoad(i: LoadAdError?) {
+                                super.onAdFailedToLoad(i)
+                                frAds.removeAllViews()
+                                Log.d("DEV_ITG", "onNativeAdLoaded: Full 12 false")
+
                             }
                         }
                     )
                 }
             } else {
-                if (RemoteUtils.getOnNativeOnboarding21() && ERainAd.getInstance().shouldDisplayNativeOnboardingFull1) {
+                if (RemoteUtils.getOnNativeOnboardingFullscreen22() && ERainAd.getInstance().shouldDisplayNativeOnboardingFull1) {
                     ERainAd.getInstance().loadNativeAdResultCallback(
                         activity,
                         BuildConfig.native_onboarding_fullscreen_2_2,
@@ -311,13 +364,24 @@ object AdsManager {
                         object : AdCallback() {
                             override fun onNativeAdLoaded(nativeAd: ApNativeAd) {
                                 super.onNativeAdLoaded(nativeAd)
-                                nativeAdObFull = nativeAd
-                                Log.d("DEV_ITG", "onNativeAdLoaded: Full 2")
+                                populateNativeAdView(
+                                    activity, nativeAd, frAds, layoutShimmer.shimmerNative,
+                                    RemoteUtils.getCTAButtonHeight().toInt()
+                                )
+                                Log.d("DEV_ITG", "onNativeAdLoaded: Full 22 true")
+                            }
+
+                            override fun onAdFailedToLoad(i: LoadAdError?) {
+                                super.onAdFailedToLoad(i)
+                                Log.d("DEV_ITG", "onNativeAdLoaded: Full 22 false")
+                                frAds.removeAllViews()
                             }
                         }
                     )
                 }
             }
+        } else {
+            frAds.removeAllViews()
         }
     }
 
@@ -520,7 +584,7 @@ object AdsManager {
             .inflate(com.ads.module.R.layout.layout_banner_control, null)
         frAds.removeAllViews()
         frAds.addView(layout)
-        if (RemoteUtils.getOnBannerSplash() && activity.isNetwork()) {
+        if (RemoteUtils.getOnBannerAll() && activity.isNetwork()) {
             Log.d("DEV_ITG", "loadBannerSplash: 1")
             ERainAd.getInstance()
                 .loadBanner(activity, BuildConfig.banner_all, object : AdCallback() {

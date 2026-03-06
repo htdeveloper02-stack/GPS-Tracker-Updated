@@ -53,7 +53,7 @@ public class OnBoardActivity extends BaseActivity {
         List<BaseFragment> fragments = new ArrayList<>();
         fragments.add(new OnBoardFragment1());
         fragments.add(new OnBoardFragment2());
-        if (isAddObFull && isNetwork(this) && AdsManager.INSTANCE.getNativeAdObFull() != null) {
+        if (isAddObFull && isNetwork(this)) {
             fragments.add(new OnBoardFullFragment());
         }
         fragments.add(new OnBoardFragment3());

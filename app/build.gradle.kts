@@ -11,6 +11,17 @@ android {
     namespace = "gps.trackerid.location"
     compileSdk = 36
 
+    android {
+        signingConfigs {
+            create("release") {
+                storeFile = file("../app/key_debug")
+                storePassword = "gps.trackerid.location"
+                keyAlias = "key0"
+                keyPassword = "gps.trackerid.location"
+            }
+        }
+    }
+
     defaultConfig {
         applicationId = "gps.trackerid.location"
         minSdk = 24
@@ -19,6 +30,8 @@ android {
         versionName = "1.0.9"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        signingConfig = signingConfigs.getByName("release")
     }
 
     buildTypes {
@@ -89,6 +102,7 @@ android {
             buildConfigField("String", "native_survey_uninstall", "\"ca-app-pub-2864154863223892/5615409167\"")
             buildConfigField("String", "native_setting", "\"ca-app-pub-2864154863223892/1999597789\"")
 
+            isDebuggable = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"

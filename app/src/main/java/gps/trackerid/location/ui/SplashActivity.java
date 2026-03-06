@@ -150,8 +150,8 @@ public class SplashActivity extends AppCompatActivity {
         if (action != null) {
             switch (action) {
                 case Global.ACTION_OPEN_UNINSTALL:
-                    AdsManager.INSTANCE.loadBannerSplash(this, splashBinding.mRlBanner);
-                    if (RemoteUtils.INSTANCE.getOnInterSplash()) {
+                    AdsManager.INSTANCE.loadBannerSplashUninstall(this, splashBinding.mRlBanner);
+                    if (RemoteUtils.INSTANCE.getOnInterSplashUninstall()) {
                         Log.d("DEV_ITG", "checkRemoteConfigResult: inter_splash_uninstall");
                         ERainAd.getInstance().loadSplashInterstitialAds(this, BuildConfig.inter_splash_uninstall, 25000, 5000, new AdCallback() {
                             @Override
@@ -231,6 +231,36 @@ public class SplashActivity extends AppCompatActivity {
         intent.putExtra(Global.KEY_TRACKING_SCREEN_FROM, getClass().getSimpleName());
         startActivity(intent);
         return intent;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (getConfigSuccess && isNetwork(this)) {
+            String action = getIntent().getStringExtra(Global.FROM_SHORTCUT);
+
+            if (action != null) {
+                if (action.equals(Global.ACTION_OPEN_UNINSTALL) && RemoteUtils.INSTANCE.getOnInterSplashUninstall()) {
+                    ERainAd.getInstance().onCheckShowSplashWhenFail(this, new AdCallback() {
+                        @Override
+                        public void onNextAction() {
+                            super.onNextAction();
+                            startConfirmUninstallActivity();
+                        }
+                    }, 1000);
+                }
+            } else {
+                if (RemoteUtils.INSTANCE.getOnInterSplash()) {
+                    ERainAd.getInstance().onCheckShowSplashWhenFail(this, new AdCallback() {
+                        @Override
+                        public void onNextAction() {
+                            super.onNextAction();
+                            mCallNextLanguage();
+                        }
+                    }, 1000);
+                }
+            }
+        }
     }
 
     @Override
