@@ -102,7 +102,6 @@ android {
             buildConfigField("String", "native_survey_uninstall", "\"ca-app-pub-2864154863223892/5615409167\"")
             buildConfigField("String", "native_setting", "\"ca-app-pub-2864154863223892/1999597789\"")
 
-            isDebuggable = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
